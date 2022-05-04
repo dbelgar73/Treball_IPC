@@ -10,8 +10,7 @@ package poiupv;
  * @author david
  */
 public class proba {
-    //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    //holakdnsl
-    //hoalaoalaoalsjdiwqvdiirvc
-    //lolololllololololo
+    //David: hola
+    //Sergi:
+    //Vicent: 
 }
