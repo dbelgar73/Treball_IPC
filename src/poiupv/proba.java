@@ -10,7 +10,7 @@ package poiupv;
  * @author david
  */
 public class proba {
-    //David: hola
+    //David: hola ......
     //Sergi:
     //Vicent: hola i adios
 }
