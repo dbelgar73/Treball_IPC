@@ -11,6 +11,6 @@ package poiupv;
  */
 public class proba {
     //David: hola ......
-    //Sergi:
+    //Sergi: holav
     //Vicent: hola i adios
 }
