@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
  *
  * @author david
  */
-public class RegistreController implements Initializable {
+public class FXMLRegistreController implements Initializable {
 
     @FXML
     private TextField usuari;

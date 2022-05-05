@@ -14,12 +14,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+
 /**
  * FXML Controller class
  *
  * @author david
  */
-public class IniciSesioController implements Initializable {
+public class FXMLIniciSesioController implements Initializable {
 
     @FXML
     private Label MissatgeUsuari;

@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package poiupv;
-//hola
-//hola
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +34,7 @@ import poiupv.Poi;
  *
  * @author jsoler
  */
-public class FXMLDocumentController implements Initializable {
+public class FXMLDocumentController  {
 
     //=======================================
     // hashmap para guardar los puntos de interes POI
@@ -120,28 +119,28 @@ public class FXMLDocumentController implements Initializable {
         map_listview.getItems().add(hm.get("2F"));
         map_listview.getItems().add(hm.get("Agora"));
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        initData();
-        //==========================================================
-        // inicializamos el slider y enlazamos con el zoom
-        zoom_slider.setMin(0.5);
-        zoom_slider.setMax(1.5);
-        zoom_slider.setValue(1.0);
-        zoom_slider.valueProperty().addListener((o, oldVal, newVal) -> zoom((Double) newVal));
-        
-        //=========================================================================
-        //Envuelva el contenido de scrollpane en un grupo para que 
-        //ScrollPane vuelva a calcular las barras de desplazamiento tras el escalado
-        Group contentGroup = new Group();
-        zoomGroup = new Group();
-        contentGroup.getChildren().add(zoomGroup);
-        zoomGroup.getChildren().add(map_scrollpane.getContent());
-        map_scrollpane.setContent(contentGroup);
-
-    }
+    
+//    @Override
+//    public void initialize(URL url, ResourceBundle rb) {
+//        // TODO
+//        initData();
+//        //==========================================================
+//        // inicializamos el slider y enlazamos con el zoom
+//        zoom_slider.setMin(0.5);
+//        zoom_slider.setMax(1.5);
+//        zoom_slider.setValue(1.0);
+//        zoom_slider.valueProperty().addListener((o, oldVal, newVal) -> zoom((Double) newVal));
+//
+//        //=========================================================================
+//        //Envuelva el contenido de scrollpane en un grupo para que 
+//        //ScrollPane vuelva a calcular las barras de desplazamiento tras el escalado
+//        Group contentGroup = new Group();
+//        zoomGroup = new Group();
+//        contentGroup.getChildren().add(zoomGroup);
+//        zoomGroup.getChildren().add(map_scrollpane.getContent());
+//        map_scrollpane.setContent(contentGroup);
+//    
+//    }
 
     @FXML
     private void muestraPosicion(MouseEvent event) {
