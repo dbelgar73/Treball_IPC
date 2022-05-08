@@ -28,7 +28,7 @@ import javafx.stage.Stage;
  *
  * @author Sergi
  */
-public class FXMLPrincipalController implements Initializable {
+public class PrincipalController implements Initializable {
 
     @FXML
     private Label posicion;
@@ -121,16 +121,13 @@ public class FXMLPrincipalController implements Initializable {
     private void modificarPerfil(ActionEvent event) {
     }
     
-//    private Stage primaryStage;
-//    public void initStage( Stage stage) {
-//        primaryStage = stage;
-//    }
+
     @FXML
     private void cerrarSesion(ActionEvent event) {
         ((Stage)zoom_slider.getScene().getWindow()).close();
         try {
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLInicisesio.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("IniciSesio.fxml"));
             Scene scene = new Scene(root);
             stage.setTitle("Inicio Sesion");
             stage.setScene(scene);

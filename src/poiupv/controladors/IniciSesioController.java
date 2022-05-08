@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
  *
  * @author david
  */
-public class FXMLIniciSesioController implements Initializable {
+public class IniciSesioController implements Initializable {
 
     @FXML
     private Label MissatgeUsuari;

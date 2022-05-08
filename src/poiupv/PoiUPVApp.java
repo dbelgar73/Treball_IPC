@@ -19,7 +19,7 @@ public class PoiUPVApp extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
          
         Scene scene = new Scene(root);
         stage.setTitle("App problemas");
