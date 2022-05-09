@@ -129,7 +129,7 @@ public class PrincipalController implements Initializable {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("IniciSesio.fxml"));
             Scene scene = new Scene(root);
-            stage.setTitle("Inicio Sesion");
+            stage.setTitle("Inicio Sesión");
             stage.setScene(scene);
             stage.show();
             } 

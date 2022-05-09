@@ -12,9 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.RegistreController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="903.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.RegistreController">
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #1877f2;" BorderPane.alignment="TOP_CENTER">
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #1877f2;">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrarse">
                <font>
@@ -31,13 +31,13 @@
       </HBox>
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
             <HBox prefHeight="90.0" prefWidth="1313.0">
                <children>
                   <VBox prefHeight="100.0" prefWidth="244.0">
                      <children>
-                        <Label text="Nombre de usuario:">
+                        <Label text="Nom d'usuari">
                            <padding>
                               <Insets bottom="5.0" />
                            </padding>
@@ -63,7 +63,7 @@
                <children>
                   <VBox prefHeight="90.0" prefWidth="252.0">
                      <children>
-                        <Label text="Correo:">
+                        <Label text="Correu">
                            <VBox.margin>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
@@ -89,7 +89,7 @@
                <children>
                   <VBox prefHeight="75.0" prefWidth="447.0">
                      <children>
-                        <Label text="Contraseña:">
+                        <Label text="Contrassenya">
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
@@ -106,7 +106,7 @@
                   </VBox>
                   <VBox prefHeight="90.0" prefWidth="590.0">
                      <children>
-                        <Label fx:id="errorContrassenya" prefHeight="84.0" prefWidth="322.0" text="La contrassenya ha de contindre 8-20 caràcters, 1 lletra minuscules o majuscules, digit i caracter especial ( !@ #$%&amp;*()-+=)" textFill="RED">
+                        <Label fx:id="errorContrassenya" prefHeight="84.0" prefWidth="551.0" text="La contrassenya ha de contindre 8-20 caràcters, 1 lletra minuscules o majuscules, digit i caracter especial" textFill="RED">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -119,7 +119,7 @@
                <children>
                   <VBox prefHeight="90.0" prefWidth="216.0">
                      <children>
-                        <Label text="Fecha de nacimiento:">
+                        <Label text="Data de naixement">
                            <padding>
                               <Insets bottom="5.0" left="10.0" />
                            </padding>
@@ -141,14 +141,27 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="botoRegistrarse" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="171.0" text="Registrar-se">
+                  <VBox prefHeight="200.0" prefWidth="100.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="48.0" />
+                  <HBox prefHeight="100.0" prefWidth="281.0">
+                     <children>
+                        <Button fx:id="botoCancelar" mnemonicParsing="false" prefHeight="50.0" prefWidth="183.0" text="Cancelar" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="300.0">
+                     <children>
+                        <Button fx:id="botoRegistrarse" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Registrar-se" />
+                     </children>
                      <HBox.margin>
-                        <Insets right="15.0" />
+                        <Insets />
                      </HBox.margin>
-                  </Button>
-                  <Button fx:id="botoCancelar" mnemonicParsing="false" prefHeight="37.0" prefWidth="171.0" text="Cancelar" />
+                  </HBox>
                </children>
             </HBox>
          </children>
