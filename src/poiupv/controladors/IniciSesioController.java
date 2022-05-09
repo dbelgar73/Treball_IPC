@@ -5,6 +5,7 @@
  */
 package poiupv.controladors;
 
+import DBAccess.NavegacionDAOException;
 import java.io.IOException;
 import java.lang.ModuleLayer.Controller;
 import java.net.URL;
@@ -22,6 +23,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Navegacion;
 
 
 /**
@@ -53,25 +55,29 @@ public class IniciSesioController implements Initializable {
     }    
     
     @FXML
-    private void iniciarSesio(ActionEvent event) {
-        
-        
-        
-        ((Stage)usuari.getScene().getWindow()).close();
-        try {
-            //Falta editar per a autenticarse i eso
-            Stage estageActual = new Stage();
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/Principal.fxml"));
-            Parent root = miCargador.load();
-            Scene scene = new Scene(root);
-            estageActual.setScene(scene);
-            estageActual.initModality(Modality.APPLICATION_MODAL);
-            estageActual.show();
-            
-        } 
-        catch (IOException e) {e.printStackTrace();}
-        
-        
+    private void iniciarSessio(ActionEvent event) throws NavegacionDAOException {
+        String nickName = usuari.getText();
+        String password = contrassenya.getText();
+        Navegacion navegacio = Navegacion.getSingletonNavegacion();
+        if(navegacio.exitsNickName(nickName) == false){
+            MissatgeUsuari.visibleProperty();
+        }
+        else{
+            if(navegacio.loginUser(nickName, password)!= null){
+                ((Stage)usuari.getScene().getWindow()).close();
+                try {
+                    //Falta editar per a autenticarse i eso
+                    Stage estageActual = new Stage();
+                    FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/Principal.fxml"));
+                    Parent root = miCargador.load();
+                    Scene scene = new Scene(root);
+                    estageActual.setScene(scene);
+                    estageActual.initModality(Modality.APPLICATION_MODAL);
+                    estageActual.show();
+                } 
+                catch (IOException e) {e.printStackTrace();} 
+            }
+        }    
     }
 
     @FXML
