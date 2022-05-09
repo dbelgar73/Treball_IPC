@@ -77,11 +77,12 @@ public class IniciSesioController implements Initializable {
         
         
         try {
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/Registre.fxml"));
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Registre.fxml"));
             Parent root = miCargador.load();
             RegistreController controlador = miCargador.getController();
             Scene scene = new Scene(root);
             Stage estageActual = new Stage();
+            estageActual.setResizable(true);
             estageActual.setScene(scene);
             estageActual.initModality(Modality.APPLICATION_MODAL);
             estageActual.show();
