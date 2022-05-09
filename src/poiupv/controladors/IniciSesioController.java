@@ -41,6 +41,8 @@ public class IniciSesioController implements Initializable {
     private Button iniciarSessio;
     @FXML
     private PasswordField contrassenya;
+    @FXML
+    private Button botoRegistre;
 
     /**
      * Initializes the controller class.
@@ -52,7 +54,10 @@ public class IniciSesioController implements Initializable {
     
     @FXML
     private void iniciarSesio(ActionEvent event) {
-       ((Stage)usuari.getScene().getWindow()).close();
+        
+        
+        
+        ((Stage)usuari.getScene().getWindow()).close();
         try {
             Stage estageActual = new Stage();
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("IniciSesio.fxml"));
