@@ -50,7 +50,7 @@
                   </VBox>
                   <VBox prefHeight="90.0" prefWidth="355.0">
                      <children>
-                        <Label fx:id="errorUsuari" prefHeight="85.0" prefWidth="344.0" text="Seleccionar un nou valor que contingui entre 6 i 15 caràcters o dígits i espais _ -" textFill="RED" wrapText="true">
+                        <Label fx:id="errorUsuari" prefHeight="85.0" prefWidth="344.0" text="Seleccionar un nou valor que contingui entre 6 i 15 caràcters o dígits i espais _ -" textFill="RED" visible="false" wrapText="true">
                            <VBox.margin>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
@@ -78,7 +78,7 @@
                         </TextField>
                      </children>
                   </VBox>
-                  <Label fx:id="errorCorreu" prefHeight="87.0" prefWidth="224.0" text="El correu ha de tindre format valid" textFill="RED">
+                  <Label fx:id="errorCorreu" prefHeight="87.0" prefWidth="224.0" text="El correu ha de tindre format valid" textFill="RED" visible="false">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -106,7 +106,7 @@
                   </VBox>
                   <VBox prefHeight="90.0" prefWidth="590.0">
                      <children>
-                        <Label fx:id="errorContrassenya" prefHeight="84.0" prefWidth="322.0" text="La contrassenya ha de contindre 8-20 caràcters, 1 lletra minuscules o majuscules, digit i caracter especial ( !@ #$%&amp;*()-+=)" textFill="RED">
+                        <Label fx:id="errorContrassenya" prefHeight="84.0" prefWidth="322.0" text="La contrassenya ha de contindre 8-20 caràcters, 1 lletra minuscules o majuscules, digit i caracter especial ( !@ #$%&amp;*()-+=)" textFill="RED" visible="false">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -136,19 +136,19 @@
                   </VBox>
                   <VBox prefHeight="90.0" prefWidth="228.0">
                      <children>
-                        <Label fx:id="errorEdat" prefHeight="65.0" prefWidth="201.0" text="L'usuari ha de tindre al menys 16 anys" textFill="RED" />
+                        <Label fx:id="errorEdat" prefHeight="65.0" prefWidth="201.0" text="L'usuari ha de tindre al menys 16 anys" textFill="RED" visible="false" />
                      </children>
                   </VBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="botoRegistrarse" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="171.0" text="Registrar-se">
+                  <Button fx:id="botoRegistrarse" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registrarse" prefHeight="37.0" prefWidth="171.0" text="Registrar-se">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="botoCancelar" mnemonicParsing="false" prefHeight="37.0" prefWidth="171.0" text="Cancelar" />
+                  <Button fx:id="botoCancelar" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="171.0" text="Cancelar" />
                </children>
             </HBox>
          </children>
