@@ -23,8 +23,9 @@ public class PoiUPVApp extends Application {
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("IniciSesio.fxml"));
             Parent root = miCargador.load();
             Scene scene = new Scene(root);
-            stage.setTitle("Multi ventanas");
+            stage.setTitle("Inicio Session");
             stage.setScene(scene);
+    
             stage.show();
         }
         catch(Exception e) {
