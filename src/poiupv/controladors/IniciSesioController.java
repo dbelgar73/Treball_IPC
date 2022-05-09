@@ -69,15 +69,16 @@ public class IniciSesioController implements Initializable {
                 //canvia de finsetra
                 ((Stage)usuari.getScene().getWindow()).close();
                 try {
-                    Stage estageActual = new Stage();
-                    FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Menu.fxml"));
-                    Parent root = miCargador.load();
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/Menu.fxml"));
                     Scene scene = new Scene(root);
-                    estageActual.setScene(scene);
-                    estageActual.initModality(Modality.APPLICATION_MODAL);
-                    estageActual.show();
+                    stage.setTitle("Bandeja de entrada");
+                    stage.setScene(scene);
+                    stage.show();
                 } 
-                catch (IOException e) {e.printStackTrace();} 
+                catch (IOException e) {
+                    e.printStackTrace();
+                }     
             }
             else{
                 //mostra l'error de inici de sessió

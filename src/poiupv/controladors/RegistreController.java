@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -96,52 +97,51 @@ public class RegistreController implements Initializable {
         //COMPROBA LES DADES INTRODUIDES
         if(!User.checkNickName(usr)){//error en l'usuari
             errorUsuari.setVisible(true);
-        }else{errorUsuari.setVisible(false);}//per a quan l'error siga altre que no seguixca
+        }
+        else{
+            errorUsuari.setVisible(false);
+        }//per a quan l'error siga altre que no seguixca
         if(!User.checkEmail(email)){//error en el correu
             errorCorreu.setVisible(true);
-        }else{ errorCorreu.setVisible(false);}
+        }
+        else{ 
+            errorCorreu.setVisible(false);
+        }
         if(!User.checkPassword(pswd)){//error en la contrassenya
             errorContrassenya.setVisible(true);
-        }else{ errorContrassenya.setVisible(false);}
+        }
+        else{ 
+            errorContrassenya.setVisible(false);
+        }
         //Data de naixement
+        int edat = 0;
         LocalDate birthDate = daypicker.getValue();
         if(birthDate != null){
-            LocalDate now = LocalDate.EPOCH;
+            LocalDate now = LocalDate.now();
             int year = now.getYear();
-            if(birthDate.getYear() < year + 12){//es menor de 12 anys
+            edat = year - birthDate.getYear() ;
+            if(edat < 17){//es menor de 16 anys
                 errorEdat.setVisible(true);
-            }else{
+            }
+            else{
+                errorEdat.setVisible(false);
+            }
+        }
+        if(User.checkNickName(usr) & User.checkEmail(email) & User.checkPassword(pswd) & edat > 16){
             //TOT CORRECTE, REGISTRA
             navegacio.registerUser(usr,email,pswd,avatar,birthDate);
+            //VES A LA FINESTRA DE INICI DE SESIO
+            Node n = (Node)event.getSource();
+            n.getScene().getWindow().hide();
+        }
+        
+        
             
-            //VES A LA FINESTRA PRINCIPAL
-            ((Stage)usuari.getScene().getWindow()).close();
-        try {
-            Stage estageActual = new Stage();
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Menu.fxml"));
-            Parent root = miCargador.load();
-            Scene scene = new Scene(root);
-            estageActual.setScene(scene);
-            estageActual.initModality(Modality.APPLICATION_MODAL);
-            estageActual.show();
-            } 
-        catch (IOException e) {e.printStackTrace();}
-            }
-        }      
     }
     
     @FXML
     private void cancelar(ActionEvent event){
-        ((Stage)usuari.getScene().getWindow()).close();
-        try {
-            Stage estageActual = new Stage();
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
-            Parent root = miCargador.load();
-            Scene scene = new Scene(root);
-            estageActual.setScene(scene);
-            estageActual.initModality(Modality.APPLICATION_MODAL);
-            estageActual.show();
-            } 
-        catch (IOException e) {e.printStackTrace();}
+        Node n = (Node)event.getSource();
+        n.getScene().getWindow().hide();
     }
 }
