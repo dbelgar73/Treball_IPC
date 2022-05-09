@@ -70,7 +70,7 @@ public class IniciSesioController implements Initializable {
                 ((Stage)usuari.getScene().getWindow()).close();
                 try {
                     Stage estageActual = new Stage();
-                    FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/Principal.fxml"));
+                    FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Menu.fxml"));
                     Parent root = miCargador.load();
                     Scene scene = new Scene(root);
                     estageActual.setScene(scene);
