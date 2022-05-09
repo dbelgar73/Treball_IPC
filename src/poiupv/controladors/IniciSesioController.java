@@ -59,13 +59,15 @@ public class IniciSesioController implements Initializable {
         
         ((Stage)usuari.getScene().getWindow()).close();
         try {
+            //Falta editar per a autenticarse i eso
             Stage estageActual = new Stage();
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("IniciSesio.fxml"));
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/Principal.fxml"));
             Parent root = miCargador.load();
             Scene scene = new Scene(root);
             estageActual.setScene(scene);
             estageActual.initModality(Modality.APPLICATION_MODAL);
             estageActual.show();
+            
         } 
         catch (IOException e) {e.printStackTrace();}
         
