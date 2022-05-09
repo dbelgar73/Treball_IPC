@@ -55,18 +55,18 @@ public class IniciSesioController implements Initializable {
     }    
     
     @FXML
-    private void iniciarSessio(ActionEvent event) throws NavegacionDAOException {
-        String nickName = usuari.getText();
-        String password = contrassenya.getText();
-        Navegacion navegacio = Navegacion.getSingletonNavegacion();
-        if(navegacio.exitsNickName(nickName) == false){
-            MissatgeUsuari.visibleProperty();
+    private void iniciarSesio(ActionEvent event) throws NavegacionDAOException {
+        String nickName = usuari.getText();//usuari
+        String password = contrassenya.getText();//contrassenya
+        Navegacion navegacio = Navegacion.getSingletonNavegacion();//necesari per a cridar a metodes de la classe Navegacion
+        if(navegacio.exitsNickName(nickName) == false){//si no existeix l'usuari mostra error
+            MissatgeUsuari.visibleProperty();//mostra label visible
         }
-        else{
-            if(navegacio.loginUser(nickName, password)!= null){
+        else{//si existix l'usuari
+            if(navegacio.loginUser(nickName, password)!= null){//si esta tot correcte, usuari i contrassenya
+                //canvia de finsetra
                 ((Stage)usuari.getScene().getWindow()).close();
                 try {
-                    //Falta editar per a autenticarse i eso
                     Stage estageActual = new Stage();
                     FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/Principal.fxml"));
                     Parent root = miCargador.load();
