@@ -77,6 +77,10 @@ public class RegistreController implements Initializable {
     private ImageView avatar4;
     @FXML
     private RadioButton avatar4Sel;
+    @FXML
+    private Label errorJaRegistrat;
+    @FXML
+    private Label errorJaRegistrat1;
 
     /**
      * Initializes the controller class.
@@ -84,7 +88,7 @@ public class RegistreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }   
     
     @FXML
     private void registrarse(ActionEvent event) throws NavegacionDAOException{
@@ -113,9 +117,25 @@ public class RegistreController implements Initializable {
         else{ 
             errorContrassenya.setVisible(false);
         }
+        
         //Data de naixement
         int edat = 0;
-        LocalDate birthDate = daypicker.getValue();
+        LocalDate birthDate = this.daypicker.getValue();
+        if(birthDate == null){//la data no sa escrit desde el daypicker
+            String textfieldDate = this.daypicker.getEditor().toString();
+            int[] date = new int[3];
+            int pos = 0;
+            for(int i = 0; i < textfieldDate.length(); i++){
+                if(textfieldDate.charAt(i) != '/'){
+                    int aux = 0;
+                   // date[pos] = Integer.textfieldDate.charAt(i);
+                }
+                else{pos = pos+1;}
+            }
+            //INACABAT SEGUIRE DEMA
+        }
+        System.out.println("" + birthDate);
+        if(birthDate == null){errorEdat.setVisible(true);}
         if(birthDate != null){
             //Obte la data de ara
             int year, month, day = 0;
@@ -131,31 +151,30 @@ public class RegistreController implements Initializable {
                 errorEdat.setVisible(false);//amaga el error de la edat
             }
         }
+     
         if(User.checkNickName(usr) && User.checkEmail(email) && User.checkPassword(pswd)){
             //TOT CORRECTE, REGISTRA
-            navegacio.registerUser(usr,email,pswd,avatar,birthDate);
+                navegacio.registerUser(usr,email,pswd,avatar,birthDate);
+            
             //VES A LA FINESTRA DE INICI DE SESIO I TANCA ESTA FINESTRA
             try {
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Menu.fxml"));
-            Parent root = miCargador.load();
-            RegistreController controlador = miCargador.getController();
-            Scene scene = new Scene(root);
-            Stage estageActual = new Stage();
-            estageActual.setResizable(true);
-            estageActual.setScene(scene);
-            estageActual.initModality(Modality.APPLICATION_MODAL);
-            estageActual.show();
-        } 
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Menu.fxml"));
+                Parent root = miCargador.load();
+                RegistreController controlador = miCargador.getController();
+                Scene scene = new Scene(root);
+                Stage estageActual = new Stage();
+                estageActual.setResizable(true);
+                estageActual.setScene(scene);
+                estageActual.initModality(Modality.APPLICATION_MODAL);
+                estageActual.show();
+            } 
+            catch (IOException e) {
+                e.printStackTrace();
+            }
             //TANCA LA FINESTRA DEL REGISTRE
             Node n = (Node)event.getSource();
             n.getScene().getWindow().hide();
-        }
-        
-        
-            
+        }         
     }
     
     @FXML
