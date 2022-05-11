@@ -80,6 +80,11 @@ public class IniciSesioController implements Initializable {
         //Autenticació de usuari
         if(navegacio.exitsNickName(nickName) == false){//si no existeix l'usuari mostra error
             MissatgeUsuari.setVisible(true);//mostra label visible-------------------
+             Alert alert = new Alert(AlertType.ERROR); 
+             alert.setTitle("Error"); 
+             alert.setHeaderText("Usuari i/o contrassenya no trobats");
+             alert.setContentText("Torna-ho a intentar"); 
+             alert.showAndWait();
         }
         else{//si existix l'usuari
             if(navegacio.loginUser(nickName, password)!= null){//si esta tot correcte, usuari i contrassenya
@@ -96,7 +101,9 @@ public class IniciSesioController implements Initializable {
                     stage.setTitle("Bandeja de entrada");
                     stage.setScene(scene);
                     stage.show();
-                   ((Stage)usuari.getScene().getWindow()).close();
+                    Node n = (Node)event.getSource();
+                    n.getScene().getWindow().hide();
+                  
                 } 
                 catch (IOException e) {
                     e.printStackTrace();
@@ -124,6 +131,8 @@ public class IniciSesioController implements Initializable {
             estageActual.setScene(scene);
             estageActual.initModality(Modality.APPLICATION_MODAL);
             estageActual.show();
+            Node n = (Node)event.getSource();
+            n.getScene().getWindow().hide();
         } 
         catch (IOException e) {
             e.printStackTrace();

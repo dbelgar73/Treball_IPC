@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -83,14 +84,16 @@ public class MenuController implements Initializable {
 
     @FXML
     private void CerrarSesion(ActionEvent event) {
-        ((Stage)ListaProblems.getScene().getWindow()).close();
+        
         try {
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("IniciSesio.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
             Scene scene = new Scene(root);
-            stage.setTitle("Inicio Sesión");
+            stage.setTitle("Inici Sesio");
             stage.setScene(scene);
             stage.show();
+            Node n = (Node)event.getSource();
+            n.getScene().getWindow().hide();
             } 
         catch (IOException e) {
                 e.printStackTrace();
@@ -109,6 +112,8 @@ public class MenuController implements Initializable {
             estageActual.setScene(scene);
             estageActual.initModality(Modality.APPLICATION_MODAL);
             estageActual.show();
+            Node n = (Node)event.getSource();
+            n.getScene().getWindow().hide();
         } 
         catch (IOException e) {
             e.printStackTrace();
@@ -127,6 +132,8 @@ public class MenuController implements Initializable {
             estageActual.setScene(scene);
             estageActual.initModality(Modality.APPLICATION_MODAL);
             estageActual.show();
+            Node n = (Node)event.getSource();
+            n.getScene().getWindow().hide();
         } 
         catch (IOException e) {
             e.printStackTrace();
