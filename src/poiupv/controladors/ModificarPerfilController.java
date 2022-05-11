@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -17,6 +19,13 @@ import javafx.fxml.Initializable;
  * @author david
  */
 public class ModificarPerfilController implements Initializable {
+
+    @FXML
+    private TextField contrasenyaUser;
+    @FXML
+    private TextField CorreuUser;
+    @FXML
+    private DatePicker dataUser;
 
     /**
      * Initializes the controller class.
