@@ -90,12 +90,42 @@ public class RegistreController implements Initializable {
     
     @FXML
     private void registrarse(ActionEvent event) throws NavegacionDAOException{
+        Navegacion navegacio = Navegacion.getSingletonNavegacion();
         String usr = usuari.getText();
         String email = correu.getText();
         String pswd = contrassenya.getText();
-        //Avatar
+        
+        //SELECCIÓ D'Avatar
         Image avatar = avatarDefault.getImage();
-        Navegacion navegacio = Navegacion.getSingletonNavegacion();
+        if(!avatar1Sel.isDisabled()){//avatar 1 seleccionat
+            avatar = avatar1.getImage();
+            avatarDefaultSel.setDisable(true);
+            avatar2Sel.setDisable(true);
+            avatar3Sel.setDisable(true);
+            avatar4Sel.setDisable(true);
+        }
+        if(!avatar2Sel.isDisabled()){//avatar 2 seleccionat
+            avatar = avatar2.getImage();
+            avatarDefaultSel.setDisable(true);
+            avatar1Sel.setDisable(true);
+            avatar3Sel.setDisable(true);
+            avatar4Sel.setDisable(true);
+        }
+        if(!avatar3Sel.isDisabled()){//avatar 3 seleccionat
+            avatar = avatar3.getImage();
+            avatarDefaultSel.setDisable(true);
+            avatar1Sel.setDisable(true);
+            avatar2Sel.setDisable(true);
+            avatar4Sel.setDisable(true);
+        }
+        if(!avatar4Sel.isDisabled()){//avatar 4 seleccionat
+            avatar = avatar4.getImage();
+            avatarDefaultSel.setDisable(true);
+            avatar1Sel.setDisable(true);
+            avatar2Sel.setDisable(true);
+            avatar3Sel.setDisable(true);
+        }
+        
         //COMPROBA LES DADES INTRODUIDES
         if(!User.checkNickName(usr)){//error en l'usuari
             errorUsuari.setVisible(true);
@@ -118,7 +148,7 @@ public class RegistreController implements Initializable {
         
          //DATA DE NAIXEMENT
         LocalDate birthDate = this.daypicker.getValue();//obte el valor seleccionat en el datePicker 
-        System.out.println("RESULTAT birthDate" +"\n"+ birthDate);//Visualitza resultat intermig
+        //System.out.println("RESULTAT birthDate" +"\n"+ birthDate);//Visualitza resultat intermig
         String aux = errorEdat.getText();
         if(birthDate == null){
             errorEdat.setText("Error, data no introduida. S'ha de polsar intro per a comfirmar-la");
@@ -141,9 +171,8 @@ public class RegistreController implements Initializable {
             else{
                 errorEdat.setVisible(false);//amaga el error de la edat
             }
-        
         }
-     
+        
         if(User.checkNickName(usr) && User.checkEmail(email) && User.checkPassword(pswd)){
             //TOT CORRECTE, REGISTRA
             try{navegacio.registerUser(usr,email,pswd,avatar,birthDate);}
