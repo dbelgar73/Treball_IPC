@@ -156,7 +156,7 @@
                         </VBox>
                         <VBox prefHeight="90.0" prefWidth="228.0">
                            <children>
-                              <Label fx:id="errorEdat" prefHeight="65.0" prefWidth="201.0" text="L'usuari ha de tindre al menys 16 anys" textFill="RED" visible="false" />
+                              <Label fx:id="errorEdat" prefHeight="65.0" prefWidth="227.0" text="L'usuari ha de tindre al menys 16 anys" textFill="RED" wrapText="true" />
                            </children>
                         </VBox>
                      </children>
