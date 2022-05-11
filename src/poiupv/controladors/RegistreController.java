@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,66 +81,156 @@ public class RegistreController implements Initializable {
     private RadioButton avatar4Sel;
     @FXML
     private Label errorJaRegistrat;
+    public Image avatar;
+    public String usr;
+    public String email;
+    public String pswd;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        
+        usuari.focusedProperty().addListener((observable, oldValue, newValue)->{ 
+      
+            if(!User.checkNickName(usr)){//error en l'usuari
+                errorUsuari.setVisible(true);
+            }
+            else{
+                errorUsuari.setVisible(false);
+                correu.setDisable(false);
+                
+                
+            }
+        });
+        correu.focusedProperty().addListener((observable, oldValue, newValue)->{ 
+            if(!newValue){ 
+               errorCorreu.setVisible(false);             
+            }
+            email = correu.getText();
+            errorCorreu.setVisible(false);
+            
+            if(!User.checkEmail(email)){//error en el correu
+                errorCorreu.setVisible(true);
+                contrassenya.setDisable(true);
+            }
+            else{ 
+                errorCorreu.setVisible(false);
+                contrassenya.setDisable(false);
+            }
+        });
+//LISTENERS PER A LA SELECCIO DE PERFIL
+        avatarDefaultSel.setSelected(true);
+        avatar = avatarDefault.getImage();
+        avatar1Sel.setDisable(true);
+        avatar2Sel.setDisable(true);
+        avatar3Sel.setDisable(true);
+        avatar4Sel.setDisable(true);
+        avatarDefaultSel.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                if (!isNowSelected) { 
+                    avatar1Sel.setDisable(false);
+                    avatar2Sel.setDisable(false);
+                    avatar3Sel.setDisable(false);
+                    avatar4Sel.setDisable(false);
+                }
+                else{
+                    avatar1Sel.setDisable(true);
+                    avatar2Sel.setDisable(true);
+                    avatar3Sel.setDisable(true);
+                    avatar4Sel.setDisable(true);
+                }
+        }
+        });
+        avatar1Sel.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                if(!isNowSelected){//avatar 1 seleccionat
+                    avatar = avatar1.getImage();
+                    avatarDefaultSel.setDisable(false);
+                    avatar2Sel.setDisable(false);
+                    avatar3Sel.setDisable(false);
+                    avatar4Sel.setDisable(false);
+                }
+                else{
+                    avatarDefaultSel.setDisable(true);
+                    avatar2Sel.setDisable(true);
+                    avatar3Sel.setDisable(true);
+                    avatar4Sel.setDisable(true);
+                }
+            }
+        });
+        avatar2Sel.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                if(!isNowSelected){//avatar 2 seleccionat
+                    avatar = avatar2.getImage();
+                    avatarDefaultSel.setDisable(false);
+                    avatar1Sel.setDisable(false);
+                    avatar3Sel.setDisable(false);
+                    avatar4Sel.setDisable(false);
+                }
+                else{
+                    avatarDefaultSel.setDisable(true);
+                    avatar1Sel.setDisable(true);
+                    avatar3Sel.setDisable(true);
+                    avatar4Sel.setDisable(true);
+                }
+            }
+        });
+        avatar3Sel.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                if(!isNowSelected){//avatar 3 seleccionat
+                    avatar = avatar3.getImage();
+                    avatarDefaultSel.setDisable(false);
+                    avatar1Sel.setDisable(false);
+                    avatar2Sel.setDisable(false);
+                    avatar4Sel.setDisable(false);
+                }
+                else{
+                    avatarDefaultSel.setDisable(true);
+                    avatar2Sel.setDisable(true);
+                    avatar1Sel.setDisable(true);
+                    avatar4Sel.setDisable(true);
+                }
+            }
+        });
+        avatar4Sel.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                if(!isNowSelected){//avatar 4 seleccionat
+                    avatar = avatar4.getImage();
+                    avatarDefaultSel.setDisable(false);
+                    avatar1Sel.setDisable(false);
+                    avatar2Sel.setDisable(false);
+                    avatar3Sel.setDisable(false);
+                }
+                else{
+                    avatarDefaultSel.setDisable(true);
+                    avatar2Sel.setDisable(true);
+                    avatar3Sel.setDisable(true);
+                    avatar1Sel.setDisable(true);
+                }
+            }
+        });
+        
+        
+        
     }   
     
     @FXML
     private void registrarse(ActionEvent event) throws NavegacionDAOException{
         Navegacion navegacio = Navegacion.getSingletonNavegacion();
-        String usr = usuari.getText();
-        String email = correu.getText();
-        String pswd = contrassenya.getText();
+        usr = usuari.getText();
+        email = correu.getText();
+        pswd = contrassenya.getText();
         
         //SELECCIÓ D'Avatar
-        Image avatar = avatarDefault.getImage();
-        if(!avatar1Sel.isDisabled()){//avatar 1 seleccionat
-            avatar = avatar1.getImage();
-            avatarDefaultSel.setDisable(true);
-            avatar2Sel.setDisable(true);
-            avatar3Sel.setDisable(true);
-            avatar4Sel.setDisable(true);
-        }
-        if(!avatar2Sel.isDisabled()){//avatar 2 seleccionat
-            avatar = avatar2.getImage();
-            avatarDefaultSel.setDisable(true);
-            avatar1Sel.setDisable(true);
-            avatar3Sel.setDisable(true);
-            avatar4Sel.setDisable(true);
-        }
-        if(!avatar3Sel.isDisabled()){//avatar 3 seleccionat
-            avatar = avatar3.getImage();
-            avatarDefaultSel.setDisable(true);
-            avatar1Sel.setDisable(true);
-            avatar2Sel.setDisable(true);
-            avatar4Sel.setDisable(true);
-        }
-        if(!avatar4Sel.isDisabled()){//avatar 4 seleccionat
-            avatar = avatar4.getImage();
-            avatarDefaultSel.setDisable(true);
-            avatar1Sel.setDisable(true);
-            avatar2Sel.setDisable(true);
-            avatar3Sel.setDisable(true);
-        }
+//        Image avatar = avatarDefault.getImage();
+        
         
         //COMPROBA LES DADES INTRODUIDES
-        if(!User.checkNickName(usr)){//error en l'usuari
-            errorUsuari.setVisible(true);
-        }
-        else{
-            errorUsuari.setVisible(false);
-        }//per a quan l'error siga altre que no seguixca
-        if(!User.checkEmail(email)){//error en el correu
-            errorCorreu.setVisible(true);
-        }
-        else{ 
-            errorCorreu.setVisible(false);
-        }
+        //per a quan l'error siga altre que no seguixca
+        
         if(!User.checkPassword(pswd)){//error en la contrassenya
             errorContrassenya.setVisible(true);
         }
