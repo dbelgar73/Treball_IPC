@@ -77,10 +77,6 @@ public class RegistreController implements Initializable {
     private ImageView avatar4;
     @FXML
     private RadioButton avatar4Sel;
-    @FXML
-    private Label errorJaRegistrat;
-    @FXML
-    private Label errorJaRegistrat1;
 
     /**
      * Initializes the controller class.
