@@ -15,8 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import model.User;
-import static poiupv.controladors.MenuController.userActual;
-import static poiupv.controladors.RegistreController.birthDate;
+import poiupv.Poi;
 
 /**
  * FXML Controller class
@@ -38,9 +37,9 @@ public class ModificarPerfilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        contrasenyaUser.setText(MenuController.userActual.getPassword());
-        CorreuUser.setText(MenuController.userActual.getEmail());
-        dataUser.setValue(MenuController.userActual.getBirthdate());
+        contrasenyaUser.setText(Poi.userActual.getPassword());
+        CorreuUser.setText(Poi.userActual.getEmail());
+        dataUser.setValue(Poi.userActual.getBirthdate());
     }    
 
     @FXML
@@ -57,9 +56,9 @@ public class ModificarPerfilController implements Initializable {
         //se comroben que siguen correctes
         if(User.checkPassword(newPass) && User.checkEmail(newEmail) && edat > 16){
             //canviem les dades que hi havien per les noves
-            userActual.setPassword(newPass);
-            userActual.setEmail(newEmail);
-            userActual.setBirthdate(newBirth);
+            Poi.userActual.setPassword(newPass);
+            Poi.userActual.setEmail(newEmail);
+            Poi.userActual.setBirthdate(newBirth);
         }
     }
 

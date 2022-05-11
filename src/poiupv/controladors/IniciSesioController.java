@@ -28,6 +28,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Navegacion;
 import model.User;
+import poiupv.Poi;
 import static poiupv.controladors.RegistreController.usr;
 
 
@@ -103,6 +104,7 @@ public class IniciSesioController implements Initializable {
                     stage.show();
                     Node n = (Node)event.getSource();
                     n.getScene().getWindow().hide();
+                    Poi.userActual = IniciSesioController.navegacio.getUser(IniciSesioController.nickName);
                   
                 } 
                 catch (IOException e) {

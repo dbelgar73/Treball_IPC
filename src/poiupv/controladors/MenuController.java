@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 import model.Navegacion;
 import model.Problem;
 import model.User;
+import poiupv.Poi;
 
 /**
  * FXML Controller class
@@ -44,15 +45,15 @@ public class MenuController implements Initializable {
     private ImageView avatarPerfil;
     @FXML
     private Button botoRealizar;
-    public static User userActual;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
         // TODO
-        userActual = IniciSesioController.navegacio.getUser(IniciSesioController.nickName);
-        avatarPerfil.setImage(userActual.getAvatar()); //fica el avatar del perfil actual
+        
+        avatarPerfil.setImage(Poi.userActual.getAvatar()); //fica el avatar del perfil actual
         ListaProblems.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             if (ListaProblems.isFocused()) {
                 botoRealizar.setDisable(false);   
@@ -95,6 +96,7 @@ public class MenuController implements Initializable {
             stage.show();
             Node n = (Node)event.getSource();
             n.getScene().getWindow().hide();
+            Poi.userActual = null;
             } 
         catch (IOException e) {
                 e.printStackTrace();
