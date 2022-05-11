@@ -20,7 +20,7 @@ public class PoiUPVApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         try {
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Menu.fxml"));
             Parent root = miCargador.load();
             Scene scene = new Scene(root);
             stage.setTitle("Inicio Session");

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,7 +19,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Navegacion;
@@ -35,13 +38,22 @@ public class MenuController implements Initializable {
     private ListView<Problem> ListaProblems;
 
     private ObservableList<Problem> datos = null;
+    @FXML
+    private ImageView avatarPerfil;
+    @FXML
+    private Button botoRealizar;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+        ListaProblems.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if (ListaProblems.isFocused()) {
+                botoRealizar.setDisable(false);   
+            }
+        avatarPerfil.setImage(avatar); //fica el avatar del perfil actual
+        });
         try {
             Navegacion navegacio = Navegacion.getSingletonNavegacion();
             List<Problem> problemas = navegacio.getProblems();//Aço no va,vaig comprobar la talla de la llista i era 0
