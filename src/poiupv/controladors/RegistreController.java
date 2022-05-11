@@ -85,6 +85,7 @@ public class RegistreController implements Initializable {
     public  static String usr;
     public static String email;
     public static String pswd;
+    public static LocalDate birthDate;
 
     /**
      * Initializes the controller class.
@@ -92,19 +93,18 @@ public class RegistreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
-        usuari.focusedProperty().addListener((observable, oldValue, newValue)->{ 
-      
+        //LISTENER CAMP USUARI
+        usuari.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            usr = usuari.getText();
             if(!User.checkNickName(usr)){//error en l'usuari
                 errorUsuari.setVisible(true);
             }
             else{
                 errorUsuari.setVisible(false);
-                
-                
-                
+ 
             }
         });
+        //LISTENER CAMP CORREU
         correu.focusedProperty().addListener((observable, oldValue, newValue)->{ 
             
             email = correu.getText();
@@ -112,13 +112,51 @@ public class RegistreController implements Initializable {
             
             if(!User.checkEmail(email)){//error en el correu
                 errorCorreu.setVisible(true);
-                contrassenya.setDisable(true);
+                
             }
             else{ 
                 errorCorreu.setVisible(false);
-                contrassenya.setDisable(false);
+                
             }
         });
+        //LISTENER CAMP CONTRASSENYA
+        contrassenya.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            pswd = contrassenya.getText();
+            errorContrassenya.setVisible(false);
+            if(!User.checkPassword(pswd)){//error en la contrassenya
+                errorContrassenya.setVisible(true);
+            }
+            else{
+                errorContrassenya.setVisible(false);
+            }
+        });
+        //LISTENER CAMP ANIVERSARI
+        daypicker.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            String aux = errorEdat.getText();
+        if(birthDate == null){
+            errorEdat.setText("Error, data no introduida. S'ha de polsar intro per a comfirmar-la");
+            errorEdat.setVisible(true);
+        }
+        else{
+            errorEdat.setVisible(false);
+            errorEdat.setText(aux);
+            //Obte la data de ara
+            int year, month, day = 0;
+            LocalDate now = LocalDate.now();
+            //calcula la diferencia (Data de hui - any de naixement) = edat
+            int dataHui = now.getYear() + now.getDayOfYear();//calcula la data de hui
+            int naixement = birthDate.getYear() + birthDate.getDayOfYear();
+            
+            int edat = dataHui - naixement ;
+            if(edat < 16){//es menor de 16 anys
+                errorEdat.setVisible(true);//mostra error edat 
+            }
+            else{
+                errorEdat.setVisible(false);//amaga el error de la edat
+            }
+        }
+        });
+        
 //LISTENERS PER A LA SELECCIO DE PERFIL
         avatarDefaultSel.setSelected(true);
         avatar = avatarDefault.getImage();
@@ -210,9 +248,6 @@ public class RegistreController implements Initializable {
                 }
             }
         });
-        
-        
-        
     }   
     
     @FXML
@@ -221,47 +256,10 @@ public class RegistreController implements Initializable {
         usr = usuari.getText();
         email = correu.getText();
         pswd = contrassenya.getText();
-        
-        //SELECCIÓ D'Avatar
-//        Image avatar = avatarDefault.getImage();
-        
-        
-        //COMPROBA LES DADES INTRODUIDES
-        //per a quan l'error siga altre que no seguixca
-        
-        if(!User.checkPassword(pswd)){//error en la contrassenya
-            errorContrassenya.setVisible(true);
-        }
-        else{ 
-            errorContrassenya.setVisible(false);
-        }
-        
          //DATA DE NAIXEMENT
-        LocalDate birthDate = this.daypicker.getValue();//obte el valor seleccionat en el datePicker 
+        birthDate = this.daypicker.getValue();//obte el valor seleccionat en el datePicker 
         //System.out.println("RESULTAT birthDate" +"\n"+ birthDate);//Visualitza resultat intermig
-        String aux = errorEdat.getText();
-        if(birthDate == null){
-            errorEdat.setText("Error, data no introduida. S'ha de polsar intro per a comfirmar-la");
-            errorEdat.setVisible(true);
-        }
-        else{
-            errorEdat.setVisible(false);
-            errorEdat.setText(aux);
-            //Obte la data de ara
-            int year, month, day = 0;
-            LocalDate now = LocalDate.now();
-            //calcula la diferencia (Data de hui - any de naixement) = edat
-            int dataHui = now.getYear() + now.getDayOfYear();//calcula la data de hui
-            int naixement = birthDate.getYear() + birthDate.getDayOfYear();
-            
-            int edat = dataHui - naixement ;
-            if(edat < 16){//es menor de 16 anys
-                errorEdat.setVisible(true);//mostra error edat 
-            }
-            else{
-                errorEdat.setVisible(false);//amaga el error de la edat
-            }
-        }
+        
         
         if(User.checkNickName(usr) && User.checkEmail(email) && User.checkPassword(pswd)){
             //TOT CORRECTE, REGISTRA
