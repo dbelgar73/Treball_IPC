@@ -154,7 +154,6 @@ public class RegistreController implements Initializable {
             errorEdat.setText(aux);
             botoRegistrarse.setDisable(false);
             //Obte la data de ara
-            int year, month, day = 0;
             LocalDate now = LocalDate.now();
             //calcula la diferencia (Data de hui - any de naixement) = edat
             int dataHui = now.getYear() + now.getDayOfYear();//calcula la data de hui
