@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.vistes.ModificarPerfilController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.ModificarPerfilController">
    <top>
       <HBox alignment="CENTER_LEFT" style="-fx-background-color: #1877f2;" BorderPane.alignment="CENTER_LEFT">
          <children>
@@ -34,7 +34,7 @@
             <Insets top="20.0" />
          </BorderPane.margin>
          <children>
-            <Label text="Contraseña:">
+            <Label text="Contrasenya">
                <VBox.margin>
                   <Insets left="20.0" />
                </VBox.margin>
@@ -44,7 +44,7 @@
                   <Insets left="20.0" right="200.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Correo:">
+            <Label text="Correu:">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -54,7 +54,7 @@
                   <Insets left="20.0" right="200.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Fecha Nacimiento:">
+            <Label text="Data naixement:">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -75,7 +75,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#guardarCambios" text="Guardar cambios">
+            <Button mnemonicParsing="false" onAction="#guardarCambios" text="Guardar canvis">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>

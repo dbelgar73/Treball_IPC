@@ -7,6 +7,8 @@ package poiupv.controladors;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -23,5 +25,13 @@ public class ModificarPerfilController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void guardarCambios(ActionEvent event) {
+    }
+
+    @FXML
+    private void cancelar(ActionEvent event) {
+    }
     
 }
