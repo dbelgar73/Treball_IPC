@@ -100,15 +100,13 @@ public class RegistreController implements Initializable {
             }
             else{
                 errorUsuari.setVisible(false);
-                correu.setDisable(false);
+                
                 
                 
             }
         });
         correu.focusedProperty().addListener((observable, oldValue, newValue)->{ 
-            if(!newValue){ 
-               errorCorreu.setVisible(false);             
-            }
+            
             email = correu.getText();
             errorCorreu.setVisible(false);
             
