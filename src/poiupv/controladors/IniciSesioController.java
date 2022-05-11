@@ -18,6 +18,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -82,7 +84,11 @@ public class IniciSesioController implements Initializable {
         else{//si existix l'usuari
             if(navegacio.loginUser(nickName, password)!= null){//si esta tot correcte, usuari i contrassenya
                 //canvia de finsetra
-                ((Stage)usuari.getScene().getWindow()).close();
+                Alert alert = new Alert(AlertType.INFORMATION); 
+                alert.setTitle("Iniciant sessió"); 
+                alert.setHeaderText("Usuari i contrassenya correctes");
+                alert.setContentText("Benvingut: " + nickName); 
+                alert.showAndWait();
                 try {
                     Stage stage = new Stage();
                     Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/Menu.fxml"));
@@ -90,6 +96,7 @@ public class IniciSesioController implements Initializable {
                     stage.setTitle("Bandeja de entrada");
                     stage.setScene(scene);
                     stage.show();
+                   ((Stage)usuari.getScene().getWindow()).close();
                 } 
                 catch (IOException e) {
                     e.printStackTrace();
