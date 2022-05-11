@@ -44,7 +44,7 @@ public class MenuController implements Initializable {
         
         try {
             Navegacion navegacio = Navegacion.getSingletonNavegacion();
-            List<Problem> problemas = navegacio.getProblems();
+            List<Problem> problemas = navegacio.getProblems();//Aço no va,vaig comprobar la talla de la llista i era 0
             datos = FXCollections.observableList(problemas);
             ListaProblems.setItems(datos);
         } catch (NavegacionDAOException e) { e.printStackTrace(); }
