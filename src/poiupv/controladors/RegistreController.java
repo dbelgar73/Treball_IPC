@@ -98,10 +98,11 @@ public class RegistreController implements Initializable {
             usr = usuari.getText();
             if(!User.checkNickName(usr)){//error en l'usuari
                 errorUsuari.setVisible(true);
+                botoRegistrarse.setDisable(true);
             }
             else{
                 errorUsuari.setVisible(false);
- 
+                botoRegistrarse.setDisable(false);
             }
         });
         //LISTENER CAMP CORREU
@@ -112,10 +113,12 @@ public class RegistreController implements Initializable {
             
             if(!User.checkEmail(email)){//error en el correu
                 errorCorreu.setVisible(true);
+                botoRegistrarse.setDisable(true);
                 
             }
             else{ 
                 errorCorreu.setVisible(false);
+                botoRegistrarse.setDisable(false);
                 
             }
         });
@@ -125,21 +128,26 @@ public class RegistreController implements Initializable {
             errorContrassenya.setVisible(false);
             if(!User.checkPassword(pswd)){//error en la contrassenya
                 errorContrassenya.setVisible(true);
+                botoRegistrarse.setDisable(true);
             }
             else{
                 errorContrassenya.setVisible(false);
+                botoRegistrarse.setDisable(false);
             }
         });
         //LISTENER CAMP ANIVERSARI
         daypicker.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            String aux = errorEdat.getText();
+        String aux = errorEdat.getText();
+        birthDate = this.daypicker.getValue();
         if(birthDate == null){
             errorEdat.setText("Error, data no introduida. S'ha de polsar intro per a comfirmar-la");
             errorEdat.setVisible(true);
+            botoRegistrarse.setDisable(true);
         }
         else{
             errorEdat.setVisible(false);
             errorEdat.setText(aux);
+            botoRegistrarse.setDisable(false);
             //Obte la data de ara
             int year, month, day = 0;
             LocalDate now = LocalDate.now();
@@ -150,6 +158,7 @@ public class RegistreController implements Initializable {
             int edat = dataHui - naixement ;
             if(edat < 16){//es menor de 16 anys
                 errorEdat.setVisible(true);//mostra error edat 
+                botoRegistrarse.setDisable(true);
             }
             else{
                 errorEdat.setVisible(false);//amaga el error de la edat
@@ -166,6 +175,12 @@ public class RegistreController implements Initializable {
         avatar4Sel.setDisable(true);
         avatarDefaultSel.selectedProperty().addListener(new ChangeListener<Boolean>() {
             public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                if(!avatar4Sel.isSelected() && !avatarDefaultSel.isSelected() && !avatar1Sel.isSelected() && !avatar2Sel.isSelected() && !avatar3Sel.isSelected()){
+                    botoRegistrarse.setDisable(true);
+                }
+                else{
+                    botoRegistrarse.setDisable(false);
+                }
                 if (!isNowSelected) { 
                     avatar1Sel.setDisable(false);
                     avatar2Sel.setDisable(false);
@@ -182,6 +197,12 @@ public class RegistreController implements Initializable {
         });
         avatar1Sel.selectedProperty().addListener(new ChangeListener<Boolean>() {
             public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                if(!avatar4Sel.isSelected() && !avatarDefaultSel.isSelected() && !avatar1Sel.isSelected() && !avatar2Sel.isSelected() && !avatar3Sel.isSelected()){
+                    botoRegistrarse.setDisable(true);
+                }
+                else{
+                    botoRegistrarse.setDisable(false);
+                }
                 if(!isNowSelected){//avatar 1 seleccionat
                     avatar = avatar1.getImage();
                     avatarDefaultSel.setDisable(false);
@@ -199,6 +220,12 @@ public class RegistreController implements Initializable {
         });
         avatar2Sel.selectedProperty().addListener(new ChangeListener<Boolean>() {
             public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                if(!avatar4Sel.isSelected() && !avatarDefaultSel.isSelected() && !avatar1Sel.isSelected() && !avatar2Sel.isSelected() && !avatar3Sel.isSelected()){
+                    botoRegistrarse.setDisable(true);
+                }
+                else{
+                    botoRegistrarse.setDisable(false);
+                }
                 if(!isNowSelected){//avatar 2 seleccionat
                     avatar = avatar2.getImage();
                     avatarDefaultSel.setDisable(false);
@@ -216,6 +243,12 @@ public class RegistreController implements Initializable {
         });
         avatar3Sel.selectedProperty().addListener(new ChangeListener<Boolean>() {
             public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                if(!avatar4Sel.isSelected() && !avatarDefaultSel.isSelected() && !avatar1Sel.isSelected() && !avatar2Sel.isSelected() && !avatar3Sel.isSelected()){
+                    botoRegistrarse.setDisable(true);
+                }
+                else{
+                    botoRegistrarse.setDisable(false);
+                }
                 if(!isNowSelected){//avatar 3 seleccionat
                     avatar = avatar3.getImage();
                     avatarDefaultSel.setDisable(false);
@@ -233,6 +266,12 @@ public class RegistreController implements Initializable {
         });
         avatar4Sel.selectedProperty().addListener(new ChangeListener<Boolean>() {
             public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                if(!avatar4Sel.isSelected() && !avatarDefaultSel.isSelected() && !avatar1Sel.isSelected() && !avatar2Sel.isSelected() && !avatar3Sel.isSelected()){
+                    botoRegistrarse.setDisable(true);
+                }
+                else{
+                    botoRegistrarse.setDisable(false);
+                }
                 if(!isNowSelected){//avatar 4 seleccionat
                     avatar = avatar4.getImage();
                     avatarDefaultSel.setDisable(false);

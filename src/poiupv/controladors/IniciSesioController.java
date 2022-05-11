@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.lang.ModuleLayer.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Navegacion;
+import model.User;
+import static poiupv.controladors.RegistreController.usr;
 
 
 /**
@@ -54,7 +57,16 @@ public class IniciSesioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        usuari.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            usr = usuari.getText();
+            if(!User.checkNickName(usr)){//error en l'usuari
+                MissatgeUsuari.setVisible(true);
+            }
+            else{
+                MissatgeUsuari.setVisible(false);
+ 
+            }
+        });
     }    
     
     @FXML
