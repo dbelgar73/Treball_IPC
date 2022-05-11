@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import model.User;
@@ -60,6 +61,8 @@ public class ModificarPerfilController implements Initializable {
             Poi.userActual.setEmail(newEmail);
             Poi.userActual.setBirthdate(newBirth);
         }
+        Node n = (Node)event.getSource();
+        n.getScene().getWindow().hide();
     }
 
     @FXML

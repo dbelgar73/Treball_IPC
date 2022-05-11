@@ -96,7 +96,7 @@ public class MenuController implements Initializable {
             stage.show();
             Node n = (Node)event.getSource();
             n.getScene().getWindow().hide();
-            Poi.userActual = null;
+            Poi.setUserActual(null);
             } 
         catch (IOException e) {
                 e.printStackTrace();

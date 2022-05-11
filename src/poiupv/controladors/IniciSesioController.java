@@ -104,7 +104,7 @@ public class IniciSesioController implements Initializable {
                     stage.show();
                     Node n = (Node)event.getSource();
                     n.getScene().getWindow().hide();
-                    Poi.userActual = IniciSesioController.navegacio.getUser(IniciSesioController.nickName);
+                    Poi.setUserActual(navegacio.getUser(nickName));
                   
                 } 
                 catch (IOException e) {
