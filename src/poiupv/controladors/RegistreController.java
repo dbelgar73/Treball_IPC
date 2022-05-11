@@ -77,6 +77,8 @@ public class RegistreController implements Initializable {
     private ImageView avatar4;
     @FXML
     private RadioButton avatar4Sel;
+    @FXML
+    private Label errorJaRegistrat;
 
     /**
      * Initializes the controller class.
@@ -114,44 +116,40 @@ public class RegistreController implements Initializable {
             errorContrassenya.setVisible(false);
         }
         
-        //Data de naixement
-        int edat = 0;
-        LocalDate birthDate = this.daypicker.getValue();
-        if(birthDate == null){//la data no sa escrit desde el daypicker
-            String textfieldDate = this.daypicker.getEditor().toString();
-            int[] date = new int[3];
-            int pos = 0;
-            for(int i = 0; i < textfieldDate.length(); i++){
-                if(textfieldDate.charAt(i) != '/'){
-                    int aux = 0;
-                   // date[pos] = Integer.textfieldDate.charAt(i);
-                }
-                else{pos = pos+1;}
-            }
-            //INACABAT SEGUIRE DEMA
+         //DATA DE NAIXEMENT
+        LocalDate birthDate = this.daypicker.getValue();//obte el valor seleccionat en el datePicker 
+        System.out.println("RESULTAT birthDate" +"\n"+ birthDate);//Visualitza resultat intermig
+        String aux = errorEdat.getText();
+        if(birthDate == null){
+            errorEdat.setText("Error, data no introduida. S'ha de polsar intro per a comfirmar-la");
+            errorEdat.setVisible(true);
         }
-        System.out.println("" + birthDate);
-        if(birthDate == null){errorEdat.setVisible(true);}
-        if(birthDate != null){
+        else{
+            errorEdat.setVisible(false);
+            errorEdat.setText(aux);
             //Obte la data de ara
             int year, month, day = 0;
             LocalDate now = LocalDate.now();
             //calcula la diferencia (Data de hui - any de naixement) = edat
             int dataHui = now.getYear() + now.getDayOfYear();//calcula la data de hui
             int naixement = birthDate.getYear() + birthDate.getDayOfYear();
-            edat = dataHui - naixement ;
+            
+            int edat = dataHui - naixement ;
             if(edat < 16){//es menor de 16 anys
                 errorEdat.setVisible(true);//mostra error edat 
             }
             else{
                 errorEdat.setVisible(false);//amaga el error de la edat
             }
+        
         }
      
         if(User.checkNickName(usr) && User.checkEmail(email) && User.checkPassword(pswd)){
             //TOT CORRECTE, REGISTRA
-                navegacio.registerUser(usr,email,pswd,avatar,birthDate);
-            
+            try{navegacio.registerUser(usr,email,pswd,avatar,birthDate);}
+            catch(NavegacionDAOException e){
+                errorJaRegistrat.setVisible(true);
+            }
             //VES A LA FINESTRA DE INICI DE SESIO I TANCA ESTA FINESTRA
             try {
                 FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Menu.fxml"));
@@ -163,13 +161,13 @@ public class RegistreController implements Initializable {
                 estageActual.setScene(scene);
                 estageActual.initModality(Modality.APPLICATION_MODAL);
                 estageActual.show();
+                //TANCA LA FINESTRA DEL REGISTRE
+                Node n = (Node)event.getSource();
+                n.getScene().getWindow().hide();
             } 
             catch (IOException e) {
                 e.printStackTrace();
             }
-            //TANCA LA FINESTRA DEL REGISTRE
-            Node n = (Node)event.getSource();
-            n.getScene().getWindow().hide();
         }         
     }
     

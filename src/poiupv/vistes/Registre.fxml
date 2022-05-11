@@ -270,12 +270,20 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="botoRegistrarse" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registrarse" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #006db5;" text="Registrar-se">
+                        <VBox prefHeight="200.0" prefWidth="171.0">
+                           <children>
+                              <Button fx:id="botoRegistrarse" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registrarse" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #006db5;" text="Registrar-se" />
+                              <Label fx:id="errorJaRegistrat" prefHeight="57.0" prefWidth="179.0" text="Error, l'usuari ja està registrat" textFill="RED" visible="false" />
+                           </children>
                            <HBox.margin>
                               <Insets right="15.0" />
                            </HBox.margin>
-                        </Button>
-                        <Button fx:id="botoCancelar" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #006db5;" text="Cancelar" />
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="171.0">
+                           <children>
+                              <Button fx:id="botoCancelar" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #006db5;" text="Cancelar" />
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
                </children>
