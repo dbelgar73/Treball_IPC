@@ -26,6 +26,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Navegacion;
 import model.Problem;
+import model.User;
 
 /**
  * FXML Controller class
@@ -46,20 +47,19 @@ public class MenuController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)  {
         // TODO
+        User userActual = IniciSesioController.navegacio.getUser(IniciSesioController.nickName);
+        avatarPerfil.setImage(userActual.getAvatar()); //fica el avatar del perfil actual
         ListaProblems.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             if (ListaProblems.isFocused()) {
                 botoRealizar.setDisable(false);   
             }
-        avatarPerfil.setImage(avatar); //fica el avatar del perfil actual
         });
-        try {
-            Navegacion navegacio = Navegacion.getSingletonNavegacion();
-            List<Problem> problemas = navegacio.getProblems();//Aço no va,vaig comprobar la talla de la llista i era 0
-            datos = FXCollections.observableList(problemas);
-            ListaProblems.setItems(datos);
-        } catch (NavegacionDAOException e) { e.printStackTrace(); }
+        List<Problem> problemas = IniciSesioController.navegacio.getProblems();//Aço no va,vaig comprobar la talla de la llista i era 0
+        datos = FXCollections.observableList(problemas);
+        ListaProblems.setItems(datos);
+        
         
     }    
 
@@ -99,10 +99,38 @@ public class MenuController implements Initializable {
 
     @FXML
     private void RealizarProblem(ActionEvent event) {
+        try {
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Principal.fxml"));
+            Parent root = miCargador.load();
+            RegistreController controlador = miCargador.getController();
+            Scene scene = new Scene(root);
+            Stage estageActual = new Stage();
+            estageActual.setResizable(true);
+            estageActual.setScene(scene);
+            estageActual.initModality(Modality.APPLICATION_MODAL);
+            estageActual.show();
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void ProblemAleat(ActionEvent event) {
+         try {
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Principal.fxml"));
+            Parent root = miCargador.load();
+            RegistreController controlador = miCargador.getController();
+            Scene scene = new Scene(root);
+            Stage estageActual = new Stage();
+            estageActual.setResizable(true);
+            estageActual.setScene(scene);
+            estageActual.initModality(Modality.APPLICATION_MODAL);
+            estageActual.show();
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
    
     

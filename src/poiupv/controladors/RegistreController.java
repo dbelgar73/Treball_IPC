@@ -81,10 +81,10 @@ public class RegistreController implements Initializable {
     private RadioButton avatar4Sel;
     @FXML
     private Label errorJaRegistrat;
-    public Image avatar;
-    public String usr;
-    public String email;
-    public String pswd;
+    public static Image avatar;
+    public  static String usr;
+    public static String email;
+    public static String pswd;
 
     /**
      * Initializes the controller class.
@@ -271,9 +271,8 @@ public class RegistreController implements Initializable {
             }
             //VES A LA FINESTRA DE INICI DE SESIO I TANCA ESTA FINESTRA
             try {
-                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Menu.fxml"));
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
                 Parent root = miCargador.load();
-                RegistreController controlador = miCargador.getController();
                 Scene scene = new Scene(root);
                 Stage estageActual = new Stage();
                 estageActual.setResizable(true);

@@ -45,6 +45,9 @@ public class IniciSesioController implements Initializable {
     private PasswordField contrassenya;
     @FXML
     private Button botoRegistre;
+    public static String nickName ;
+    public static String password;
+    public static Navegacion navegacio;
 
     /**
      * Initializes the controller class.
@@ -57,9 +60,9 @@ public class IniciSesioController implements Initializable {
     @FXML
     private void iniciarSesio(ActionEvent event) throws NavegacionDAOException {
         //variables
-        String nickName = usuari.getText();//usuari
-        String password = contrassenya.getText();//contrassenya
-        Navegacion navegacio = Navegacion.getSingletonNavegacion();//necesari per a cridar a metodes de la classe Navegacion
+        nickName = usuari.getText();//usuari
+        password = contrassenya.getText();//contrassenya
+        navegacio = Navegacion.getSingletonNavegacion();//necesari per a cridar a metodes de la classe Navegacion
         //Autenticació de usuari
         if(navegacio.exitsNickName(nickName) == false){//si no existeix l'usuari mostra error
             MissatgeUsuari.setVisible(true);//mostra label visible-------------------
