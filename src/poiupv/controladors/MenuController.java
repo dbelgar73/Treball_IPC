@@ -44,13 +44,14 @@ public class MenuController implements Initializable {
     private ImageView avatarPerfil;
     @FXML
     private Button botoRealizar;
+    public static User userActual;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
         // TODO
-        User userActual = IniciSesioController.navegacio.getUser(IniciSesioController.nickName);
+        userActual = IniciSesioController.navegacio.getUser(IniciSesioController.nickName);
         avatarPerfil.setImage(userActual.getAvatar()); //fica el avatar del perfil actual
         ListaProblems.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             if (ListaProblems.isFocused()) {

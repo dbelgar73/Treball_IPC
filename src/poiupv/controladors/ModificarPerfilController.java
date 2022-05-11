@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import static poiupv.controladors.MenuController.userActual;
 
 /**
  * FXML Controller class
@@ -33,10 +34,14 @@ public class ModificarPerfilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        contrasenyaUser.setText(MenuController.userActual.getPassword());
+        CorreuUser.setText(MenuController.userActual.getEmail());
+        dataUser.setValue(MenuController.userActual.getBirthdate());
     }    
 
     @FXML
     private void guardarCambios(ActionEvent event) {
+        
     }
 
     @FXML
