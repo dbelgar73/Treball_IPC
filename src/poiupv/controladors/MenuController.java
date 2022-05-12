@@ -57,7 +57,9 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
     
-
+        
+        
+        
         avatarPerfil.setImage(Poi.userActual.getAvatar()); //fica el avatar del perfil actual
         Circle clip = new Circle();
         clip.setCenterX(20);
@@ -98,15 +100,16 @@ public class MenuController implements Initializable {
     private void CerrarSesion(ActionEvent event) {
         
         try {
+            Poi.setUserActual(null);
+            Node n = (Node)event.getSource();
+            n.getScene().getWindow().hide();
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
             Scene scene = new Scene(root);
             stage.setTitle("Inici Sesio");
             stage.setScene(scene);
             stage.show();
-            Node n = (Node)event.getSource();
-            n.getScene().getWindow().hide();
-            Poi.setUserActual(null);
+            
             } 
         catch (IOException e) {
                 e.printStackTrace();

@@ -22,7 +22,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import model.User;
 import poiupv.Poi;
-import static poiupv.controladors.IniciSesioController.navegacio;
+
+
 
 /**
  * FXML Controller class
@@ -61,7 +62,7 @@ public class ModificarPerfilController implements Initializable {
         ChoiceAvatar.getItems().add("Avatar 2");
         ChoiceAvatar.getItems().add("Avatar 3");
         ChoiceAvatar.getItems().add("Avatar 4"); 
-        ChoiceAvatar.setValue("Avatar predeterminado");
+        ChoiceAvatar.setValue(null);
         imagePerfil.setImage(Poi.userActual.getAvatar());
         
         ChoiceAvatar.getSelectionModel().selectedItemProperty().addListener((o, oldVal, newVal) -> {
@@ -95,6 +96,7 @@ public class ModificarPerfilController implements Initializable {
             Poi.userActual.setBirthdate(newBirth);
             Poi.userActual.setAvatar(imagePerfil.getImage());
         }
+        
         Node n = (Node)event.getSource();
         n.getScene().getWindow().hide();
     }
