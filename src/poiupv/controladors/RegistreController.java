@@ -24,6 +24,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -91,6 +92,8 @@ public class RegistreController implements Initializable {
     public static String email;
     public static String pswd;
     public static LocalDate birthDate;
+    @FXML
+    private ComboBox<?> comboPerfil;
 
     /**
      * Initializes the controller class.
@@ -101,7 +104,8 @@ public class RegistreController implements Initializable {
         //LISTENER CAMP USUARI
         usuari.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             usr = usuari.getText();
-            if(!User.checkNickName(usr)){//error en l'usuari
+            
+            if(!"".equals(usr) && !User.checkNickName(usr)){//error en l'usuari
                 errorUsuari.setVisible(true);
                 botoRegistrarse.setDisable(true);
             }
@@ -116,7 +120,7 @@ public class RegistreController implements Initializable {
             email = correu.getText();
             errorCorreu.setVisible(false);
             
-            if(!User.checkEmail(email)){//error en el correu
+            if(!"".equals(email) && !User.checkEmail(email)){//error en el correu
                 errorCorreu.setVisible(true);
                 botoRegistrarse.setDisable(true);
                 
@@ -131,7 +135,7 @@ public class RegistreController implements Initializable {
         contrassenya.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             pswd = contrassenya.getText();
             errorContrassenya.setVisible(false);
-            if(!User.checkPassword(pswd)){//error en la contrassenya
+            if(!"".equals(pswd) && !User.checkPassword(pswd)){//error en la contrassenya
                 errorContrassenya.setVisible(true);
                 botoRegistrarse.setDisable(true);
             }
