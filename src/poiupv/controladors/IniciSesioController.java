@@ -97,15 +97,16 @@ public class IniciSesioController implements Initializable {
                 alert.setContentText("Benvingut: " + nickName); 
                 alert.showAndWait();
                 try {
+                    Poi.setUserActual(navegacio.getUser(nickName)); //guarda el usuari que ha iniciat sesio en userActual
+                    Node n = (Node)event.getSource();
+                    n.getScene().getWindow().hide();
                     Stage stage = new Stage();
                     Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/Menu.fxml"));
                     Scene scene = new Scene(root);
                     stage.setTitle("Bandeja de entrada");
                     stage.setScene(scene);
                     stage.show();
-                    Node n = (Node)event.getSource();
-                    n.getScene().getWindow().hide();
-                    Poi.setUserActual(navegacio.getUser(nickName));
+                    
                   
                 } 
                 catch (IOException e) {
@@ -134,8 +135,7 @@ public class IniciSesioController implements Initializable {
             estageActual.setScene(scene);
             estageActual.initModality(Modality.APPLICATION_MODAL);
             estageActual.show();
-            Node n = (Node)event.getSource();
-            n.getScene().getWindow().hide();
+            
         } 
         catch (IOException e) {
             e.printStackTrace();

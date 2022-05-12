@@ -50,8 +50,6 @@ public class MenuController implements Initializable {
     private ImageView avatarPerfil;
     @FXML
     private Button botoRealizar;
-    @FXML
-    private Label benvingudaText;
     
     /**
      * Initializes the controller class.
@@ -59,9 +57,7 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
     
-        User usr = navegacio.loginUser(IniciSesioController.nickName, IniciSesioController.password);
-        Poi.setUserActual(usr);
-        //benvingudaText.setText("Benvingut/da: " + Poi.userActual.getNickName()); ESTA ES LA LINIA QUE DONA PROBLEMES: userActual es null, null.getNickName => nullPoinmterException
+
         avatarPerfil.setImage(Poi.userActual.getAvatar()); //fica el avatar del perfil actual
         Circle clip = new Circle();
         clip.setCenterX(20);
