@@ -260,25 +260,25 @@ public class RegistreController implements Initializable {
                 
                 if(!errorJaRegistrat.isVisible()){
                     try {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION); 
-                    alert.setTitle("Registre"); 
-                    alert.setHeaderText("Registre completat amb exit");
-                    alert.setContentText("Per favor  " + nickName + " inicia sessió de nou"); 
-                    alert.showAndWait();
-                    FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
-                    Parent root = miCargador.load();
-                    Scene scene = new Scene(root);
-                    Stage estageActual = new Stage();
-                    estageActual.setResizable(true);
-                    estageActual.setScene(scene);
-                    estageActual.initModality(Modality.APPLICATION_MODAL);
-                    estageActual.show();
-                    //TANCA LA FINESTRA DEL REGISTRE
-                    Node n = (Node)event.getSource();
-                    n.getScene().getWindow().hide();
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION); 
+                        alert.setTitle("Registre"); 
+                        alert.setHeaderText("Registre completat amb exit");
+                        alert.setContentText("Per favor  " + nickName + " inicia sessió de nou"); 
+                        alert.showAndWait();
+                        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
+                        Parent root = miCargador.load();
+                        Scene scene = new Scene(root);
+                        Stage estageActual = new Stage();
+                        estageActual.setResizable(true);
+                        estageActual.setScene(scene);
+                        estageActual.initModality(Modality.APPLICATION_MODAL);
+                        estageActual.show();
+                        //TANCA LA FINESTRA DEL REGISTRE
+                        Node n = (Node)event.getSource();
+                        n.getScene().getWindow().hide();
                     } 
                     catch (IOException e) {
-                    e.printStackTrace();
+                        e.printStackTrace();
                     }
                 }
                 
@@ -292,8 +292,22 @@ public class RegistreController implements Initializable {
     
     @FXML
     private void cancelar(ActionEvent event){
-        Node n = (Node)event.getSource();
-        n.getScene().getWindow().hide();
+         try {
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
+            Parent root = miCargador.load();
+            Scene scene = new Scene(root);
+            Stage estageActual = new Stage();
+            estageActual.setResizable(true);
+            estageActual.setScene(scene);
+            estageActual.initModality(Modality.APPLICATION_MODAL);
+            estageActual.show();
+            //TANCA LA FINESTRA DEL REGISTRE
+            Node n = (Node)event.getSource();
+            n.getScene().getWindow().hide();
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String creadorStringURL(String res) {

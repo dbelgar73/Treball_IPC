@@ -29,6 +29,7 @@ import javafx.stage.Stage;
 import model.Navegacion;
 import model.User;
 import poiupv.Poi;
+import static poiupv.controladors.RegistreController.email;
 import static poiupv.controladors.RegistreController.usr;
 
 
@@ -62,7 +63,7 @@ public class IniciSesioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         usuari.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             usr = usuari.getText();
-            if(!User.checkNickName(usr)){//error en l'usuari
+            if(!"".equals(usr) && !User.checkNickName(usr)){//error en l'usuari
                 MissatgeUsuari.setVisible(true);
             }
             else{
