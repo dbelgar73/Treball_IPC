@@ -70,26 +70,6 @@ public class RegistreController implements Initializable {
     @FXML
     private Button botoRegistrarse;
     @FXML
-    private ImageView avatarDefault;
-    @FXML
-    private RadioButton avatarDefaultSel;
-    @FXML
-    private ImageView avatar1;
-    @FXML
-    private RadioButton avatar1Sel;
-    @FXML
-    private ImageView avatar2;
-    @FXML
-    private RadioButton avatar2Sel;
-    @FXML
-    private ImageView avatar3;
-    @FXML
-    private RadioButton avatar3Sel;
-    @FXML
-    private ImageView avatar4;
-    @FXML
-    private RadioButton avatar4Sel;
-    @FXML
     private Label errorJaRegistrat;
     public static Image avatar;
     public  static String usr;
@@ -107,11 +87,10 @@ public class RegistreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Circle clip = new Circle();
-        clip.setCenterX(85);
-        clip.setCenterY(90);
-        clip.setRadius(80);
+        clip.setCenterX(imagePerfil.getX() + imagePerfil.getFitWidth()/2 );
+        clip.setCenterY(imagePerfil.getY() + imagePerfil.getFitHeight()/2);
+        clip.setRadius(imagePerfil.getFitWidth()/2);
         imagePerfil.setClip(clip);
-        Image avatar1f = new Image("/resources/avatars/avatar1.png");
         choicePerfil.getItems().add("Avatar predeterminado");
         choicePerfil.getItems().add("Avatar 1");
         choicePerfil.getItems().add("Avatar 2");

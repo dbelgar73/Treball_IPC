@@ -37,13 +37,12 @@ public class ModificarPerfilController implements Initializable {
     private TextField CorreuUser;
     @FXML
     private DatePicker dataUser;
-    @FXML
-    private ChoiceBox<String> choicePerfil;
+    
     @FXML
     private ImageView imagePerfil;
+
     @FXML
-    private Button borrarperfil;
-    public User usr;
+    private ChoiceBox<String> ChoiceAvatar;
 
     /**
      * Initializes the controller class.
@@ -51,27 +50,24 @@ public class ModificarPerfilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        usr = navegacio.loginUser(IniciSesioController.nickName, IniciSesioController.password);
-        Poi.setUserActual(usr);
         
         Circle clip = new Circle();
-        clip.setCenterX(85);
-        clip.setCenterY(90);
-        clip.setRadius(80);
+        clip.setCenterX(imagePerfil.getX() + imagePerfil.getFitWidth()/2);
+        clip.setCenterY(imagePerfil.getY() + imagePerfil.getFitHeight()/2);
+        clip.setRadius(imagePerfil.getFitWidth()/2);
         imagePerfil.setClip(clip);
-        Image avatar1f = new Image("/resources/avatars/avatar1.png");
-        choicePerfil.getItems().add("Avatar predeterminado");
-        choicePerfil.getItems().add("Avatar 1");
-        choicePerfil.getItems().add("Avatar 2");
-        choicePerfil.getItems().add("Avatar 3");
-        choicePerfil.getItems().add("Avatar 4"); 
-        choicePerfil.setValue("Avatar predeterminado");
-        imagePerfil.setImage(new Image(creadorStringURL("Avatar predeterminado")));
+        ChoiceAvatar.getItems().add("Avatar predeterminado");
+        ChoiceAvatar.getItems().add("Avatar 1");
+        ChoiceAvatar.getItems().add("Avatar 2");
+        ChoiceAvatar.getItems().add("Avatar 3");
+        ChoiceAvatar.getItems().add("Avatar 4"); 
+        ChoiceAvatar.setValue("Avatar predeterminado");
+        imagePerfil.setImage(Poi.userActual.getAvatar());
         
-        choicePerfil.getSelectionModel().selectedItemProperty().addListener((o, oldVal, newVal) -> {
-            String res = choicePerfil.getValue();
+        ChoiceAvatar.getSelectionModel().selectedItemProperty().addListener((o, oldVal, newVal) -> {
+            String res = ChoiceAvatar.getValue();
             if(res != null ){    
-                imagePerfil.setImage(new Image(creadorStringURL(res)));
+                imagePerfil.setImage(new Image(Poi.creadorStringURL(res)));
                 
             }
         });
@@ -109,31 +105,6 @@ public class ModificarPerfilController implements Initializable {
         n.getScene().getWindow().hide();
     }
 
-    @FXML
-    private void botoBorrarPerfil(ActionEvent event) {
-        
-        
-    }
-    private String creadorStringURL(String res) {
-        String URL = null;
-        switch(res){
-            case "Avatar predeterminado":
-                URL = "/resources/avatars/default.png";
-                break;
-            case "Avatar 1":
-                URL = "/resources/avatars/avatar1.png";
-                break;
-            case "Avatar 2":
-                URL = "/resources/avatars/avatar2.png";
-                break;
-            case "Avatar 3":
-                URL = "/resources/avatars/avatar3.png";
-                break;
-            case "Avatar 4":
-                URL = "/resources/avatars/avatar4.png";
-                break;
-        }
-        return URL;
-    }
+    
     
 }

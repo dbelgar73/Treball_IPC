@@ -81,7 +81,7 @@ public class MenuController implements Initializable {
         try {
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/ModificarPerfil.fxml"));
             Parent root = miCargador.load();
-            RegistreController controlador = miCargador.getController();
+            
             Scene scene = new Scene(root);
             Stage estageActual = new Stage();
             estageActual.setResizable(true);
