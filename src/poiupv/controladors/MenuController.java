@@ -81,6 +81,7 @@ public class MenuController implements Initializable {
     @FXML
     private void ModificarPerfil(ActionEvent event) {
         try {
+            
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/ModificarPerfil.fxml"));
             Parent root = miCargador.load();
             
