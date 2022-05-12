@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,14 +23,17 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Navegacion;
 import model.Problem;
 import model.User;
 import poiupv.Poi;
+import static poiupv.controladors.IniciSesioController.navegacio;
 
 /**
  * FXML Controller class
@@ -45,15 +50,24 @@ public class MenuController implements Initializable {
     private ImageView avatarPerfil;
     @FXML
     private Button botoRealizar;
+    @FXML
+    private Label benvingudaText;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
-        // TODO
-        
+    
+        User usr = navegacio.loginUser(IniciSesioController.nickName, IniciSesioController.password);
+        Poi.setUserActual(usr);
+        benvingudaText.setText("Benvingut/da: " + Poi.userActual.getNickName());
         avatarPerfil.setImage(Poi.userActual.getAvatar()); //fica el avatar del perfil actual
+        Circle clip = new Circle();
+        clip.setCenterX(20);
+        clip.setCenterY(22);
+        clip.setRadius(20);
+        avatarPerfil.setClip(clip);
         ListaProblems.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             if (ListaProblems.isFocused()) {
                 botoRealizar.setDisable(false);   
