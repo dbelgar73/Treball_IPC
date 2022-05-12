@@ -13,6 +13,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,14 +25,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Navegacion;
@@ -93,13 +97,36 @@ public class RegistreController implements Initializable {
     public static String pswd;
     public static LocalDate birthDate;
     @FXML
-    private ComboBox<?> comboPerfil;
+    private ChoiceBox<String> choicePerfil;
+    @FXML
+    private ImageView imagePerfil;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Circle clip = new Circle();
+        clip.setCenterX(85);
+        clip.setCenterY(90);
+        clip.setRadius(80);
+        imagePerfil.setClip(clip);
+        Image avatar1f = new Image("/resources/avatars/avatar1.png");
+        choicePerfil.getItems().add("Avatar predeterminado");
+        choicePerfil.getItems().add("Avatar 1");
+        choicePerfil.getItems().add("Avatar 2");
+        choicePerfil.getItems().add("Avatar 3");
+        choicePerfil.getItems().add("Avatar 4"); 
+        choicePerfil.setValue("Avatar predeterminado");
+        imagePerfil.setImage(new Image(creadorStringURL("Avatar predeterminado")));
+        
+        choicePerfil.getSelectionModel().selectedItemProperty().addListener((o, oldVal, newVal) -> {
+            String res = choicePerfil.getValue();
+            if(res != null ){    
+                imagePerfil.setImage(new Image(creadorStringURL(res)));
+                
+            }
+        });
         
         //LISTENER CAMP USUARI
         usuari.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
@@ -174,127 +201,7 @@ public class RegistreController implements Initializable {
         }
         });
         
-//LISTENERS PER A LA SELECCIO DE PERFIL
-        avatarDefaultSel.setSelected(true);
-        avatar = avatarDefault.getImage();
-        avatar1Sel.setDisable(true);
-        avatar2Sel.setDisable(true);
-        avatar3Sel.setDisable(true);
-        avatar4Sel.setDisable(true);
-        avatarDefaultSel.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
-                if(!avatar4Sel.isSelected() && !avatarDefaultSel.isSelected() && !avatar1Sel.isSelected() && !avatar2Sel.isSelected() && !avatar3Sel.isSelected()){
-                    botoRegistrarse.setDisable(true);
-                }
-                else{
-                    botoRegistrarse.setDisable(false);
-                }
-                if (!isNowSelected) { 
-                    avatar1Sel.setDisable(false);
-                    avatar2Sel.setDisable(false);
-                    avatar3Sel.setDisable(false);
-                    avatar4Sel.setDisable(false);
-                }
-                else{
-                    avatar1Sel.setDisable(true);
-                    avatar2Sel.setDisable(true);
-                    avatar3Sel.setDisable(true);
-                    avatar4Sel.setDisable(true);
-                }
-        }
-        });
-        avatar1Sel.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
-                if(!avatar4Sel.isSelected() && !avatarDefaultSel.isSelected() && !avatar1Sel.isSelected() && !avatar2Sel.isSelected() && !avatar3Sel.isSelected()){
-                    botoRegistrarse.setDisable(true);
-                }
-                else{
-                    botoRegistrarse.setDisable(false);
-                }
-                if(!isNowSelected){//avatar 1 seleccionat
-                    avatar = avatar1.getImage();
-                    avatarDefaultSel.setDisable(false);
-                    avatar2Sel.setDisable(false);
-                    avatar3Sel.setDisable(false);
-                    avatar4Sel.setDisable(false);
-                }
-                else{
-                    avatarDefaultSel.setDisable(true);
-                    avatar2Sel.setDisable(true);
-                    avatar3Sel.setDisable(true);
-                    avatar4Sel.setDisable(true);
-                }
-            }
-        });
-        avatar2Sel.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
-                if(!avatar4Sel.isSelected() && !avatarDefaultSel.isSelected() && !avatar1Sel.isSelected() && !avatar2Sel.isSelected() && !avatar3Sel.isSelected()){
-                    botoRegistrarse.setDisable(true);
-                }
-                else{
-                    botoRegistrarse.setDisable(false);
-                }
-                if(!isNowSelected){//avatar 2 seleccionat
-                    avatar = avatar2.getImage();
-                    avatarDefaultSel.setDisable(false);
-                    avatar1Sel.setDisable(false);
-                    avatar3Sel.setDisable(false);
-                    avatar4Sel.setDisable(false);
-                }
-                else{
-                    avatarDefaultSel.setDisable(true);
-                    avatar1Sel.setDisable(true);
-                    avatar3Sel.setDisable(true);
-                    avatar4Sel.setDisable(true);
-                }
-            }
-        });
-        avatar3Sel.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
-                if(!avatar4Sel.isSelected() && !avatarDefaultSel.isSelected() && !avatar1Sel.isSelected() && !avatar2Sel.isSelected() && !avatar3Sel.isSelected()){
-                    botoRegistrarse.setDisable(true);
-                }
-                else{
-                    botoRegistrarse.setDisable(false);
-                }
-                if(!isNowSelected){//avatar 3 seleccionat
-                    avatar = avatar3.getImage();
-                    avatarDefaultSel.setDisable(false);
-                    avatar1Sel.setDisable(false);
-                    avatar2Sel.setDisable(false);
-                    avatar4Sel.setDisable(false);
-                }
-                else{
-                    avatarDefaultSel.setDisable(true);
-                    avatar2Sel.setDisable(true);
-                    avatar1Sel.setDisable(true);
-                    avatar4Sel.setDisable(true);
-                }
-            }
-        });
-        avatar4Sel.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
-                if(!avatar4Sel.isSelected() && !avatarDefaultSel.isSelected() && !avatar1Sel.isSelected() && !avatar2Sel.isSelected() && !avatar3Sel.isSelected()){
-                    botoRegistrarse.setDisable(true);
-                }
-                else{
-                    botoRegistrarse.setDisable(false);
-                }
-                if(!isNowSelected){//avatar 4 seleccionat
-                    avatar = avatar4.getImage();
-                    avatarDefaultSel.setDisable(false);
-                    avatar1Sel.setDisable(false);
-                    avatar2Sel.setDisable(false);
-                    avatar3Sel.setDisable(false);
-                }
-                else{
-                    avatarDefaultSel.setDisable(true);
-                    avatar2Sel.setDisable(true);
-                    avatar3Sel.setDisable(true);
-                    avatar1Sel.setDisable(true);
-                }
-            }
-        });
+
     }   
     
     @FXML
@@ -303,6 +210,7 @@ public class RegistreController implements Initializable {
         usr = usuari.getText();
         email = correu.getText();
         pswd = contrassenya.getText();
+        avatar = imagePerfil.getImage();
          //DATA DE NAIXEMENT
         birthDate = this.daypicker.getValue();//obte el valor seleccionat en el datePicker 
         
@@ -386,6 +294,28 @@ public class RegistreController implements Initializable {
     private void cancelar(ActionEvent event){
         Node n = (Node)event.getSource();
         n.getScene().getWindow().hide();
+    }
+
+    private String creadorStringURL(String res) {
+        String URL = null;
+        switch(res){
+            case "Avatar predeterminado":
+                URL = "/resources/avatars/default.png";
+                break;
+            case "Avatar 1":
+                URL = "/resources/avatars/avatar1.png";
+                break;
+            case "Avatar 2":
+                URL = "/resources/avatars/avatar2.png";
+                break;
+            case "Avatar 3":
+                URL = "/resources/avatars/avatar3.png";
+                break;
+            case "Avatar 4":
+                URL = "/resources/avatars/avatar4.png";
+                break;
+        }
+        return URL;
     }
 }
 

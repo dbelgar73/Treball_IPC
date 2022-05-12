@@ -2,13 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -17,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.RegistreController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.RegistreController">
    <top>
       <HBox prefHeight="115.0" prefWidth="996.0" style="-fx-background-color: #006db5;" BorderPane.alignment="TOP_CENTER">
          <children>
@@ -44,18 +43,30 @@
             <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
          </BorderPane.margin>
          <children>
-            <VBox layoutY="20.0" prefHeight="578.0" prefWidth="916.0">
+            <VBox layoutY="20.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="537.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="522.0">
                      <children>
-                        <VBox prefHeight="100.0" prefWidth="447.0">
+                        <VBox prefHeight="99.0" prefWidth="364.0">
                            <children>
                               <Label text="Nombre de usuario:">
                                  <padding>
                                     <Insets bottom="5.0" />
                                  </padding>
+                                 <VBox.margin>
+                                    <Insets left="2.0" />
+                                 </VBox.margin>
                               </Label>
-                              <TextField fx:id="usuari" prefHeight="25.0" prefWidth="355.0" promptText="6-15 caràcters o dígits, espais - _" />
+                              <TextField fx:id="usuari" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" promptText="6-15 caràcters o dígits, espais - _" />
+                              <VBox prefHeight="56.0" prefWidth="426.0">
+                                 <children>
+                                    <Label fx:id="errorUsuari" prefHeight="44.0" prefWidth="344.0" text="Seleccionar un nou valor que contingui entre 6 i 15 caràcters o dígits i espais _ -" textFill="RED" visible="false" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -64,30 +75,21 @@
                               <Insets left="30.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox prefHeight="90.0" prefWidth="355.0">
-                           <children>
-                              <Label fx:id="errorUsuari" prefHeight="85.0" prefWidth="344.0" text="Seleccionar un nou valor que contingui entre 6 i 15 caràcters o dígits i espais _ -" textFill="RED" visible="false" wrapText="true">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                           </children>
-                        </VBox>
                      </children>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="753.0">
                      <children>
-                        <VBox prefHeight="100.0" prefWidth="452.0">
+                        <VBox prefHeight="88.0" prefWidth="355.0">
                            <children>
                               <Label text="Correo:">
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="correu" prefHeight="26.0" prefWidth="229.0" promptText="Exemple@gmail.com">
+                              <TextField fx:id="correu" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="229.0" promptText="Exemple@gmail.com">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
@@ -95,28 +97,31 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" />
                                  </VBox.margin>
                               </TextField>
+                              <Label fx:id="errorCorreu" prefHeight="18.0" prefWidth="317.0" text="El correu ha de tindre format valid" textFill="RED" visible="false">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </Label>
                            </children>
                            <HBox.margin>
-                              <Insets left="30.0" />
+                              <Insets left="30.0" top="-10.0" />
                            </HBox.margin>
                         </VBox>
-                        <Label fx:id="errorCorreu" prefHeight="87.0" prefWidth="366.0" text="El correu ha de tindre format valid" textFill="RED" visible="false">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="118.0" prefWidth="994.0">
                      <children>
-                        <VBox prefHeight="94.0" prefWidth="445.0">
+                        <VBox prefHeight="122.0" prefWidth="462.0">
                            <children>
                               <Label text="Contraseña:">
                                  <VBox.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <PasswordField fx:id="contrassenya" prefHeight="22.0" prefWidth="266.0" promptText="8-20 caràcters, 1 lletra minuscules o majuscules, digit i caracter especial">
+                              <PasswordField fx:id="contrassenya" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="500.0" promptText="8-20 caràcters, 1 lletra minuscules o majuscules, digit i caracter especial">
                                  <padding>
                                     <Insets left="10.0" top="5.0" />
                                  </padding>
@@ -124,148 +129,71 @@
                                     <Insets left="10.0" right="10.0" top="5.0" />
                                  </VBox.margin>
                               </PasswordField>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <Label fx:id="errorContrassenya" prefHeight="95.0" prefWidth="438.0" text="La contrassenya ha de contindre 8-20 caràcters,  majuscules, digit i caracter especial ( !@ #$%&amp;*()-+=)" textFill="RED" textOverrun="CLIP" visible="false" wrapText="true" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <VBox prefHeight="98.0" prefWidth="237.0">
-                           <children>
-                              <Label text="Fecha de nacimiento:">
-                                 <padding>
-                                    <Insets bottom="5.0" left="10.0" />
-                                 </padding>
+                              <Label fx:id="errorContrassenya" prefHeight="44.0" prefWidth="368.0" text="La contrassenya ha de contindre 8-20 caràcters,  majuscules, digit i caracter especial ( !@ #$%&amp;*()-+=)" textFill="RED" textOverrun="CLIP" visible="false" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
                               </Label>
-                              <DatePicker fx:id="daypicker" promptText="Data de naixement">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                                 <VBox.margin>
-                                    <Insets left="10.0" />
-                                 </VBox.margin>
-                              </DatePicker>
                            </children>
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox prefHeight="90.0" prefWidth="228.0">
-                           <children>
-                              <Label fx:id="errorEdat" prefHeight="65.0" prefWidth="227.0" text="L'usuari ha de tindre al menys 16 anys" textFill="RED" visible="false" wrapText="true" />
-                           </children>
-                        </VBox>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="72.0" prefWidth="700.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="99.0" prefWidth="538.0">
                            <children>
-                              <ImageView fx:id="avatarDefault" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../resources/avatars/default.png" />
-                                 </image>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </ImageView>
-                              <RadioButton fx:id="avatarDefaultSel" mnemonicParsing="false">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
-                              </RadioButton>
+                              <VBox prefHeight="120.0" prefWidth="258.0">
+                                 <children>
+                                    <Label text="Fecha de nacimiento:">
+                                       <padding>
+                                          <Insets bottom="5.0" left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <DatePicker fx:id="daypicker" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="190.0" promptText="Data de naixement">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets left="10.0" />
+                                       </VBox.margin>
+                                    </DatePicker>
+                                    <VBox prefHeight="24.0" prefWidth="185.0">
+                                       <children>
+                                          <Label fx:id="errorEdat" prefHeight="65.0" prefWidth="227.0" text="L'usuari ha de tindre al menys 16 anys" textFill="RED" visible="false" wrapText="true" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="10.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="30.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox prefHeight="72.0" prefWidth="196.0">
+                                 <children>
+                                    <Label text="Foto Perfil">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ChoiceBox fx:id="choicePerfil" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </VBox>
                            </children>
                            <HBox.margin>
-                              <Insets left="220.0" />
+                              <Insets left="50.0" />
                            </HBox.margin>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <ImageView fx:id="avatar1" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../resources/avatars/avatar2.png" />
-                                 </image>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </ImageView>
-                              <RadioButton fx:id="avatar1Sel" mnemonicParsing="false">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets left="8.0" />
-                                 </padding>
-                              </RadioButton>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <ImageView fx:id="avatar2" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../resources/avatars/avatar3.png" />
-                                 </image>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </ImageView>
-                              <RadioButton fx:id="avatar2Sel" mnemonicParsing="false">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </RadioButton>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <ImageView fx:id="avatar3" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../resources/avatars/avatar4.png" />
-                                 </image>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </ImageView>
-                              <RadioButton fx:id="avatar3Sel" mnemonicParsing="false">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </RadioButton>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <ImageView fx:id="avatar4" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../resources/avatars/avatar1.png" />
-                                 </image>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </ImageView>
-                              <RadioButton fx:id="avatar4Sel" mnemonicParsing="false">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets left="1.0" />
-                                 </padding>
-                              </RadioButton>
-                           </children>
-                        </VBox>
+                        </HBox>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -281,13 +209,23 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="171.0">
                            <children>
-                              <Button fx:id="botoCancelar" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #006db5;" text="Cancelar" />
+                              <Button fx:id="botoCancelar" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #006db5;" text="Cancelar">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></Button>
                            </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                         </VBox>
                      </children>
+                     <VBox.margin>
+                        <Insets left="70.0" top="20.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>
+            <ImageView fx:id="imagePerfil" fitHeight="200.0" fitWidth="170.0" layoutX="439.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </left>
