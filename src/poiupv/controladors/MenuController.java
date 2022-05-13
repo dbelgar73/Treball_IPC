@@ -56,21 +56,21 @@ public class MenuController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
-    
-        
-        
-        
+        //AVATAR PERFIL
         avatarPerfil.setImage(Poi.userActual.getAvatar()); //fica el avatar del perfil actual
         Circle clip = new Circle();
         clip.setCenterX(20);
         clip.setCenterY(22);
         clip.setRadius(20);
         avatarPerfil.setClip(clip);
+        //LLISTA DE PROBLEMES
+        //listener
         ListaProblems.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             if (ListaProblems.isFocused()) {
                 botoRealizar.setDisable(false);   
             }
         });
+        //carrega la llista de problemes
         List<Problem> problemas = IniciSesioController.navegacio.getProblems();//Aço no va,vaig comprobar la talla de la llista i era 0
         datos = FXCollections.observableList(problemas);
         ListaProblems.setItems(datos);
