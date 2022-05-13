@@ -71,11 +71,12 @@ public class MenuController implements Initializable {
             }
         });
         //carrega la llista de problemes
-        List<Problem> problemas = IniciSesioController.navegacio.getProblems();//Aço no va,vaig comprobar la talla de la llista i era 0
+        List<Problem> problemas = IniciSesioController.navegacio.getProblems();//No torna res, deuria de tornar la llista de problemes
+        System.out.println(problemas.toString());
         datos = FXCollections.observableList(problemas);
+        System.out.println(datos.toString());
         ListaProblems.setItems(datos);
-        
-        
+        System.out.println(ListaProblems.toString());
     }    
 
     @FXML
