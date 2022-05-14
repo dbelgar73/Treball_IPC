@@ -51,6 +51,8 @@ public class MenuController implements Initializable {
     @FXML
     private Button botoRealizar;
     public static Problem seleccionat;
+    public int random;
+    public List<Problem> problemas;
     
     /**
      * Initializes the controller class.
@@ -72,13 +74,24 @@ public class MenuController implements Initializable {
             }
         });
         //carrega la llista de problemes
-        List<Problem> problemas = IniciSesioController.navegacio.getProblems();
+        problemas = IniciSesioController.navegacio.getProblems();
         System.out.println(problemas.toString());
         datos = FXCollections.observableList(problemas);
         System.out.println(datos.toString());
         ListaProblems.setItems(datos);
         System.out.println(ListaProblems.toString());
-    }    
+        
+        
+        ListaProblems.getSelectionModel().selectedIndexProperty(). addListener(  (o, oldVal, newVal) -> { 
+            if (newVal.intValue() == -1) {
+                seleccionat = null;
+                
+            }
+            else{
+                seleccionat = ListaProblems.getSelectionModel().getSelectedItem();
+            }
+             });
+    }
 
     @FXML
     private void ModificarPerfil(ActionEvent event) {
@@ -122,7 +135,7 @@ public class MenuController implements Initializable {
 
     @FXML
     private void RealizarProblem(ActionEvent event) {
-        seleccionat = ListaProblems.getSelectionModel().getSelectedItem();
+        
         try {
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Principal.fxml"));
             Parent root = miCargador.load();
@@ -143,7 +156,10 @@ public class MenuController implements Initializable {
 
     @FXML
     private void ProblemAleat(ActionEvent event) {
-         try {
+        int size = problemas.size();
+        random = (int) (Math.random() * (size));
+        seleccionat = problemas.get(random);
+        try {
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Principal.fxml"));
             Parent root = miCargador.load();
             RegistreController controlador = miCargador.getController();

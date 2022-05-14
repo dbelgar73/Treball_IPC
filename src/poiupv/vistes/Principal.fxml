@@ -60,12 +60,18 @@
         <items>
             <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="898.0">
                <children>
-                  <VBox prefHeight="258.0" prefWidth="898.0">
+                  <HBox prefHeight="258.0" prefWidth="898.0">
                      <children>
-                        <Label fx:id="problema" text="Label" />
-                        <ListView fx:id="llistaRespostes" prefHeight="200.0" prefWidth="200.0" />
+                        <VBox prefHeight="258.0" prefWidth="769.0">
+                           <children>
+                              <Label fx:id="problema" text="Label" />
+                              <ListView fx:id="llistaRespostes" prefHeight="200.0" prefWidth="200.0" />
+                              <Label fx:id="correctaIncorrecta" text="Label" visible="false" />
+                           </children>
+                        </VBox>
+                        <Button fx:id="validarResposta" mnemonicParsing="false" onAction="#respostaCorrecta" prefHeight="30.0" prefWidth="84.0" text="Validar" />
                      </children>
-                  </VBox>
+                  </HBox>
                </children>
             </Pane>
             <SplitPane dividerPositions="0.13957934990439771" orientation="VERTICAL" prefHeight="282.0" prefWidth="898.0">
