@@ -139,7 +139,7 @@ public class MenuController implements Initializable {
     private void RealizarProblem(ActionEvent event) {
         
         try {
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Principal.fxml"));
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/poiupv.vistes/Principal.fxml"));
             Parent root = miCargador.load();
             RegistreController controlador = miCargador.getController();
             Scene scene = new Scene(root);
@@ -162,7 +162,7 @@ public class MenuController implements Initializable {
         random = (int) (Math.random() * (size));
         seleccionat = problemas.get(random);
         try {
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Principal.fxml"));
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/poiupv.vistes/Principal.fxml"));
             Parent root = miCargador.load();
             RegistreController controlador = miCargador.getController();
             Scene scene = new Scene(root);
