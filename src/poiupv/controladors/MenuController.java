@@ -50,6 +50,7 @@ public class MenuController implements Initializable {
     private ImageView avatarPerfil;
     @FXML
     private Button botoRealizar;
+    public static Problem seleccionat;
     
     /**
      * Initializes the controller class.
@@ -71,7 +72,7 @@ public class MenuController implements Initializable {
             }
         });
         //carrega la llista de problemes
-        List<Problem> problemas = IniciSesioController.navegacio.getProblems();//No torna res, deuria de tornar la llista de problemes
+        List<Problem> problemas = IniciSesioController.navegacio.getProblems();
         System.out.println(problemas.toString());
         datos = FXCollections.observableList(problemas);
         System.out.println(datos.toString());
@@ -92,6 +93,7 @@ public class MenuController implements Initializable {
             estageActual.setScene(scene);
             estageActual.initModality(Modality.APPLICATION_MODAL);
             estageActual.show();
+            estageActual.setResizable(false);
         } 
         catch (IOException e) {
             e.printStackTrace();
@@ -120,6 +122,7 @@ public class MenuController implements Initializable {
 
     @FXML
     private void RealizarProblem(ActionEvent event) {
+        seleccionat = ListaProblems.getSelectionModel().getSelectedItem();
         try {
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Principal.fxml"));
             Parent root = miCargador.load();

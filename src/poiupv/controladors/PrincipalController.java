@@ -7,7 +7,10 @@ package poiupv.controladors;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,11 +20,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.Answer;
+import model.Problem;
 
 
 /**
@@ -45,13 +51,20 @@ public class PrincipalController implements Initializable {
     
     @FXML
     private ImageView avatarPerfil;
-    
+    @FXML
+    private Label problema;
+    @FXML
+    private ListView<Answer> llistaRespostes;
+    private ObservableList<Answer> datos = null;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-       
+        List<Answer> respostes = (MenuController.seleccionat).getAnswers();
+        datos = FXCollections.observableList(respostes);
+        llistaRespostes.setItems(datos);
+        System.out.println(llistaRespostes.toString());
+        problema.setText((MenuController.seleccionat).getText());
         //==========================================================
         // inicializamos el slider y enlazamos con el zoom
         zoom_slider.setMin(0.5);

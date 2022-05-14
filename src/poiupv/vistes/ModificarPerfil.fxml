@@ -78,7 +78,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#guardarCambios" text="Guardar canvis">
+            <Button fx:id="botoGuardar" mnemonicParsing="false" onAction="#guardarCambios" text="Guardar canvis">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>

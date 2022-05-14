@@ -50,6 +50,8 @@ public class ModificarPerfilController implements Initializable {
 
     @FXML
     private ChoiceBox<String> ChoiceAvatar;
+    @FXML
+    public Button botoGuardar;
 
     /**
      * Initializes the controller class.
