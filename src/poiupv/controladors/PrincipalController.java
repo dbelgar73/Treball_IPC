@@ -82,22 +82,22 @@ public class PrincipalController implements Initializable {
                 validarResposta.setDisable(false);
             }
              });
-//        problema.setText((MenuController.seleccionat).getText());
-//        //==========================================================
-//        // inicializamos el slider y enlazamos con el zoom
-//        zoom_slider.setMin(0.5);
-//        zoom_slider.setMax(1.5);
-//        zoom_slider.setValue(1.0);
-//        zoom_slider.valueProperty().addListener((o, oldVal, newVal) -> zoom((Double) newVal));
-//        
-//        //=========================================================================
-//        //Envuelva el contenido de scrollpane en un grupo para que 
-//        //ScrollPane vuelva a calcular las barras de desplazamiento tras el escalado
-//        Group contentGroup = new Group();
-//        zoomGroup = new Group();
-//        contentGroup.getChildren().add(zoomGroup);
-//        zoomGroup.getChildren().add(map_scrollpane.getContent());
-//        map_scrollpane.setContent(contentGroup);
+        problema.setText((MenuController.seleccionat).getText());
+        //==========================================================
+        // inicializamos el slider y enlazamos con el zoom
+        zoom_slider.setMin(0.5);
+        zoom_slider.setMax(1.5);
+        zoom_slider.setValue(1.0);
+        zoom_slider.valueProperty().addListener((o, oldVal, newVal) -> zoom((Double) newVal));
+        
+        //=========================================================================
+        //Envuelva el contenido de scrollpane en un grupo para que 
+        //ScrollPane vuelva a calcular las barras de desplazamiento tras el escalado
+        Group contentGroup = new Group();
+        zoomGroup = new Group();
+        contentGroup.getChildren().add(zoomGroup);
+        zoomGroup.getChildren().add(map_scrollpane.getContent());
+        map_scrollpane.setContent(contentGroup);
 
     }
 
@@ -105,43 +105,43 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void acercaDe(ActionEvent event) {
-//        Alert mensaje= new Alert(Alert.AlertType.INFORMATION);
-//        mensaje.setTitle("Acerca de");
-//        mensaje.setHeaderText("IPC - 2022");
-//        mensaje.showAndWait();
+        Alert mensaje= new Alert(Alert.AlertType.INFORMATION);
+        mensaje.setTitle("Acerca de");
+        mensaje.setHeaderText("IPC - 2022");
+        mensaje.showAndWait();
     }
 
     @FXML
     private void zoomOut(ActionEvent event) {
-//        double sliderVal = zoom_slider.getValue();
-//        zoom_slider.setValue(sliderVal + -0.1);
+        double sliderVal = zoom_slider.getValue();
+        zoom_slider.setValue(sliderVal + -0.1);
     }
 
     @FXML
     private void zoomIn(ActionEvent event) {
-//        double sliderVal = zoom_slider.getValue();
-//        zoom_slider.setValue(sliderVal += 0.1);
+        double sliderVal = zoom_slider.getValue();
+        zoom_slider.setValue(sliderVal += 0.1);
     }
     
     private void zoom(double scaleValue) {
-//        //===================================================
-//        //guardamos los valores del scroll antes del escalado
-//        double scrollH = map_scrollpane.getHvalue();
-//        double scrollV = map_scrollpane.getVvalue();
-//        //===================================================
-//        // escalamos el zoomGroup en X e Y con el valor de entrada
-//        zoomGroup.setScaleX(scaleValue);
-//        zoomGroup.setScaleY(scaleValue);
-//        //===================================================
-//        // recuperamos el valor del scroll antes del escalado
-//        map_scrollpane.setHvalue(scrollH);
-//        map_scrollpane.setVvalue(scrollV);
+        //===================================================
+        //guardamos los valores del scroll antes del escalado
+        double scrollH = map_scrollpane.getHvalue();
+        double scrollV = map_scrollpane.getVvalue();
+        //===================================================
+        // escalamos el zoomGroup en X e Y con el valor de entrada
+        zoomGroup.setScaleX(scaleValue);
+        zoomGroup.setScaleY(scaleValue);
+        //===================================================
+        // recuperamos el valor del scroll antes del escalado
+        map_scrollpane.setHvalue(scrollH);
+        map_scrollpane.setVvalue(scrollV);
     }
 
     @FXML
     private void muestraPosicion(MouseEvent event) {
-//        posicion.setText("sceneX: " + (int) event.getSceneX() + ", sceneY: " + (int) event.getSceneY() + "\n"
-//                + "         X: " + (int) event.getX() + ",          Y: " + (int) event.getY());
+        posicion.setText("sceneX: " + (int) event.getSceneX() + ", sceneY: " + (int) event.getSceneY() + "\n"
+                + "         X: " + (int) event.getX() + ",          Y: " + (int) event.getY());
     }
 
     @FXML
@@ -155,18 +155,18 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void cerrarSesion(ActionEvent event) {
-//        ((Stage)zoom_slider.getScene().getWindow()).close();
-//        try {
-//            Stage stage = new Stage();
-//            Parent root = FXMLLoader.load(getClass().getResource("IniciSesio.fxml"));
-//            Scene scene = new Scene(root);
-//            stage.setTitle("Inicio Sesión");
-//            stage.setScene(scene);
-//            stage.show();
-//            } 
-//        catch (IOException e) {
-//                e.printStackTrace();
-//            }    
+        ((Stage)zoom_slider.getScene().getWindow()).close();
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("IniciSesio.fxml"));
+            Scene scene = new Scene(root);
+            stage.setTitle("Inicio Sesión");
+            stage.setScene(scene);
+            stage.show();
+            } 
+        catch (IOException e) {
+                e.printStackTrace();
+            }    
     }
 
     @FXML

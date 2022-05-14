@@ -104,10 +104,27 @@ public class ModificarPerfilController implements Initializable {
             Poi.userActual.setBirthdate(newBirth);
             Poi.userActual.setAvatar(imagePerfil.getImage());
         }
+        try {
+            
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Menu.fxml"));
+            Parent root = miCargador.load();
+            
+            Scene scene = new Scene(root);
+            Stage estageActual = new Stage();
+            estageActual.setResizable(true);
+            estageActual.setScene(scene);
+            estageActual.initModality(Modality.APPLICATION_MODAL);
+            estageActual.show();
+            estageActual.setResizable(false);
+            Node n = (Node)event.getSource();
+            n.getScene().getWindow().hide();
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
         
         
-        Node n = (Node)event.getSource();
-        n.getScene().getWindow().hide();
+       
             
     }
 

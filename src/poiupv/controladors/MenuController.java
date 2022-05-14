@@ -107,6 +107,8 @@ public class MenuController implements Initializable {
             estageActual.initModality(Modality.APPLICATION_MODAL);
             estageActual.show();
             estageActual.setResizable(false);
+            Node n = (Node)event.getSource();
+            n.getScene().getWindow().hide();
         } 
         catch (IOException e) {
             e.printStackTrace();
