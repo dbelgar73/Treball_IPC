@@ -5,6 +5,7 @@
  */
 package poiupv.controladors;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -19,6 +20,7 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -28,6 +30,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Answer;
 import model.Problem;
+import static poiupv.controladors.MenuController.seleccionat;
 
 
 /**
@@ -56,6 +59,11 @@ public class PrincipalController implements Initializable {
     @FXML
     private ListView<Answer> llistaRespostes;
     private ObservableList<Answer> datos = null;
+    @FXML
+    private Button validarResposta;
+    private Answer respostaSel;
+    @FXML
+    private Label correctaIncorrecta;
     
     
     @Override
@@ -64,6 +72,16 @@ public class PrincipalController implements Initializable {
         datos = FXCollections.observableList(respostes);
         llistaRespostes.setItems(datos);
         System.out.println(llistaRespostes.toString());
+        llistaRespostes.getSelectionModel().selectedIndexProperty(). addListener(  (o, oldVal, newVal) -> { 
+            if (newVal.intValue() == -1) {
+                respostaSel = null;
+                validarResposta.setDisable(true);
+            }
+            else{
+                respostaSel = llistaRespostes.getSelectionModel().getSelectedItem();
+                validarResposta.setDisable(false);
+            }
+             });
         problema.setText((MenuController.seleccionat).getText());
         //==========================================================
         // inicializamos el slider y enlazamos con el zoom
@@ -150,5 +168,18 @@ public class PrincipalController implements Initializable {
                 e.printStackTrace();
             }    
     }
+
+    @FXML
+    private void respostaCorrecta(ActionEvent event) {
+        boolean correcta = respostaSel.getValidity();
+        if(correcta){
+            correctaIncorrecta.setVisible(true);
+            correctaIncorrecta.setStyle("-fx-text-inner-color: green;");
+        }
+        else{
+            correctaIncorrecta.setStyle("-fx-text-inner-color: red;");
+        }
+    }
+    
     
 }
