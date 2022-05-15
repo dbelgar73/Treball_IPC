@@ -72,10 +72,10 @@ public class PrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         List<Answer> respostes = (Poi.seleccionat).getAnswers();
-        List<String> textrespostes = respostesText(respostes);
+        List<String> textrespostes = Poi.respostesText(respostes);
         datos = FXCollections.observableList(textrespostes);
         llistaRespostes.setItems(datos);
-        System.out.println(llistaRespostes.toString());
+        //System.out.println(llistaRespostes.toString());
         llistaRespostes.getSelectionModel().selectedIndexProperty(). addListener(  (o, oldVal, newVal) -> { 
             if (newVal.intValue() == -1) {
                 respostaSel = null;
@@ -224,15 +224,7 @@ public class PrincipalController implements Initializable {
         }
     }
     
-    private List<String> respostesText(List<Answer> res){
-        int i = res.size();
-        List<String> respostes = new ArrayList<>();
-        for(int j = 0; j < i; j++){
-            Answer answ = res.get(j);
-            respostes.add(answ.getText());
-        }
-        return respostes;
-    }
+    
     
     
 }

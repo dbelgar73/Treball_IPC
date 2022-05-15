@@ -184,7 +184,7 @@ public class RegistreController implements Initializable {
     }   
     
     @FXML
-    private void registrarse(ActionEvent event) throws NavegacionDAOException{
+    private void registrarse(ActionEvent event) throws NavegacionDAOException, IOException{
         Navegacion navegacio = Navegacion.getSingletonNavegacion();
         usr = usuari.getText();
         email = correu.getText();
@@ -192,62 +192,51 @@ public class RegistreController implements Initializable {
         avatar = imagePerfil.getImage();
          //DATA DE NAIXEMENT
         birthDate = this.daypicker.getValue();//obte el valor seleccionat en el datePicker 
-        
-        //System.out.println("RESULTAT birthDate" +"\n"+ birthDate);//Visualitza resultat intermig
-        
-        
-            
-        
-            if(User.checkNickName(usr) && User.checkEmail(email) && User.checkPassword(pswd)){
+        if(User.checkNickName(usr) && User.checkEmail(email) && User.checkPassword(pswd)){
             //TOT CORRECTE, REGISTRA
-                try{navegacio.registerUser(usr,email,pswd,avatar,birthDate);}
-                catch(NavegacionDAOException e){
-                    errorJaRegistrat.setVisible(true);
-                    Alert alert = new Alert(AlertType.CONFIRMATION); 
-                    alert.setTitle("Error registre"); 
-                    alert.setHeaderText("Error: Usuari ja registrat"); 
-                    alert.setContentText("Tornar a intentar amb altre usuari?"); 
-                    Optional<ButtonType> result = alert.showAndWait(); 
-                    if (result.isPresent() && result.get() == ButtonType.OK){ 
-                        System.out.println("OK");
-                            //TANCA LA FINESTRA DEL REGISTRE
-                            Node n = (Node)event.getSource();
-                            n.getScene().getWindow().hide();   
+            try{
+                navegacio.registerUser(usr,email,pswd,avatar,birthDate);
+            }
+            catch(NavegacionDAOException e){
+                errorJaRegistrat.setVisible(true);
+                Alert alert = new Alert(AlertType.CONFIRMATION); 
+                alert.setTitle("Error registre"); 
+                alert.setHeaderText("Error: Usuari ja registrat"); 
+                alert.setContentText("Tornar a intentar amb altre usuari?"); 
+                Optional<ButtonType> result = alert.showAndWait(); 
+                if (result.isPresent() && result.get() == ButtonType.OK){ 
+                    System.out.println("OK");
+                    //TANCA LA FINESTRA DEL REGISTRE
+                    Node n = (Node)event.getSource();
+                    n.getScene().getWindow().hide();   
                     } 
-                    else { 
-                        System.out.println("CANCEL"); 
-                        Node n = (Node)event.getSource();
-                        n.getScene().getWindow().hide();
-                    }
+                else { 
+                    System.out.println("CANCEL"); 
+                    Node n = (Node)event.getSource();
+                    n.getScene().getWindow().hide();
                 }
-                
-                if(!errorJaRegistrat.isVisible()){
-                    try {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION); 
-                        alert.setTitle("Registre"); 
-                        alert.setHeaderText("Registre completat amb exit");
-                        alert.setContentText("Per favor  " + nickName + " inicia sessió de nou"); 
-                        alert.showAndWait();
-                        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
-                        Parent root = miCargador.load();
-                        Scene scene = new Scene(root);
-                        Stage estageActual = new Stage();
-                        estageActual.setResizable(true);
-                        estageActual.setScene(scene);
-                        estageActual.initModality(Modality.APPLICATION_MODAL);
-                        estageActual.show();
-                        //TANCA LA FINESTRA DEL REGISTRE
-                        Node n = (Node)event.getSource();
-                        n.getScene().getWindow().hide();
-                    } 
-                    catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                
-               
             }
                 
+            if(!errorJaRegistrat.isVisible()){
+                   
+                Alert alert = new Alert(Alert.AlertType.INFORMATION); 
+                alert.setTitle("Registre"); 
+                alert.setHeaderText("Registre completat amb exit");
+                alert.setContentText("Per favor  " + nickName + " inicia sessió de nou"); 
+                alert.showAndWait();
+                //TANCA LA FINESTRA DEL REGISTRE
+                Node n = (Node)event.getSource();
+                n.getScene().getWindow().hide();   
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Registre.fxml"));
+                Parent root = miCargador.load();
+                Scene scene = new Scene(root);
+                Stage estageActual = new Stage();
+                estageActual.setResizable(true);
+                estageActual.setScene(scene);
+                estageActual.initModality(Modality.APPLICATION_MODAL);
+                estageActual.show();
+            }        
+        }
     }         
     
         

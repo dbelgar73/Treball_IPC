@@ -134,7 +134,6 @@ public class IniciSesioController implements Initializable {
             estageActual.setScene(scene);
             estageActual.initModality(Modality.APPLICATION_MODAL);
             estageActual.show();
-            estageActual.setResizable(false);
             
         } 
         catch (IOException e) {

@@ -3,6 +3,7 @@ package poiupv;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Answer;
 import model.Navegacion;
 import model.Problem;
 import model.User;
@@ -47,6 +48,15 @@ public class Poi {
             problemes.add(answ.getText());
         }
         return problemes;
+    }
+     public static List<String> respostesText(List<Answer> res){
+        int i = res.size();
+        List<String> respostes = new ArrayList<>();
+        for(int j = 0; j < i; j++){
+            Answer answ = res.get(j);
+            respostes.add(answ.getText());
+        }
+        return respostes;
     }
 }
 

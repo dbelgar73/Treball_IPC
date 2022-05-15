@@ -70,7 +70,7 @@ public class ModificarPerfilController implements Initializable {
         ChoiceAvatar.getItems().add("Avatar 3");
         ChoiceAvatar.getItems().add("Avatar 4"); 
         ChoiceAvatar.setValue(null);
-        imagePerfil.setImage(Poi.userActual.getAvatar());
+        
         
         ChoiceAvatar.getSelectionModel().selectedItemProperty().addListener((o, oldVal, newVal) -> {
             String res = ChoiceAvatar.getValue();
@@ -82,6 +82,7 @@ public class ModificarPerfilController implements Initializable {
         contrasenyaUser.setText(Poi.userActual.getPassword());
         CorreuUser.setText(Poi.userActual.getEmail());
         dataUser.setValue(Poi.userActual.getBirthdate());
+        imagePerfil.setImage(Poi.userActual.getAvatar());
     }    
 
     @FXML
@@ -92,10 +93,10 @@ public class ModificarPerfilController implements Initializable {
         LocalDate newBirth = dataUser.getValue();
         LocalDate now = LocalDate.now();
         //calcula la diferencia (Data de hui - any de naixement) = edat
-        int dataHui = now.getYear() + now.getDayOfYear();//calcula la data de hui
-        int naixement = newBirth.getYear() + newBirth.getDayOfYear();
+        int dataHui = now.getYear();//calcula la data de hui
+        int naixement = newBirth.getYear();
         int edat = dataHui - naixement ;
-        //se comroben que siguen correctes
+        //se comproben que siguen correctes
         if(User.checkPassword(newPass) && User.checkEmail(newEmail) && edat > 16){
             //canviem les dades que hi havien per les noves
             Poi.userActual.setPassword(newPass);

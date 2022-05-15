@@ -5,14 +5,10 @@
  */
 package poiupv.controladors;
 
-import DBAccess.NavegacionDAOException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,16 +20,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Answer;
-import model.Navegacion;
 import model.Problem;
-import model.User;
 import poiupv.Poi;
 
 /**
@@ -79,6 +71,7 @@ public class MenuController implements Initializable {
         problemas = Poi.navegacio.getProblems();
         datos = FXCollections.observableList(Poi.problemesText(problemas));
         ListaProblems.setItems(datos);
+        //Foco en la llista de problemes,guarda en la variable seleccionat el problema elegit
         ListaProblems.getSelectionModel().selectedIndexProperty(). addListener(  (o, oldVal, newVal) -> { 
             if (newVal.intValue() == -1) {
                 Poi.seleccionat = null;
@@ -114,8 +107,7 @@ public class MenuController implements Initializable {
         
         try {
             Poi.setUserActual(null);
-            Node n = (Node)event.getSource();
-            n.getScene().getWindow().hide();
+            ((Stage)avatarPerfil.getScene().getWindow()).close();
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
             Scene scene = new Scene(root);
