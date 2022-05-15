@@ -41,10 +41,6 @@ import static poiupv.controladors.RegistreController.usr;
 public class IniciSesioController implements Initializable {
 
     @FXML
-    private Label MissatgeUsuari;
-    @FXML
-    private Label MissatgeContrasenya;
-    @FXML
     private TextField usuari;
     @FXML
     private Button iniciarSessio;
@@ -52,8 +48,12 @@ public class IniciSesioController implements Initializable {
     private PasswordField contrassenya;
     @FXML
     private Button botoRegistre;
+    @FXML
+    private Label MissatgeUsuari;
     public static String nickName ;
     public static String password;
+    @FXML
+    private Label MissatgeContrasenya;
     
 
     /**

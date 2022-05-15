@@ -15,7 +15,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import model.Answer;
 import model.Session;
 import poiupv.Poi;
 
@@ -34,6 +33,7 @@ public class ResultatsController implements Initializable {
     private Label sesio;
     @FXML
     private ListView<Session> listSesions;
+    
     public List<Session> llistaSesions;
     private ObservableList<Session> datos = null;
     private int hits;

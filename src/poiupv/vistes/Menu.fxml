@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="980.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.MenuController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.MenuController">
    <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="500.0" style="-fx-background-color: #006db5;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" prefHeight="73.0" prefWidth="985.0" style="-fx-background-color: #006db5;" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="43.0" prefWidth="441.0" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="441.0" HBox.hgrow="ALWAYS">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Menú" wrappingWidth="155.1523895263672">
                      <font>
@@ -35,6 +35,7 @@
                 <Menu mnemonicParsing="false">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#ModificarPerfil" text="Modificar Perfil" />
+                        <MenuItem mnemonicParsing="false" onAction="#MostrarResult" text="Mostrar resultados" />
                         <MenuItem mnemonicParsing="false" onAction="#CerrarSesion" text="Cerrar sesión" />
                   </items>
                      <graphic>
@@ -52,12 +53,12 @@
    <right>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="botoRealizar" disable="true" mnemonicParsing="false" onAction="#RealizarProblem" prefHeight="34.0" prefWidth="68.0" text="Realizar" VBox.vgrow="ALWAYS">
+            <Button fx:id="botoRealizar" disable="true" ellipsisString="Realizar" mnemonicParsing="false" onAction="#RealizarProblem" text="Realizar" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#ProblemAleat" text="Aleatorio" VBox.vgrow="ALWAYS">
+            <Button contentDisplay="CENTER" ellipsisString="Aleatorio" mnemonicParsing="false" onAction="#ProblemAleat" text="Aleatorio" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -73,18 +74,21 @@
          <children>
             <Label prefHeight="30.0" prefWidth="275.0" text="Selecciona un problema:">
                <VBox.margin>
-                  <Insets left="20.0" top="20.0" />
+                  <Insets />
                </VBox.margin>
                <font>
                   <Font name="Verdana Italic" size="20.0" />
                </font>
             </Label>
-            <ListView fx:id="ListaProblems" prefHeight="410.0" prefWidth="400.0" style="-fx-background-color: white;">
+            <ListView fx:id="ListaProblems" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
                <VBox.margin>
-                  <Insets bottom="20.0" left="20.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
             </ListView>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
       </VBox>
    </center>
 </BorderPane>

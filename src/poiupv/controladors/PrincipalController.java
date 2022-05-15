@@ -56,8 +56,6 @@ public class PrincipalController implements Initializable {
     
     
     @FXML
-    private ImageView avatarPerfil;
-    @FXML
     private Label problema;
     @FXML
     private ListView<String> llistaRespostes;
@@ -105,16 +103,6 @@ public class PrincipalController implements Initializable {
 
     }
 
-    
-
-    @FXML
-    private void acercaDe(ActionEvent event) {
-        Alert mensaje= new Alert(Alert.AlertType.INFORMATION);
-        mensaje.setTitle("Acerca de");
-        mensaje.setHeaderText("IPC - 2022");
-        mensaje.showAndWait();
-    }
-
     @FXML
     private void zoomOut(ActionEvent event) {
         double sliderVal = zoom_slider.getValue();
@@ -148,75 +136,18 @@ public class PrincipalController implements Initializable {
                 + "         X: " + (int) event.getX() + ",          Y: " + (int) event.getY());
     }
 
-    @FXML
-    private void resultados(ActionEvent event) {
-        try {
-            
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Resultados.fxml"));
-            Parent root = miCargador.load();
-            
-            Scene scene = new Scene(root);
-            Stage estageActual = new Stage();
-            estageActual.setResizable(true);
-            estageActual.setScene(scene);
-            estageActual.initModality(Modality.APPLICATION_MODAL);
-            estageActual.show();
-            estageActual.setResizable(false);
-            
-        } 
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void modificarPerfil(ActionEvent event) {
-        try {
-            
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/ModificarPerfil.fxml"));
-            Parent root = miCargador.load();
-            
-            Scene scene = new Scene(root);
-            Stage estageActual = new Stage();
-            estageActual.setResizable(true);
-            estageActual.setScene(scene);
-            estageActual.initModality(Modality.APPLICATION_MODAL);
-            estageActual.show();
-            estageActual.setResizable(false);
-            Node n = (Node)event.getSource();
-            n.getScene().getWindow().hide();
-        } 
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-
-    @FXML
-    private void cerrarSesion(ActionEvent event) {
-        ((Stage)zoom_slider.getScene().getWindow()).close();
-        try {
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("IniciSesio.fxml"));
-            Scene scene = new Scene(root);
-            stage.setTitle("Inicio Sesión");
-            stage.setScene(scene);
-            stage.show();
-            } 
-        catch (IOException e) {
-                e.printStackTrace();
-            }    
-    }
-
+        
     @FXML
     private void respostaCorrecta(ActionEvent event) {
         boolean correcta = respostaSel.getValidity();
         if(correcta){
+            Poi.hits++;
             correctaIncorrecta.setVisible(true);
             correctaIncorrecta.setText("Resposta correcta");
             correctaIncorrecta.setStyle("-fx-text-inner-color: green;");
         }
         else{
+            Poi.faults++;
             correctaIncorrecta.setVisible(true);
             correctaIncorrecta.setText("Resposta Incorrecta");
             correctaIncorrecta.setStyle("-fx-text-inner-color: red;");

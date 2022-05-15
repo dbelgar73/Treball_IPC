@@ -16,7 +16,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -161,6 +160,27 @@ public class MenuController implements Initializable {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void MostrarResult(ActionEvent event) {
+        try {
+            
+            //Canvia la finestra a Principal.fxml
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/resultats.fxml"));
+            Parent root = miCargador.load();
+            Scene scene = new Scene(root);
+            Stage estageActual = new Stage();
+            estageActual.setResizable(true);
+            estageActual.setScene(scene);
+            estageActual.initModality(Modality.APPLICATION_MODAL);
+            estageActual.show();
+            
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
    
 }

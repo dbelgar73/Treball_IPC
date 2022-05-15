@@ -6,12 +6,16 @@ import java.util.List;
 import model.Answer;
 import model.Navegacion;
 import model.Problem;
+import model.Session;
 import model.User;
 
 public class Poi {
     public static User userActual ;
     public static Problem seleccionat;
     public static Navegacion navegacio;
+    public static List<Session> llistaSesions;
+    public static int hits;
+    public static int faults;
 
     public static void setUserActual(User p){
         userActual = p;
@@ -58,6 +62,7 @@ public class Poi {
         }
         return respostes;
     }
+    
 }
 
     

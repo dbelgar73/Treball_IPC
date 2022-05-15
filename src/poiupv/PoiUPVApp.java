@@ -25,7 +25,7 @@ public class PoiUPVApp extends Application {
             Scene scene = new Scene(root);
             stage.setTitle("Inicio Session");
             stage.setScene(scene);
-            stage.setResizable(false);
+            stage.setResizable(true);
     
             stage.show();
         }
