@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -28,6 +29,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Answer;
 import model.Problem;
@@ -148,10 +150,45 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void resultados(ActionEvent event) {
+        try {
+            
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Resultados.fxml"));
+            Parent root = miCargador.load();
+            
+            Scene scene = new Scene(root);
+            Stage estageActual = new Stage();
+            estageActual.setResizable(true);
+            estageActual.setScene(scene);
+            estageActual.initModality(Modality.APPLICATION_MODAL);
+            estageActual.show();
+            estageActual.setResizable(false);
+            
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void modificarPerfil(ActionEvent event) {
+        try {
+            
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/ModificarPerfil.fxml"));
+            Parent root = miCargador.load();
+            
+            Scene scene = new Scene(root);
+            Stage estageActual = new Stage();
+            estageActual.setResizable(true);
+            estageActual.setScene(scene);
+            estageActual.initModality(Modality.APPLICATION_MODAL);
+            estageActual.show();
+            estageActual.setResizable(false);
+            Node n = (Node)event.getSource();
+            n.getScene().getWindow().hide();
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
 
@@ -183,6 +220,7 @@ public class PrincipalController implements Initializable {
             correctaIncorrecta.setVisible(true);
             correctaIncorrecta.setText("Resposta Incorrecta");
             correctaIncorrecta.setStyle("-fx-text-inner-color: red;");
+            //correctaIncorrecta.setTextFill(Color.GREEN);
         }
     }
     

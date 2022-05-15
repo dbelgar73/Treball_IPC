@@ -22,7 +22,7 @@
    <children>
       <HBox alignment="CENTER_LEFT" fillHeight="false" spacing="5.0" VBox.vgrow="NEVER">
          <children>
-            <MenuBar prefHeight="21.0" prefWidth="531.0">
+            <MenuBar cache="true" prefHeight="22.0" prefWidth="304.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Archivo">
                   <items>
@@ -43,6 +43,12 @@
                   </items>
                 </Menu>
               </menus>
+               <opaqueInsets>
+                  <Insets right="10.0" />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="50.0" />
+               </HBox.margin>
             </MenuBar>
             <ImageView fx:id="avatarPerfil" fitHeight="29.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
@@ -73,7 +79,10 @@
                               <Label fx:id="correctaIncorrecta" text="Label" visible="false" />
                            </children>
                         </VBox>
-                        <Button fx:id="validarResposta" mnemonicParsing="false" onAction="#respostaCorrecta" prefHeight="30.0" prefWidth="84.0" text="Validar" />
+                        <Button fx:id="validarResposta" mnemonicParsing="false" onAction="#respostaCorrecta" prefHeight="30.0" prefWidth="84.0" text="Validar">
+                           <HBox.margin>
+                              <Insets right="20.0" top="115.0" />
+                           </HBox.margin></Button>
                      </children>
                   </HBox>
                </children>
