@@ -16,8 +16,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox stylesheets="@../resources/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.PrincipalController">
+<VBox prefHeight="714.0" prefWidth="1058.0" stylesheets="@../resources/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.PrincipalController">
    <children>
       <HBox alignment="CENTER_LEFT" fillHeight="false" spacing="5.0" VBox.vgrow="NEVER">
          <children>
@@ -56,16 +57,19 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
       </HBox>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="522.0" prefWidth="900.0">
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="625.0" prefWidth="1058.0">
         <items>
-            <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="898.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="1046.0">
                <children>
-                  <HBox prefHeight="258.0" prefWidth="898.0">
+                  <HBox prefHeight="262.0" prefWidth="1042.0">
                      <children>
-                        <VBox prefHeight="258.0" prefWidth="769.0">
+                        <VBox prefHeight="262.0" prefWidth="955.0">
                            <children>
-                              <Label fx:id="problema" text="Label" />
-                              <ListView fx:id="llistaRespostes" prefHeight="200.0" prefWidth="200.0" />
+                              <Label fx:id="problema" prefHeight="116.0" prefWidth="954.0" text="Label" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <ListView fx:id="llistaRespostes" prefHeight="101.0" prefWidth="955.0" />
                               <Label fx:id="correctaIncorrecta" text="Label" visible="false" />
                            </children>
                         </VBox>
@@ -74,19 +78,19 @@
                   </HBox>
                </children>
             </Pane>
-            <SplitPane dividerPositions="0.13957934990439771" orientation="VERTICAL" prefHeight="282.0" prefWidth="898.0">
+            <SplitPane dividerPositions="0.13957934990439771" orientation="VERTICAL" prefHeight="370.0" prefWidth="1058.0">
               <items>
-                  <HBox prefHeight="80.0" prefWidth="898.0">
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="1058.0">
                      <children>
                         <Button mnemonicParsing="false" />
                         <Button mnemonicParsing="false" text="Transportador" />
                      </children>
                   </HBox>
-                  <ScrollPane fx:id="map_scrollpane" onMouseMoved="#muestraPosicion" prefHeight="228.0" prefWidth="898.0">
+                  <ScrollPane fx:id="map_scrollpane" maxHeight="-Infinity" maxWidth="-Infinity" onMouseMoved="#muestraPosicion" prefHeight="306.0" prefWidth="1058.0">
                      <content>
                         <Pane focusTraversable="true">
                            <children>
-                              <ImageView fx:id="cartaNautica" fitHeight="206.0" fitWidth="872.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="cartaNautica" fitHeight="241.0" fitWidth="1054.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../resources/carta_nautica.jpg" />
                                  </image>

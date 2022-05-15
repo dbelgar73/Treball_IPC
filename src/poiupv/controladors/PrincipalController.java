@@ -8,6 +8,7 @@ package poiupv.controladors;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -57,8 +58,8 @@ public class PrincipalController implements Initializable {
     @FXML
     private Label problema;
     @FXML
-    private ListView<Answer> llistaRespostes;
-    private ObservableList<Answer> datos = null;
+    private ListView<String> llistaRespostes;
+    private ObservableList<String> datos = null;
     @FXML
     private Button validarResposta;
     private Answer respostaSel;
@@ -69,7 +70,8 @@ public class PrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         List<Answer> respostes = (MenuController.seleccionat).getAnswers();
-        datos = FXCollections.observableList(respostes);
+        List<String> textrespostes = respostesText(respostes);
+        datos = FXCollections.observableList(textrespostes);
         llistaRespostes.setItems(datos);
         System.out.println(llistaRespostes.toString());
         llistaRespostes.getSelectionModel().selectedIndexProperty(). addListener(  (o, oldVal, newVal) -> { 
@@ -78,7 +80,7 @@ public class PrincipalController implements Initializable {
                 validarResposta.setDisable(true);
             }
             else{
-                respostaSel = llistaRespostes.getSelectionModel().getSelectedItem();
+                respostaSel = respostes.get(llistaRespostes.getSelectionModel().getSelectedIndex());
                 validarResposta.setDisable(false);
             }
              });
@@ -182,6 +184,16 @@ public class PrincipalController implements Initializable {
             correctaIncorrecta.setText("Resposta Incorrecta");
             correctaIncorrecta.setStyle("-fx-text-inner-color: red;");
         }
+    }
+    
+    private List<String> respostesText(List<Answer> res){
+        int i = res.size();
+        List<String> respostes = new ArrayList<>();
+        for(int j = 0; j < i; j++){
+            Answer answ = res.get(j);
+            respostes.add(answ.getText());
+        }
+        return respostes;
     }
     
     

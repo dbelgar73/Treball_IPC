@@ -8,6 +8,7 @@ package poiupv.controladors;
 import DBAccess.NavegacionDAOException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -29,6 +30,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Answer;
 import model.Navegacion;
 import model.Problem;
 import model.User;
@@ -43,9 +45,9 @@ import static poiupv.controladors.IniciSesioController.navegacio;
 public class MenuController implements Initializable {
 
     @FXML
-    private ListView<Problem> ListaProblems;
+    private ListView<String> ListaProblems;
 
-    private ObservableList<Problem> datos = null;
+    private ObservableList<String> datos = null;
     @FXML
     private ImageView avatarPerfil;
     @FXML
@@ -75,7 +77,7 @@ public class MenuController implements Initializable {
         });
         //carrega la llista de problemes
         problemas = IniciSesioController.navegacio.getProblems();
-        datos = FXCollections.observableList(problemas);
+        datos = FXCollections.observableList(problemesText(problemas));
         ListaProblems.setItems(datos);
         ListaProblems.getSelectionModel().selectedIndexProperty(). addListener(  (o, oldVal, newVal) -> { 
             if (newVal.intValue() == -1) {
@@ -83,7 +85,7 @@ public class MenuController implements Initializable {
                 
             }
             else{
-                seleccionat = ListaProblems.getSelectionModel().getSelectedItem();
+                seleccionat = problemas.get(ListaProblems.getSelectionModel().getSelectedIndex());
                 System.out.println(seleccionat.toString());
             }
         });
@@ -171,5 +173,14 @@ public class MenuController implements Initializable {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private List<String> problemesText(List<Problem> res){
+        int i = res.size();
+        List<String> problemes = new ArrayList<>();
+        for(int j = 0; j < i; j++){
+            Problem answ = res.get(j);
+            problemes.add(answ.getText());
+        }
+        return problemes;
     }
 }
