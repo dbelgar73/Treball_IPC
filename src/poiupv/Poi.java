@@ -1,10 +1,16 @@
 package poiupv;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import model.Navegacion;
+import model.Problem;
 import model.User;
 
 public class Poi {
     public static User userActual ;
+    public static Problem seleccionat;
+    public static Navegacion navegacio;
 
     public static void setUserActual(User p){
         userActual = p;
@@ -32,6 +38,15 @@ public class Poi {
                 break;
         }
         return URL;
+    }
+     public static List<String> problemesText(List<Problem> res){
+        int i = res.size();
+        List<String> problemes = new ArrayList<>();
+        for(int j = 0; j < i; j++){
+            Problem answ = res.get(j);
+            problemes.add(answ.getText());
+        }
+        return problemes;
     }
 }
 

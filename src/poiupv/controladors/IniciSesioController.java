@@ -54,7 +54,7 @@ public class IniciSesioController implements Initializable {
     private Button botoRegistre;
     public static String nickName ;
     public static String password;
-    public static Navegacion navegacio;
+    
 
     /**
      * Initializes the controller class.
@@ -78,9 +78,9 @@ public class IniciSesioController implements Initializable {
         //variables
         nickName = usuari.getText();//usuari
         password = contrassenya.getText();//contrassenya
-        navegacio = Navegacion.getSingletonNavegacion();//necesari per a cridar a metodes de la classe Navegacion
+        Poi.navegacio = Navegacion.getSingletonNavegacion();//necesari per a cridar a metodes de la classe Navegacion
         //Autenticació de usuari
-        if(navegacio.exitsNickName(nickName) == false){//si no existeix l'usuari mostra error
+        if(Poi.navegacio.exitsNickName(nickName) == false){//si no existeix l'usuari mostra error
             MissatgeUsuari.setVisible(true);//mostra label visible-------------------
              Alert alert = new Alert(AlertType.ERROR); 
              alert.setTitle("Error"); 
@@ -89,7 +89,7 @@ public class IniciSesioController implements Initializable {
              alert.showAndWait();
         }
         else{//si existix l'usuari
-            if(navegacio.loginUser(nickName, password)!= null){//si esta tot correcte, usuari i contrassenya
+            if(Poi.navegacio.loginUser(nickName, password)!= null){//si esta tot correcte, usuari i contrassenya
                 //canvia de finsetra
                 Alert alert = new Alert(AlertType.INFORMATION); 
                 alert.setTitle("Iniciant sessió"); 
@@ -97,7 +97,7 @@ public class IniciSesioController implements Initializable {
                 alert.setContentText("Benvingut: " + nickName); 
                 alert.showAndWait();
                 try {
-                    Poi.setUserActual(navegacio.getUser(nickName)); //guarda el usuari que ha iniciat sesio en userActual
+                    Poi.setUserActual(Poi.navegacio.getUser(nickName)); //guarda el usuari que ha iniciat sesio en userActual
                     Node n = (Node)event.getSource();
                     n.getScene().getWindow().hide();
                     Stage stage = new Stage();
@@ -128,7 +128,6 @@ public class IniciSesioController implements Initializable {
         try {
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Registre.fxml"));
             Parent root = miCargador.load();
-            RegistreController controlador = miCargador.getController();
             Scene scene = new Scene(root);
             Stage estageActual = new Stage();
             estageActual.setResizable(true);

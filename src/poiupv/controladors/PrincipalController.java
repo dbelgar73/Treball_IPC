@@ -33,7 +33,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Answer;
 import model.Problem;
-import static poiupv.controladors.MenuController.seleccionat;
+import poiupv.Poi;
 
 
 /**
@@ -71,7 +71,7 @@ public class PrincipalController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        List<Answer> respostes = (MenuController.seleccionat).getAnswers();
+        List<Answer> respostes = (Poi.seleccionat).getAnswers();
         List<String> textrespostes = respostesText(respostes);
         datos = FXCollections.observableList(textrespostes);
         llistaRespostes.setItems(datos);
@@ -86,7 +86,7 @@ public class PrincipalController implements Initializable {
                 validarResposta.setDisable(false);
             }
              });
-        problema.setText((MenuController.seleccionat).getText());
+        problema.setText((Poi.seleccionat).getText());
         //==========================================================
         // inicializamos el slider y enlazamos con el zoom
         zoom_slider.setMin(0.5);

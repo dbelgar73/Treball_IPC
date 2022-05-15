@@ -35,7 +35,6 @@ import model.Navegacion;
 import model.Problem;
 import model.User;
 import poiupv.Poi;
-import static poiupv.controladors.IniciSesioController.navegacio;
 
 /**
  * FXML Controller class
@@ -52,7 +51,8 @@ public class MenuController implements Initializable {
     private ImageView avatarPerfil;
     @FXML
     private Button botoRealizar;
-    public static Problem seleccionat;
+    
+    
     public int random;
     public List<Problem> problemas;
     
@@ -76,17 +76,16 @@ public class MenuController implements Initializable {
             }
         });
         //carrega la llista de problemes
-        problemas = IniciSesioController.navegacio.getProblems();
-        datos = FXCollections.observableList(problemesText(problemas));
+        problemas = Poi.navegacio.getProblems();
+        datos = FXCollections.observableList(Poi.problemesText(problemas));
         ListaProblems.setItems(datos);
         ListaProblems.getSelectionModel().selectedIndexProperty(). addListener(  (o, oldVal, newVal) -> { 
             if (newVal.intValue() == -1) {
-                seleccionat = null;
+                Poi.seleccionat = null;
                 
             }
             else{
-                seleccionat = problemas.get(ListaProblems.getSelectionModel().getSelectedIndex());
-                System.out.println(seleccionat.toString());
+                Poi.seleccionat = problemas.get(ListaProblems.getSelectionModel().getSelectedIndex());
             }
         });
     }
@@ -94,19 +93,16 @@ public class MenuController implements Initializable {
     @FXML
     private void ModificarPerfil(ActionEvent event) {
         try {
-            
+            //mostra la finestra de modificarPerfil sense tancar la del menu
+            //fins que no es faja alguna accio en modificarPerfil no es pot utilizar la finestra de menu
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/ModificarPerfil.fxml"));
             Parent root = miCargador.load();
-            
             Scene scene = new Scene(root);
             Stage estageActual = new Stage();
             estageActual.setResizable(true);
             estageActual.setScene(scene);
             estageActual.initModality(Modality.APPLICATION_MODAL);
             estageActual.show();
-            estageActual.setResizable(false);
-            Stage stage = (Stage) botoRealizar.getScene().getWindow();
-            stage.close();
         } 
         catch (IOException e) {
             e.printStackTrace();
@@ -136,51 +132,43 @@ public class MenuController implements Initializable {
     @FXML
     private void RealizarProblem(ActionEvent event) {
          try {
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/Principal.fxml"));
-            Scene scene = new Scene(root);
-            stage.setTitle("Inicio Sesión");
-            stage.setScene(scene);
-            stage.show();
-            Node n = (Node)event.getSource();
-            n.getScene().getWindow().hide();
-            } 
-        catch (IOException e) {
-                e.printStackTrace();
-            } 
-    }
-
-    @FXML
-    private void ProblemAleat(ActionEvent event) {
-        int size = problemas.size();
-        random = (int) (Math.random() * (size));
-        seleccionat = problemas.get(random);
-        try {
+            
             //Canvia la finestra a Principal.fxml
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Principal.fxml"));
             Parent root = miCargador.load();
-            PrincipalController controlador = miCargador.getController();
             Scene scene = new Scene(root);
             Stage estageActual = new Stage();
             estageActual.setResizable(true);
             estageActual.setScene(scene);
             estageActual.initModality(Modality.APPLICATION_MODAL);
             estageActual.show();
-            //Minimitza i tanca la finestra
-            Node n = (Node)event.getSource();
-            n.getScene().getWindow().hide();
+            
         } 
         catch (IOException e) {
             e.printStackTrace();
         }
     }
-    private List<String> problemesText(List<Problem> res){
-        int i = res.size();
-        List<String> problemes = new ArrayList<>();
-        for(int j = 0; j < i; j++){
-            Problem answ = res.get(j);
-            problemes.add(answ.getText());
+
+    @FXML
+    private void ProblemAleat(ActionEvent event) {
+        random = (int) (Math.random() * ( problemas.size()));
+        Poi.seleccionat = problemas.get(random);
+        try {
+            
+            //Canvia la finestra a Principal.fxml
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Principal.fxml"));
+            Parent root = miCargador.load();
+            Scene scene = new Scene(root);
+            Stage estageActual = new Stage();
+            estageActual.setResizable(true);
+            estageActual.setScene(scene);
+            estageActual.initModality(Modality.APPLICATION_MODAL);
+            estageActual.show();
+            
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
         }
-        return problemes;
     }
+   
 }
