@@ -103,6 +103,7 @@ public class ModificarPerfilController implements Initializable {
             Poi.userActual.setEmail(newEmail);
             Poi.userActual.setBirthdate(newBirth);
             Poi.userActual.setAvatar(imagePerfil.getImage());
+            
         }
         try {
             
