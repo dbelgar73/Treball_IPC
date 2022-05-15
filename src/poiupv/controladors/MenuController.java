@@ -5,8 +5,10 @@
  */
 package poiupv.controladors;
 
+import DBAccess.NavegacionDAOException;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
@@ -25,6 +27,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Problem;
+import model.Session;
 import poiupv.Poi;
 
 /**
@@ -102,9 +105,11 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void CerrarSesion(ActionEvent event) {
+    private void CerrarSesion(ActionEvent event) throws NavegacionDAOException {
         
         try {
+            Poi.sessio = new Session(Poi.TimeInici,Poi.hits,Poi.faults);
+            Poi.userActual.addSession(Poi.sessio);
             Poi.setUserActual(null);
             ((Stage)avatarPerfil.getScene().getWindow()).close();
             Stage stage = new Stage();

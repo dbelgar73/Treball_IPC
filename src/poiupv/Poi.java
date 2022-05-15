@@ -1,6 +1,7 @@
 package poiupv;
 
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import model.Answer;
@@ -16,13 +17,12 @@ public class Poi {
     public static List<Session> llistaSesions;
     public static int hits;
     public static int faults;
+    public static Session sessio;
+    public static LocalDateTime TimeInici ;
 
     public static void setUserActual(User p){
         userActual = p;
     }
-//    public static User GetUserActual(User.nickName p){
-//        return navegacio.getUser(p);
-//    }
     public static String creadorStringURL(String res) {
         String URL = null;
         switch(res){

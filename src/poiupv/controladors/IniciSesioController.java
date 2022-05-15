@@ -9,6 +9,7 @@ import DBAccess.NavegacionDAOException;
 import java.io.IOException;
 import java.lang.ModuleLayer.Controller;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -27,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Navegacion;
+import model.Session;
 import model.User;
 import poiupv.Poi;
 import static poiupv.controladors.RegistreController.email;
@@ -61,6 +63,8 @@ public class IniciSesioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Poi.hits = 0;
+        Poi.faults = 0;
         usuari.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             usr = usuari.getText();
             if(!"".equals(usr) && !User.checkNickName(usr)){//error en l'usuari
@@ -98,6 +102,7 @@ public class IniciSesioController implements Initializable {
                 alert.showAndWait();
                 try {
                     Poi.setUserActual(Poi.navegacio.getUser(nickName)); //guarda el usuari que ha iniciat sesio en userActual
+                    Poi.TimeInici = LocalDateTime.now();
                     Node n = (Node)event.getSource();
                     n.getScene().getWindow().hide();
                     Stage stage = new Stage();

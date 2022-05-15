@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import model.Session;
@@ -65,6 +66,8 @@ public class ResultatsController implements Initializable {
 
     @FXML
     private void tancarBoto(ActionEvent event) {
+        Node n = (Node)event.getSource();
+        n.getScene().getWindow().hide();
     }
     
 }
