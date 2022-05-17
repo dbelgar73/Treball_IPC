@@ -6,6 +6,7 @@
 package poiupv.controladors;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -33,10 +34,10 @@ public class ResultatsController implements Initializable {
     @FXML
     private Label sesio;
     @FXML
-    private ListView<Session> listSesions;
+    private ListView<String> listSesions;
     
     public List<Session> llistaSesions;
-    private ObservableList<Session> datos = null;
+    private ObservableList<String> datos = null;
     private int hits;
     private int faults;
     /**
@@ -48,20 +49,12 @@ public class ResultatsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         String data = null;
         llistaSesions = (Poi.userActual).getSessions();
-        
-        datos = FXCollections.observableList(llistaSesions);
+        datos = FXCollections.observableList(Poi.sesionsText(llistaSesions));
         listSesions.setItems(datos);
-        listSesions.getSelectionModel().selectedIndexProperty(). addListener(  (o, oldVal, newVal) -> { 
-            hits = (listSesions.getSelectionModel().getSelectedItem()).getHits();
-            faults = (listSesions.getSelectionModel().getSelectedItem()).getFaults();
-            if (newVal.intValue() == -1) {
-                encerts.setText(Integer.toString(0));
-                fallades.setText(Integer.toString(0));
-            }
-            else{
-                
-            }
-             });
+        encerts.setText(String.valueOf(Poi.totalHits(llistaSesions)));
+        fallades.setText(String.valueOf(Poi.totalFaults(llistaSesions)));
+        LocalDate dataUltima = (llistaSesions.get(llistaSesions.size() - 1)).getLocalDate();
+        sesio.setText(dataUltima.toString());
     }    
 
     @FXML

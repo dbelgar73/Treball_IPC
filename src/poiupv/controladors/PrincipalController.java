@@ -73,6 +73,9 @@ public class PrincipalController implements Initializable {
         List<String> textrespostes = Poi.respostesText(respostes);
         datos = FXCollections.observableList(textrespostes);
         llistaRespostes.setItems(datos);
+        
+
+
         //System.out.println(llistaRespostes.toString());
         llistaRespostes.getSelectionModel().selectedIndexProperty(). addListener(  (o, oldVal, newVal) -> { 
             if (newVal.intValue() == -1) {

@@ -1,6 +1,7 @@
 package poiupv;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +63,39 @@ public class Poi {
         }
         return respostes;
     }
+    public static List<String> sesionsText(List<Session> res){
+        int i = res.size();
+        List<String> sesions = new ArrayList<>();
+        for(int j = 0; j < i; j++){
+            Session ses = res.get(j);
+            int hit = ses.getHits();
+            int fault = ses.getFaults();
+            LocalDate data = ses.getLocalDate();
+            String tot = "Data sessió: " + data + "\r Encerts: " + hit + "\r Fallades: " + fault;
+            sesions.add(tot);
+        }
+        return sesions;
+    }
+    
+    public static int totalHits(List<Session> res){
+        int totalHits = 0;
+        int i = res.size();
+        for(int j = 0; j < i; i++){
+            Session ses = res.get(j);
+            totalHits += ses.getHits();
+        }
+        return totalHits;
+    }
+    public static int totalFaults(List<Session> res){
+        int totalFaults = 0;
+        int i = res.size();
+        for(int j = 0; j < i; i++){
+            Session ses = res.get(j);
+            totalFaults += ses.getFaults();
+        }
+        return totalFaults;
+    }
+    
     
 }
 
