@@ -210,7 +210,7 @@ public class PrincipalController implements Initializable {
                 zoomGroup.getChildren().remove((Node)e.getSource());
                 ev.consume();
             });
-            menuContext.show(punt, e.getX(), e.getY());
+            menuContext.show(punt, e.getSceneX(), e.getSceneY());
             e.consume();
         });
     }
