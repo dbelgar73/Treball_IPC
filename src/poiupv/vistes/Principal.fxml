@@ -18,7 +18,7 @@
 
 <VBox alignment="CENTER" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.PrincipalController">
    <children>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="625.0" prefWidth="1058.0">
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="625.0" prefWidth="1058.0" VBox.vgrow="ALWAYS">
         <items>
             <HBox alignment="CENTER" prefHeight="262.0" prefWidth="1042.0">
                <children>
@@ -81,7 +81,7 @@
             </SplitPane>
         </items>
       </SplitPane>
-      <HBox alignment="CENTER_RIGHT">
+      <HBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
          <children>
             <Label fx:id="posicion" text="SceneX:     ScenY:     " wrapText="true" HBox.hgrow="ALWAYS" />
             <Region prefHeight="0.0" prefWidth="45.0" />
