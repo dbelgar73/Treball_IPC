@@ -157,88 +157,23 @@ public class PrincipalController implements Initializable {
         boolean correcta = respostaSel.getValidity();
         if(correcta){
             Poi.hits++;
-            Alert alert = new Alert(AlertType.CONFIRMATION); 
+            Alert alert = new Alert(AlertType.INFORMATION); 
             alert.setTitle("Resposta correcta"); 
             alert.setHeaderText("Resposta Correcta"); 
-            alert.setContentText("Felicitats, has encertat la respota.\r Vols realitzar altre problema?");  
-            Optional<ButtonType> result = alert.showAndWait(); 
-            if (result.isPresent() && result.get() == ButtonType.OK){ 
-                try {
-                    Node n = (Node)event.getSource();
-                    n.getScene().getWindow().hide();
-                    Stage stage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/Menu.fxml"));
-                    Scene scene = new Scene(root);
-                    stage.setTitle("Bandeja de entrada");
-                    stage.setScene(scene);
-                    stage.show();
-                } 
-                catch (IOException e) {
-                    e.printStackTrace();
-                }     
-                
-            } 
-            else { 
-                try {
-                    Poi.sessio = new Session(Poi.TimeInici,Poi.hits,Poi.faults);
-                    Poi.userActual.addSession(Poi.sessio);
-                    Poi.setUserActual(null);
-                    ((Stage)problema.getScene().getWindow()).close();
-                    Stage stage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
-                    Scene scene = new Scene(root);
-                    stage.setTitle("Inici Sesio");
-                    stage.setScene(scene);
-                    stage.show();
-            
-            } 
-        catch (IOException e) {
-                e.printStackTrace();
-            }
-            }
-        }   
+            alert.setContentText("Felicitats, has encertat la respota.");  
+            alert.showAndWait(); 
+            Node n = (Node)event.getSource();
+            n.getScene().getWindow().hide();
+        }
         else{
             Poi.faults++;
-            Alert alert = new Alert(AlertType.CONFIRMATION); 
+            Alert alert = new Alert(AlertType.INFORMATION); 
             alert.setTitle("Resposta incorrecta"); 
             alert.setHeaderText("Resposta Incorrecta"); 
-            alert.setContentText("Resposta ccorrecta: \r" + respostaSel.getText() + "\rVols realitzar altre problema?");  
-            Optional<ButtonType> result = alert.showAndWait(); 
-            if (result.isPresent() && result.get() == ButtonType.OK){ 
-                try {
-                    Node n = (Node)event.getSource();
-                    n.getScene().getWindow().hide();
-                    Stage stage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/Menu.fxml"));
-                    Scene scene = new Scene(root);
-                    stage.setTitle("Bandeja de entrada");
-                    stage.setScene(scene);
-                    stage.show();
-                } 
-                catch (IOException e) {
-                    e.printStackTrace();
-                }     
-                
-            } 
-            else { 
-                try {
-                    Poi.sessio = new Session(Poi.TimeInici,Poi.hits,Poi.faults);
-                    Poi.userActual.addSession(Poi.sessio);
-                    Poi.setUserActual(null);
-                    ((Stage)problema.getScene().getWindow()).close();
-                    Stage stage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
-                    Scene scene = new Scene(root);
-                    stage.setTitle("Inici Sesio");
-                    stage.setScene(scene);
-                    stage.show();
-            
-            } 
-        catch (IOException e) {
-                e.printStackTrace();
-            }
-            }
-            
+            alert.setContentText("Resposta ccorrecta: \r" + respostaSel.getText());  
+            alert.showAndWait(); 
+            Node n = (Node)event.getSource();
+            n.getScene().getWindow().hide();   
         }
         
     }

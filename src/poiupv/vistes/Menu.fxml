@@ -14,18 +14,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.MenuController">
+<BorderPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.MenuController">
    <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="73.0" prefWidth="985.0" style="-fx-background-color: #006db5;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #006db5;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="441.0" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Menú" wrappingWidth="155.1523895263672">
                      <font>
                         <Font name="System Bold" size="44.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
                      </HBox.margin>
                   </Text>
                </children>
@@ -51,17 +51,20 @@
       </HBox>
    </top>
    <right>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="botoRealizar" disable="true" ellipsisString="Realizar" mnemonicParsing="false" onAction="#RealizarProblem" text="Realizar" VBox.vgrow="ALWAYS">
+            <Button fx:id="botoRealizar" disable="true" ellipsisString="Realizar" mnemonicParsing="false" onAction="#RealizarProblem" style="-fx-background-color: #006db5;" text="Realizar" textFill="WHITE" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button contentDisplay="CENTER" ellipsisString="Aleatorio" mnemonicParsing="false" onAction="#ProblemAleat" text="Aleatorio" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+            <Button contentDisplay="CENTER" ellipsisString="Aleatorio" mnemonicParsing="false" onAction="#ProblemAleat" style="-fx-background-color: #006db5;" text="Aleatorio" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Button>
          </children>
          <BorderPane.margin>
@@ -70,9 +73,9 @@
       </VBox>
    </right>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="30.0" prefWidth="275.0" text="Selecciona un problema:">
+            <Label text="Selecciona un problema:" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

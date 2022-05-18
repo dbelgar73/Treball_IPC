@@ -16,14 +16,14 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.RegistreController">
    <top>
-      <HBox fillHeight="false" style="-fx-background-color: #006db5;" BorderPane.alignment="TOP_CENTER">
+      <HBox alignment="CENTER_LEFT" fillHeight="false" style="-fx-background-color: #006db5;" BorderPane.alignment="CENTER_LEFT">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrarse">
                <font>
-                  <Font name="System Bold" size="63.0" />
+                  <Font name="System Bold" size="44.0" />
                </font>
                <HBox.margin>
-                  <Insets />
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
                </HBox.margin>
             </Text>
          </children>
@@ -33,7 +33,7 @@
       </HBox>
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox BorderPane.alignment="CENTER">
          <children>
             <Label text="Nombre de usuario:">
                <VBox.margin>
@@ -48,7 +48,7 @@
             </Label>
             <Label text="Correo:">
                <VBox.margin>
-                  <Insets />
+                  <Insets top="20.0" />
                </VBox.margin>
             </Label>
             <TextField fx:id="correu" promptText="Exemple@gmail.com">
@@ -63,7 +63,7 @@
             </Label>
             <Label text="Contraseña:">
                <VBox.margin>
-                  <Insets />
+                  <Insets top="20.0" />
                </VBox.margin>
             </Label>
             <PasswordField fx:id="contrassenya" promptText="8-20 caràcters, 1 lletra minuscules o majuscules, digit i caracter especial">
@@ -78,26 +78,24 @@
             </Label>
             <HBox>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
                <children>
-                  <VBox>
+                  <VBox HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="Fecha de nacimiento:" />
+                        <Label text="Fecha de nacimiento:">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
                         <DatePicker fx:id="daypicker" promptText="Data de naixement">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </DatePicker>
-                        <VBox prefHeight="24.0" prefWidth="185.0">
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                        </VBox>
-                        <Label fx:id="errorEdat" prefHeight="65.0" prefWidth="227.0" text="L'usuari ha de tindre al menys 16 anys" textFill="RED" visible="false" wrapText="true" />
+                        <Label fx:id="errorEdat" text="L'usuari ha de tindre al menys 16 anys" textFill="RED" visible="false" wrapText="true" />
                      </children>
                      <HBox.margin>
-                        <Insets left="30.0" />
+                        <Insets />
                      </HBox.margin>
                   </VBox>
                   <VBox prefHeight="72.0" prefWidth="196.0">
@@ -115,30 +113,54 @@
                   </VBox>
                </children>
             </HBox>
-         </children>
-      </VBox>
-   </center>
-   <bottom>
-      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
-         <children>
-            <VBox>
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="botoRegistrarse" mnemonicParsing="false" onAction="#registrarse" style="-fx-background-color: #006db5;" text="Registrar-se" />
                   <Label fx:id="errorJaRegistrat" text="Error, l'usuari ja està registrat" textFill="RED" visible="false" />
                </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </VBox>
-            <Button fx:id="botoCancelar" mnemonicParsing="false" onAction="#cancelar" style="-fx-background-color: #006db5;" text="Cancelar" />
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="botoRegistrarse" mnemonicParsing="false" onAction="#registrarse" style="-fx-background-color: #006db5;" text="Registrar-se" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="botoCancelar" mnemonicParsing="false" onAction="#cancelar" style="-fx-background-color: #006db5;" text="Cancelar" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
          </children>
-      </HBox>
-   </bottom>
+         <BorderPane.margin>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
    <right>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="imagePerfil" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imagePerfil" fitHeight="100.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></ImageView>
          </children>
+         <BorderPane.margin>
+            <Insets left="20.0" right="20.0" top="40.0" />
+         </BorderPane.margin>
       </VBox>
    </right>
 </BorderPane>
