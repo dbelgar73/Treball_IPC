@@ -16,13 +16,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.PrincipalController">
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.PrincipalController">
    <children>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="625.0" prefWidth="1058.0" VBox.vgrow="ALWAYS">
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" VBox.vgrow="ALWAYS">
         <items>
-            <HBox alignment="CENTER" prefHeight="262.0" prefWidth="1042.0">
+            <HBox alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="262.0" prefWidth="955.0" HBox.hgrow="ALWAYS">
+                  <VBox HBox.hgrow="ALWAYS">
                      <children>
                         <Label fx:id="problema" text="label" wrapText="true">
                            <font>
@@ -32,7 +32,7 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <ListView fx:id="llistaRespostes" prefHeight="101.0" prefWidth="955.0">
+                        <ListView fx:id="llistaRespostes">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -44,20 +44,17 @@
                         </Label>
                      </children>
                      <HBox.margin>
-                        <Insets right="15.0" />
+                        <Insets bottom="10.0" left="20.0" right="15.0" top="20.0" />
                      </HBox.margin>
                   </VBox>
                   <Button fx:id="validarResposta" alignment="CENTER" ellipsisString="Validar" mnemonicParsing="false" onAction="#respostaCorrecta" text="Validar" HBox.hgrow="ALWAYS">
                      <HBox.margin>
-                        <Insets />
+                        <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
                </children>
-               <padding>
-                  <Insets left="20.0" right="20.0" />
-               </padding>
             </HBox>
-            <SplitPane dividerPositions="0.13957934990439771" orientation="VERTICAL" prefHeight="370.0" prefWidth="1058.0">
+            <SplitPane dividerPositions="0.13957934990439771" orientation="VERTICAL">
               <items>
                   <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="1058.0">
                      <children>

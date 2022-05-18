@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.MenuController">
+<BorderPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.MenuController">
    <top>
-      <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #006db5;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #1877f2;" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                <children>
@@ -53,17 +53,20 @@
    <right>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="botoRealizar" disable="true" ellipsisString="Realizar" mnemonicParsing="false" onAction="#RealizarProblem" style="-fx-background-color: #006db5;" text="Realizar" textFill="WHITE" VBox.vgrow="ALWAYS">
+            <Button fx:id="botoRealizar" disable="true" ellipsisString="Realizar" mnemonicParsing="false" onAction="#RealizarProblem" style="-fx-background-color: #1877f2;" text="Realizar" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
             </Button>
-            <Button contentDisplay="CENTER" ellipsisString="Aleatorio" mnemonicParsing="false" onAction="#ProblemAleat" style="-fx-background-color: #006db5;" text="Aleatorio" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
+            <Button ellipsisString="Aleatorio" mnemonicParsing="false" onAction="#ProblemAleat" style="-fx-background-color: #1877f2;" text="Aleatorio" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Button>
          </children>
