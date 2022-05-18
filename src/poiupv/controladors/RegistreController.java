@@ -80,6 +80,7 @@ public class RegistreController implements Initializable {
     private ChoiceBox<String> choicePerfil;
     @FXML
     private ImageView imagePerfil;
+    
 
     /**
      * Initializes the controller class.

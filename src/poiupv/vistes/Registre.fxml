@@ -7,226 +7,138 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="737.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.RegistreController">
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.RegistreController">
    <top>
-      <HBox fillHeight="false" prefHeight="115.0" prefWidth="996.0" style="-fx-background-color: #006db5;" BorderPane.alignment="TOP_CENTER">
+      <HBox fillHeight="false" style="-fx-background-color: #006db5;" BorderPane.alignment="TOP_CENTER">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrarse">
                <font>
                   <Font name="System Bold" size="63.0" />
                </font>
                <HBox.margin>
-                  <Insets bottom="10.0" left="40.0" right="10.0" top="10.0" />
+                  <Insets />
                </HBox.margin>
             </Text>
          </children>
          <BorderPane.margin>
-            <Insets bottom="10.0" top="10.0" />
+            <Insets />
          </BorderPane.margin>
       </HBox>
    </top>
    <center>
-      <Pane prefHeight="678.0" prefWidth="994.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
-         <effect>
-            <DropShadow />
-         </effect>
-         <BorderPane.margin>
-            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-         </BorderPane.margin>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutY="20.0" prefHeight="539.0" prefWidth="537.0">
+            <Label text="Nombre de usuario:">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="usuari" promptText="6-15 caràcters o dígits, espais - _" />
+            <Label fx:id="errorUsuari" text="Seleccionar un nou valor que contingui entre 6 i 15 caràcters o dígits i espais _ -" textFill="RED" visible="false" wrapText="true">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Label text="Correo:">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="correu" promptText="Exemple@gmail.com">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TextField>
+            <Label fx:id="errorCorreu" text="El correu ha de tindre format valid" textFill="RED" visible="false">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Label text="Contraseña:">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <PasswordField fx:id="contrassenya" promptText="8-20 caràcters, 1 lletra minuscules o majuscules, digit i caracter especial">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </PasswordField>
+            <Label fx:id="errorContrassenya" text="La contrassenya ha de contindre 8-20 caràcters,  majuscules, digit i caracter especial ( !@ #$%&amp;*()-+=)" textFill="RED" textOverrun="CLIP" visible="false" wrapText="true">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <HBox>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
                <children>
-                  <HBox prefHeight="110.0" prefWidth="479.0">
+                  <VBox>
                      <children>
-                        <VBox prefHeight="110.0" prefWidth="301.0">
-                           <children>
-                              <Label text="Nombre de usuario:">
-                                 <padding>
-                                    <Insets bottom="5.0" />
-                                 </padding>
-                                 <VBox.margin>
-                                    <Insets left="2.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <TextField fx:id="usuari" prefHeight="26.0" prefWidth="216.0" promptText="6-15 caràcters o dígits, espais - _" />
-                              <VBox prefHeight="56.0" prefWidth="426.0">
-                                 <children>
-                                    <Label fx:id="errorUsuari" prefHeight="44.0" prefWidth="344.0" text="Seleccionar un nou valor que contingui entre 6 i 15 caràcters o dígits i espais _ -" textFill="RED" visible="false" wrapText="true">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                 </children>
-                              </VBox>
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="72.0" prefWidth="753.0">
-                     <children>
-                        <VBox prefHeight="88.0" prefWidth="294.0">
-                           <children>
-                              <Label text="Correo:">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <TextField fx:id="correu" prefHeight="30.0" prefWidth="229.0" promptText="Exemple@gmail.com">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <Label fx:id="errorCorreu" prefHeight="18.0" prefWidth="317.0" text="El correu ha de tindre format valid" textFill="RED" visible="false">
-                                 <VBox.margin>
-                                    <Insets left="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="30.0" top="-10.0" />
-                           </HBox.margin>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="118.0" prefWidth="994.0">
-                     <children>
-                        <VBox prefHeight="122.0" prefWidth="462.0">
-                           <children>
-                              <Label text="Contraseña:">
-                                 <VBox.margin>
-                                    <Insets left="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <PasswordField fx:id="contrassenya" prefHeight="30.0" prefWidth="500.0" promptText="8-20 caràcters, 1 lletra minuscules o majuscules, digit i caracter especial">
-                                 <padding>
-                                    <Insets left="10.0" top="5.0" />
-                                 </padding>
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" top="5.0" />
-                                 </VBox.margin>
-                              </PasswordField>
-                              <Label fx:id="errorContrassenya" prefHeight="44.0" prefWidth="368.0" text="La contrassenya ha de contindre 8-20 caràcters,  majuscules, digit i caracter especial ( !@ #$%&amp;*()-+=)" textFill="RED" textOverrun="CLIP" visible="false" wrapText="true">
-                                 <VBox.margin>
-                                    <Insets left="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="72.0" prefWidth="700.0">
-                     <children>
-                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="99.0" prefWidth="538.0">
-                           <children>
-                              <VBox prefHeight="120.0" prefWidth="258.0">
-                                 <children>
-                                    <Label text="Fecha de nacimiento:">
-                                       <padding>
-                                          <Insets bottom="5.0" left="10.0" />
-                                       </padding>
-                                    </Label>
-                                    <DatePicker fx:id="daypicker" prefHeight="30.0" prefWidth="190.0" promptText="Data de naixement">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                       <VBox.margin>
-                                          <Insets left="10.0" />
-                                       </VBox.margin>
-                                    </DatePicker>
-                                    <VBox prefHeight="24.0" prefWidth="185.0">
-                                       <children>
-                                          <Label fx:id="errorEdat" prefHeight="65.0" prefWidth="227.0" text="L'usuari ha de tindre al menys 16 anys" textFill="RED" visible="false" wrapText="true" />
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets left="10.0" />
-                                       </VBox.margin>
-                                    </VBox>
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="30.0" />
-                                 </HBox.margin>
-                              </VBox>
-                              <VBox prefHeight="72.0" prefWidth="196.0">
-                                 <children>
-                                    <Label text="Foto Perfil">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <ChoiceBox fx:id="choicePerfil" prefHeight="30.0" prefWidth="150.0" />
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </VBox>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="50.0" />
-                           </HBox.margin>
-                        </HBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <VBox prefHeight="200.0" prefWidth="171.0">
-                           <children>
-                              <Button fx:id="botoRegistrarse" mnemonicParsing="false" onAction="#registrarse" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #006db5;" text="Registrar-se" />
-                              <Label fx:id="errorJaRegistrat" prefHeight="57.0" prefWidth="179.0" text="Error, l'usuari ja està registrat" textFill="RED" visible="false" />
-                           </children>
-                           <HBox.margin>
-                              <Insets right="15.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="171.0">
-                           <children>
-                              <Button fx:id="botoCancelar" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #006db5;" text="Cancelar">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin></Button>
-                           </children>
-                           <HBox.margin>
+                        <Label text="Fecha de nacimiento:" />
+                        <DatePicker fx:id="daypicker" promptText="Data de naixement">
+                           <VBox.margin>
                               <Insets />
-                           </HBox.margin>
+                           </VBox.margin>
+                        </DatePicker>
+                        <VBox prefHeight="24.0" prefWidth="185.0">
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
                         </VBox>
+                        <Label fx:id="errorEdat" prefHeight="65.0" prefWidth="227.0" text="L'usuari ha de tindre al menys 16 anys" textFill="RED" visible="false" wrapText="true" />
                      </children>
-                     <VBox.margin>
-                        <Insets left="70.0" top="20.0" />
-                     </VBox.margin>
-                  </HBox>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="72.0" prefWidth="196.0">
+                     <children>
+                        <Label text="Foto Perfil">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="choicePerfil" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </VBox>
                </children>
-            </VBox>
-            <ImageView fx:id="imagePerfil" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" x="452.0" y="34.0" />
+            </HBox>
          </children>
-      </Pane>
+      </VBox>
    </center>
+   <bottom>
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <VBox>
+               <children>
+                  <Button fx:id="botoRegistrarse" mnemonicParsing="false" onAction="#registrarse" style="-fx-background-color: #006db5;" text="Registrar-se" />
+                  <Label fx:id="errorJaRegistrat" text="Error, l'usuari ja està registrat" textFill="RED" visible="false" />
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <Button fx:id="botoCancelar" mnemonicParsing="false" onAction="#cancelar" style="-fx-background-color: #006db5;" text="Cancelar" />
+         </children>
+      </HBox>
+   </bottom>
+   <right>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="imagePerfil" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </VBox>
+   </right>
 </BorderPane>
