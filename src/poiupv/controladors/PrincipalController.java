@@ -7,45 +7,36 @@ package poiupv.controladors;
 
 import DBAccess.NavegacionDAOException;
 import java.awt.Color;
-import java.io.IOException;
+import static java.awt.Color.black;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import model.Answer;
-import model.Problem;
-import model.Session;
+import model.User;
 import poiupv.Poi;
-import static poiupv.controladors.IniciSesioController.nickName;
+import static poiupv.controladors.RegistreController.usr;
 
 
 /**
@@ -65,8 +56,6 @@ public class PrincipalController implements Initializable {
     
     private Group zoomGroup;
     
-    
-    
     @FXML
     private Label problema;
     @FXML
@@ -77,7 +66,22 @@ public class PrincipalController implements Initializable {
     private Answer respostaSel;
     @FXML
     private Label correctaIncorrecta;
+    @FXML
+    private ToggleButton botoPunt;
+    @FXML
+    private Button botoLine;
+    @FXML
+    private Button botoArco;
+    @FXML
+    private Button botoText;
+    @FXML
+    private ColorPicker colorPalet;
+    @FXML
+    private Slider grosor;
     
+    private int tamPunt = 3;
+    private Color colorPunt;
+            
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -86,9 +90,15 @@ public class PrincipalController implements Initializable {
         datos = FXCollections.observableList(textrespostes);
         llistaRespostes.setItems(datos);
         
+        grosor.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            tamPunt = (int) grosor.getValue();
+        });
+//        colorPalet.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+//            colorPunt = colorPalet.getValue();
+//        });
 
 
-        //System.out.println(llistaRespostes.toString());
+        
         llistaRespostes.getSelectionModel().selectedIndexProperty(). addListener(  (o, oldVal, newVal) -> { 
             if (newVal.intValue() == -1) {
                 respostaSel = null;
@@ -115,6 +125,8 @@ public class PrincipalController implements Initializable {
         contentGroup.getChildren().add(zoomGroup);
         zoomGroup.getChildren().add(map_scrollpane.getContent());
         map_scrollpane.setContent(contentGroup);
+        
+        
 
     }
 
@@ -177,15 +189,29 @@ public class PrincipalController implements Initializable {
         }
         
     }
-    /*
-    public void dibuixaCercle(MouseEvent event{
-        Circle circlePainting = new Circle(1);
-        double x = event.getSceneX();
-        double y = event.getSceneY();
-        circlePainting.setLayoutX(x);
-        circlePainting.setLayoutX(y);
-        zoomGroup.getChildren().add(circlePainting);
-        
+
+    @FXML
+    private void MousePressed(MouseEvent event) {
+        //crea un punt i el pinta
+        Circle punt = new Circle(tamPunt);
+        if(botoPunt.isSelected()){
+            
+            //punt.setColor(colorPunt);//canvia el color del punt al color elegit
+            zoomGroup.getChildren().add(punt);
+            punt.setCenterX(event.getX());
+            punt.setCenterY(event.getY());
+        }
+        //clicant en el boto dret del ratoli sobre el cercle que volem se borra
+        punt.setOnContextMenuRequested(e -> {
+            ContextMenu menuContext = new ContextMenu();
+            MenuItem borrarItem = new MenuItem("eliminar");
+            menuContext.getItems().add(borrarItem);
+            borrarItem.setOnAction(ev -> {
+                zoomGroup.getChildren().remove((Node)e.getSource());
+                ev.consume();
+            });
+            menuContext.show(punt, e.getX(), e.getY());
+            e.consume();
+        });
     }
-    */
 }
