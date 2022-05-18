@@ -5,12 +5,17 @@
  */
 package poiupv.controladors;
 
+import DBAccess.NavegacionDAOException;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,7 +27,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -33,7 +41,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Answer;
 import model.Problem;
+import model.Session;
 import poiupv.Poi;
+import static poiupv.controladors.IniciSesioController.nickName;
 
 
 /**
@@ -141,24 +151,102 @@ public class PrincipalController implements Initializable {
 
         
     @FXML
-    private void respostaCorrecta(ActionEvent event) {
+    private void respostaCorrecta(ActionEvent event) throws NavegacionDAOException {
         boolean correcta = respostaSel.getValidity();
         if(correcta){
             Poi.hits++;
-            correctaIncorrecta.setVisible(true);
-            correctaIncorrecta.setText("Resposta correcta");
-            correctaIncorrecta.setStyle("-fx-text-inner-color: green;");
-        }
+            Alert alert = new Alert(AlertType.CONFIRMATION); 
+            alert.setTitle("Resposta correcta"); 
+            alert.setHeaderText("Resposta Correcta"); 
+            alert.setContentText("Felicitats, has encertat la respota.\r Vols realitzar altre problema?");  
+            Optional<ButtonType> result = alert.showAndWait(); 
+            if (result.isPresent() && result.get() == ButtonType.OK){ 
+                try {
+                    Node n = (Node)event.getSource();
+                    n.getScene().getWindow().hide();
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/Menu.fxml"));
+                    Scene scene = new Scene(root);
+                    stage.setTitle("Bandeja de entrada");
+                    stage.setScene(scene);
+                    stage.show();
+                } 
+                catch (IOException e) {
+                    e.printStackTrace();
+                }     
+                
+            } 
+            else { 
+                try {
+                    Poi.sessio = new Session(Poi.TimeInici,Poi.hits,Poi.faults);
+                    Poi.userActual.addSession(Poi.sessio);
+                    Poi.setUserActual(null);
+                    ((Stage)problema.getScene().getWindow()).close();
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
+                    Scene scene = new Scene(root);
+                    stage.setTitle("Inici Sesio");
+                    stage.setScene(scene);
+                    stage.show();
+            
+            } 
+        catch (IOException e) {
+                e.printStackTrace();
+            }
+            }
+        }   
         else{
             Poi.faults++;
-            correctaIncorrecta.setVisible(true);
-            correctaIncorrecta.setText("Resposta Incorrecta");
-            correctaIncorrecta.setStyle("-fx-text-inner-color: red;");
-            //correctaIncorrecta.setTextFill(Color.GREEN);
+            Alert alert = new Alert(AlertType.CONFIRMATION); 
+            alert.setTitle("Resposta incorrecta"); 
+            alert.setHeaderText("Resposta Incorrecta"); 
+            alert.setContentText("Resposta ccorrecta: \r" + respostaSel.getText() + "\rVols realitzar altre problema?");  
+            Optional<ButtonType> result = alert.showAndWait(); 
+            if (result.isPresent() && result.get() == ButtonType.OK){ 
+                try {
+                    Node n = (Node)event.getSource();
+                    n.getScene().getWindow().hide();
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/Menu.fxml"));
+                    Scene scene = new Scene(root);
+                    stage.setTitle("Bandeja de entrada");
+                    stage.setScene(scene);
+                    stage.show();
+                } 
+                catch (IOException e) {
+                    e.printStackTrace();
+                }     
+                
+            } 
+            else { 
+                try {
+                    Poi.sessio = new Session(Poi.TimeInici,Poi.hits,Poi.faults);
+                    Poi.userActual.addSession(Poi.sessio);
+                    Poi.setUserActual(null);
+                    ((Stage)problema.getScene().getWindow()).close();
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
+                    Scene scene = new Scene(root);
+                    stage.setTitle("Inici Sesio");
+                    stage.setScene(scene);
+                    stage.show();
+            
+            } 
+        catch (IOException e) {
+                e.printStackTrace();
+            }
+            }
+            
         }
+        
+    }
+        
+        
+        
+        
     }
     
     
     
     
-}
+
