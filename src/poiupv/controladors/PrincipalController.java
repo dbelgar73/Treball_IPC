@@ -37,6 +37,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Answer;
@@ -240,13 +242,15 @@ public class PrincipalController implements Initializable {
         }
         
     }
-        
-        
-        
+    /*
+    public void dibuixaCercle(MouseEvent event{
+        Circle circlePainting = new Circle(1);
+        double x = event.getSceneX();
+        double y = event.getSceneY();
+        circlePainting.setLayoutX(x);
+        circlePainting.setLayoutX(y);
+        zoomGroup.getChildren().add(circlePainting);
         
     }
-    
-    
-    
-    
-
+    */
+}
