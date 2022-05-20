@@ -30,6 +30,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToolBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
@@ -80,11 +81,19 @@ public class PrincipalController implements Initializable {
     private Slider grosor;
     
     private int tamPunt = 3;
+    private double iniX, iniY,baseX, baseY;
+    
     private Color colorPunt;
+    @FXML
+    private ToggleButton botoTransportador;
+    @FXML
+    private ImageView transportador;
             
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        transportador.setDisable(true);
+        transportador.setVisible(false);
         List<Answer> respostes = (Poi.seleccionat).getAnswers();
         List<String> textrespostes = Poi.respostesText(respostes);
         datos = FXCollections.observableList(textrespostes);
@@ -95,8 +104,8 @@ public class PrincipalController implements Initializable {
         });
 //        colorPalet.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
 //            colorPunt = colorPalet.getValue();
-//        });
-
+//      });
+    
 
         
         llistaRespostes.getSelectionModel().selectedIndexProperty(). addListener(  (o, oldVal, newVal) -> { 
@@ -186,8 +195,7 @@ public class PrincipalController implements Initializable {
             alert.showAndWait(); 
             Node n = (Node)event.getSource();
             n.getScene().getWindow().hide();   
-        }
-        
+        } 
     }
 
     @FXML
@@ -213,5 +221,40 @@ public class PrincipalController implements Initializable {
             menuContext.show(punt, e.getSceneX(), e.getSceneY());
             e.consume();
         });
+    }
+    
+    @FXML
+    private void enableTransp(MouseEvent event){
+        botoTransportador.selectedProperty(). addListener(  (o, oldVal, newVal) -> { 
+            if (newVal != true) {
+                transportador.setDisable(true);
+                transportador.setVisible(false);
+            }
+            else{
+                transportador.setDisable(false);
+                transportador.setVisible(true);
+            }
+             });
+    }
+    public double inicioYTrans;
+    public double inicioXTrans;
+    @FXML
+    private void mouTransportador(MouseEvent event){
+        if(botoTransportador.isPressed()){
+            double despX = event.getSceneX() - iniX;
+            double despY = event.getSceneY() - iniY;
+            transportador.setTranslateX(baseX - despX);
+            transportador.setTranslateY(baseY - despY);
+            event.consume();
+        }
+    }
+    
+    @FXML
+    private void getIniTrans(MouseEvent event){
+        iniX = inicioXTrans = event.getSceneX();
+        iniY = inicioXTrans = event.getSceneY();
+        baseX = transportador.getTranslateX();
+        baseY = transportador.getTranslateY();
+        event.consume();
     }
 }

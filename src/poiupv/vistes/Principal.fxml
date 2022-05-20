@@ -86,11 +86,11 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </ColorPicker>
-                              <Button fx:id="botoTransportador" mnemonicParsing="false" text="Transportador º">
+                              <ToggleButton fx:id="botoTransportador" mnemonicParsing="false" onMousePressed="#enableTransp" text="Transportador º">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
-                              </Button>
+                              </ToggleButton>
                               <VBox alignment="CENTER">
                                  <children>
                                     <Slider fx:id="grosor" max="15.0" min="3.0" prefHeight="14.0" prefWidth="70.0" value="3.0" />
@@ -121,12 +121,12 @@
                <content>
                   <Pane focusTraversable="true" onMousePressed="#MousePressed">
                      <children>
-                        <ImageView fx:id="cartaNautica" fitHeight="1500.0" fitWidth="1500.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="cartaNautica" fitHeight="1500.0" fitWidth="1500.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../resources/carta_nautica.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="transportador" fitHeight="400.0" fitWidth="400.0" focusTraversable="true" layoutX="180.0" layoutY="99.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="transportador" focusTraversable="true" layoutX="180.0" layoutY="99.0" nodeOrientation="INHERIT" onMouseDragged="#mouTransportador" onMousePressed="#getIniTrans" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../resources/transportador.png" />
                            </image>
