@@ -225,7 +225,7 @@ public class PrincipalController implements Initializable {
     
     @FXML
     private void enableTransp(MouseEvent event){
-        botoTransportador.selectedProperty(). addListener(  (o, oldVal, newVal) -> { 
+        botoTransportador.selectedProperty().addListener(  (o, oldVal, newVal) -> { 
             if (newVal != true) {
                 transportador.setDisable(true);
                 transportador.setVisible(false);
@@ -240,19 +240,19 @@ public class PrincipalController implements Initializable {
     public double inicioXTrans;
     @FXML
     private void mouTransportador(MouseEvent event){
-        if(botoTransportador.isPressed()){
-            double despX = event.getSceneX() - iniX;
-            double despY = event.getSceneY() - iniY;
-            transportador.setTranslateX(baseX - despX);
-            transportador.setTranslateY(baseY - despY);
-            event.consume();
-        }
+                if(!transportador.isDisabled()){
+                    double despX = event.getSceneX() - iniX;
+                    double despY = event.getSceneY() - iniY;
+                    transportador.setTranslateX(baseX + despX);
+                    transportador.setTranslateY(baseY + despY);
+                    event.consume();
+                }
     }
     
     @FXML
     private void getIniTrans(MouseEvent event){
-        iniX = inicioXTrans = event.getSceneX();
-        iniY = inicioXTrans = event.getSceneY();
+        iniX = event.getSceneX();
+        iniY = event.getSceneY();
         baseX = transportador.getTranslateX();
         baseY = transportador.getTranslateY();
         event.consume();

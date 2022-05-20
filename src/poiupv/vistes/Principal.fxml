@@ -126,7 +126,7 @@
                               <Image url="@../../resources/carta_nautica.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="transportador" focusTraversable="true" layoutX="180.0" layoutY="99.0" nodeOrientation="INHERIT" onMouseDragged="#mouTransportador" onMousePressed="#getIniTrans" opacity="0.6" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="transportador" focusTraversable="true" layoutX="180.0" layoutY="99.0" nodeOrientation="INHERIT" onDragDetected="#mouTransportador" onMouseDragged="#mouTransportador" onMousePressed="#getIniTrans" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../resources/transportador.png" />
                            </image>
