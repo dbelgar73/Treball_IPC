@@ -15,13 +15,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="671.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.PrincipalController">
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.PrincipalController">
    <children>
       <SplitPane dividerPositions="0.5373900293255132" orientation="VERTICAL" VBox.vgrow="ALWAYS">
         <items>
@@ -47,62 +47,53 @@
                               <Insets top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <HBox alignment="CENTER_LEFT">
+                        <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="819.0">
                            <children>
                               <ToggleButton fx:id="botoPunt" mnemonicParsing="false">
                                  <graphic>
                                     <Circle radius="7.0" stroke="BLACK" strokeType="INSIDE" />
                                  </graphic>
+                              </ToggleButton>
+                              <ToggleButton fx:id="botoLine" mnemonicParsing="false">
+                                 <graphic>
+                                    <Line endX="100.0" fill="BLACK" startX="111.29290771484375" startY="13.292892456054688" strokeMiterLimit="50.0" />
+                                 </graphic>
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets left="10.0" />
                                  </HBox.margin>
                               </ToggleButton>
-                              <Button fx:id="botoLine" mnemonicParsing="false">
+                              <ToggleButton fx:id="botoArco" mnemonicParsing="false" prefHeight="21.0" prefWidth="21.0">
                                  <graphic>
-                                    <Line endX="100.0" startX="111.29290771484375" startY="13.292892456054688" />
+                                    <QuadCurve controlX="-37.333335876464844" controlY="-26.66669464111328" endX="-24.000001907348633" endY="-1.71661376953125E-5" fill="#ffffff00" startX="-50.0" stroke="BLACK" strokeType="INSIDE" />
                                  </graphic>
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
-                              </Button>
-                              <Button fx:id="botoArco" mnemonicParsing="false">
-                                 <graphic>
-                                    <QuadCurve controlX="-37.333335876464844" controlY="-26.66669464111328" endX="-24.000001907348633" endY="-1.71661376953125E-5" fill="WHITE" startX="-50.0" stroke="BLACK" strokeType="INSIDE" />
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="botoText" mnemonicParsing="false" text="T">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="10.0" top="5.0" />
-                                 </HBox.margin>
+                              </ToggleButton>
+                              <ToggleButton fx:id="botoText" ellipsisString="T" mnemonicParsing="false" text="T">
                                  <font>
                                     <Font name="Baskerville Old Face" size="14.0" />
                                  </font>
-                              </Button>
-                              <ColorPicker fx:id="colorPalet" editable="true">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
+                              </ToggleButton>
+                              <ColorPicker fx:id="colorPalet" editable="true" prefHeight="25.0" prefWidth="111.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <value>
+                                    <Color />
+                                 </value>
                               </ColorPicker>
                               <ToggleButton fx:id="botoTransportador" mnemonicParsing="false" onMousePressed="#enableTransp" text="Transportador º">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </ToggleButton>
-                              <VBox alignment="CENTER">
-                                 <children>
-                                    <Slider fx:id="grosor" max="15.0" min="3.0" prefHeight="14.0" prefWidth="70.0" value="3.0" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tamany" />
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="10.0" top="5.0" />
-                                 </HBox.margin>
-                              </VBox>
                            </children>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets bottom="5.0" top="10.0" />
                            </VBox.margin>
                         </HBox>
                      </children>
@@ -119,7 +110,7 @@
             </HBox>
             <ScrollPane fx:id="map_scrollpane" onMouseMoved="#muestraPosicion">
                <content>
-                  <Pane focusTraversable="true" onMousePressed="#MousePressed">
+                  <Pane focusTraversable="true" onMouseDragged="#MouseDragged" onMousePressed="#MousePressed">
                      <children>
                         <ImageView fx:id="cartaNautica" fitHeight="1500.0" fitWidth="1500.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -155,7 +146,7 @@
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin></Button>
-            <Slider fx:id="zoom_slider" prefHeight="14.0" prefWidth="251.0" HBox.hgrow="ALWAYS">
+            <Slider fx:id="zoom_slider" blockIncrement="20.0" prefHeight="14.0" prefWidth="251.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin></Slider>

@@ -7,7 +7,6 @@ package poiupv.controladors;
 
 import DBAccess.NavegacionDAOException;
 import java.awt.Color;
-import static java.awt.Color.black;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -29,15 +28,15 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToolBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import model.Answer;
-import model.User;
 import poiupv.Poi;
-import static poiupv.controladors.RegistreController.usr;
 
 
 /**
@@ -70,24 +69,33 @@ public class PrincipalController implements Initializable {
     @FXML
     private ToggleButton botoPunt;
     @FXML
-    private Button botoLine;
+    private ToggleButton botoLine;
     @FXML
-    private Button botoArco;
+    private ToggleButton botoArco;
     @FXML
-    private Button botoText;
+    private ToggleButton botoText;
     @FXML
     private ColorPicker colorPalet;
-    @FXML
-    private Slider grosor;
     
-    private int tamPunt = 3;
+    
+ 
+    
     private double iniX, iniY,baseX, baseY;
     
-    private Color colorPunt;
+    private Color color;
     @FXML
     private ToggleButton botoTransportador;
     @FXML
     private ImageView transportador;
+    
+    private Line linea;
+    private Circle punt;
+    private Circle arc;
+    private double inicioXArc;
+    private TextField texto;
+    private Text textoT;
+    ToggleButton botoSelec;
+    
             
     
     @Override
@@ -99,12 +107,38 @@ public class PrincipalController implements Initializable {
         datos = FXCollections.observableList(textrespostes);
         llistaRespostes.setItems(datos);
         
-        grosor.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            tamPunt = (int) grosor.getValue();
+       
+        
+        //color.bind(colorPalet.getValue());
+        botoPunt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if(botoPunt.isSelected()){
+                botoLine.setSelected(false);
+                botoArco.setSelected(false);
+                botoText.setSelected(false);                
+            }
         });
-//        colorPalet.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-//            colorPunt = colorPalet.getValue();
-//      });
+        botoLine.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if(botoLine.isSelected()){
+                botoPunt.setSelected(false);
+                botoArco.setSelected(false);
+                botoText.setSelected(false);                
+            }
+        });
+        botoArco.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if(botoArco.isSelected()){
+                botoLine.setSelected(false);
+                botoPunt.setSelected(false);
+                botoText.setSelected(false);                
+            }
+        });
+        botoText.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if(botoText.isSelected()){
+                botoLine.setSelected(false);
+                botoArco.setSelected(false);
+                botoPunt.setSelected(false);                
+            }
+        });
+        
     
 
         
@@ -200,14 +234,54 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void MousePressed(MouseEvent event) {
-        //crea un punt i el pinta
-        Circle punt = new Circle(tamPunt);
+        arc = new Circle(1);
+        punt = new Circle(1);
+        linea = new  Line(event.getX(), event.getY(),event.getX(), event.getY());
+        texto = new TextField();
+        textoT = new Text();
+        
+        
+        //crea el punt
         if(botoPunt.isSelected()){
-            
-            //punt.setColor(colorPunt);//canvia el color del punt al color elegit
+            //punt.setFill(color);
+            //punt.setStroke(color);
             zoomGroup.getChildren().add(punt);
             punt.setCenterX(event.getX());
             punt.setCenterY(event.getY());
+            inicioXArc = event.getX(); 
+            botoPunt.setSelected(false);
+        }
+        //crea la linea
+        if(botoLine.isSelected()){
+            //linea.setFill(color);
+            //linea.setStroke(color);
+            zoomGroup.getChildren().add(linea);
+            botoLine.setSelected(false);
+        }
+        if(botoArco.isSelected()){
+            
+            //arc.setFill(Color.Transparent);
+            //arc.setStroke(color);
+            zoomGroup.getChildren().add(arc);
+            arc.setCenterX(event.getX());
+            arc.setCenterY(event.getY());
+            inicioXArc = event.getX(); 
+            botoArco.setSelected(false);
+        }
+        if(botoText.isSelected()){
+            zoomGroup.getChildren().add(texto);
+            texto.setLayoutX(event.getX());
+            texto.setLayoutY(event.getY());
+            texto.requestFocus();
+            texto.setOnAction(e -> {
+                textoT.setX(texto.getLayoutX());
+                textoT.setY(texto.getLayoutY());
+                textoT.setStyle("-fx-font-family: System; -fx-font-size: 40;");               
+                zoomGroup.getChildren().add(textoT);
+                zoomGroup.getChildren().remove(texto);
+                e.consume();
+            });
+            botoText.setSelected(false);
         }
         //clicant en el boto dret del ratoli sobre el cercle que volem se borra
         punt.setOnContextMenuRequested(e -> {
@@ -219,6 +293,39 @@ public class PrincipalController implements Initializable {
                 ev.consume();
             });
             menuContext.show(punt, e.getSceneX(), e.getSceneY());
+            e.consume();
+        });
+        linea.setOnContextMenuRequested(e -> {
+            ContextMenu menuContext = new ContextMenu();
+            MenuItem borrarItem = new MenuItem("eliminar");
+            menuContext.getItems().add(borrarItem);
+            borrarItem.setOnAction(ev -> {
+                zoomGroup.getChildren().remove((Node)e.getSource());
+                ev.consume();
+            });
+            menuContext.show(linea, e.getSceneX(), e.getSceneY());
+            e.consume();
+        });
+        arc.setOnContextMenuRequested(e -> {
+            ContextMenu menuContext = new ContextMenu();
+            MenuItem borrarItem = new MenuItem("eliminar");
+            menuContext.getItems().add(borrarItem);
+            borrarItem.setOnAction(ev -> {
+                zoomGroup.getChildren().remove((Node)e.getSource());
+                ev.consume();
+            });
+            menuContext.show(arc, e.getSceneX(), e.getSceneY());
+            e.consume();
+        });
+        textoT.setOnContextMenuRequested(e -> {
+            ContextMenu menuContext = new ContextMenu();
+            MenuItem borrarItem = new MenuItem("eliminar");
+            menuContext.getItems().add(borrarItem);
+            borrarItem.setOnAction(ev -> {
+                zoomGroup.getChildren().remove((Node)e.getSource());
+                ev.consume();
+            });
+            menuContext.show(textoT, e.getSceneX(), e.getSceneY());
             e.consume();
         });
     }
@@ -256,5 +363,20 @@ public class PrincipalController implements Initializable {
         baseX = transportador.getTranslateX();
         baseY = transportador.getTranslateY();
         event.consume();
+    }
+
+    @FXML
+    private void MouseDragged(MouseEvent event) {
+        linea.setEndX(event.getX());
+        linea.setEndY(event.getY());
+        
+        
+        double radio = Math.abs(event.getX() - inicioXArc);
+        arc.setRadius(radio);
+        
+        
+        punt.setRadius(radio);
+        event.consume();
+        
     }
 }
