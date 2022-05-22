@@ -131,7 +131,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="botoCancelar" mnemonicParsing="false" onAction="#cancelar" style="-fx-background-color: #006db5;" text="Cancelar" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button fx:id="botoCancelar" mnemonicParsing="false" onAction="#cancelar" style="-fx-background-color: #b7b5b5;" text="Cancelar" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

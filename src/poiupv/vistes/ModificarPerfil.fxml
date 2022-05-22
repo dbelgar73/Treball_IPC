@@ -15,7 +15,7 @@
 
 <BorderPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.ModificarPerfilController">
    <top>
-      <HBox alignment="CENTER_LEFT" style="-fx-background-color: #1877f2;" BorderPane.alignment="CENTER_LEFT">
+      <HBox alignment="CENTER_LEFT" style="-fx-background-color: #006db5;" BorderPane.alignment="CENTER_LEFT">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Modificar perfil">
                <font>
@@ -27,7 +27,7 @@
             </Text>
          </children>
          <BorderPane.margin>
-            <Insets top="10.0" />
+            <Insets />
          </BorderPane.margin>
       </HBox>
    </top>
@@ -78,12 +78,18 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="botoGuardar" mnemonicParsing="false" onAction="#guardarCambios" text="Guardar canvis">
+            <Button fx:id="botoGuardar" mnemonicParsing="false" onAction="#guardarCambios" style="-fx-background-color: #006db5;" text="Guardar canvis" textFill="WHITE">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+            <Button mnemonicParsing="false" onAction="#cancelar" style="-fx-background-color: #b7b5b5;" text="Cancelar">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></Button>
          </children>
          <BorderPane.margin>
             <Insets />

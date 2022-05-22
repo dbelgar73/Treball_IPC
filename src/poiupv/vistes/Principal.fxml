@@ -51,7 +51,7 @@
                            <children>
                               <ToggleButton fx:id="botoPunt" mnemonicParsing="false">
                                  <graphic>
-                                    <Circle radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <Circle fill="#00000095" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
                                  </graphic>
                               </ToggleButton>
                               <ToggleButton fx:id="botoLine" mnemonicParsing="false">
@@ -101,10 +101,13 @@
                         <Insets left="20.0" right="15.0" top="20.0" />
                      </HBox.margin>
                   </VBox>
-                  <Button fx:id="validarResposta" alignment="CENTER" ellipsisString="Validar" mnemonicParsing="false" onAction="#respostaCorrecta" text="Validar" HBox.hgrow="ALWAYS">
+                  <Button fx:id="validarResposta" alignment="CENTER" ellipsisString="Validar" mnemonicParsing="false" onAction="#respostaCorrecta" style="-fx-background-color: #006db5;" text="Validar" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
                   </Button>
                </children>
             </HBox>
