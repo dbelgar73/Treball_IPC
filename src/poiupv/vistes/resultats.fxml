@@ -16,10 +16,10 @@
    <children>
       <Pane layoutX="29.0" layoutY="83.0" prefHeight="352.0" prefWidth="682.0" style="-fx-background-color: white;">
          <children>
-            <HBox prefHeight="352.0" prefWidth="578.0">
+            <HBox prefHeight="352.0" prefWidth="682.0">
                <children>
-                  <ListView fx:id="listSesions" prefHeight="352.0" prefWidth="572.0" />
-                  <VBox prefHeight="352.0" prefWidth="289.0">
+                  <ListView fx:id="listSesions" prefHeight="352.0" prefWidth="355.0" />
+                  <VBox prefHeight="352.0" prefWidth="314.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total:">
                            <font>
@@ -73,7 +73,7 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Text>
-                              <Label fx:id="sesio" text="Label">
+                              <Label fx:id="sesio" prefHeight="18.0" prefWidth="94.0" text="Label">
                                  <HBox.margin>
                                     <Insets left="24.0" top="25.0" />
                                  </HBox.margin>
