@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.RegistreController">
+<BorderPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.RegistreController">
    <top>
       <HBox alignment="CENTER_LEFT" fillHeight="false" style="-fx-background-color: #006db5;" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrarse">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Registre">
                <font>
                   <Font name="System Bold" size="44.0" />
                </font>
@@ -35,7 +35,7 @@
    <center>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <Label text="Nombre de usuario:">
+            <Label text="Nom d'usuari:">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -46,7 +46,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label text="Correo:">
+            <Label text="Correu:">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -61,7 +61,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label text="Contraseña:">
+            <Label text="Contrassenya:">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -83,7 +83,7 @@
                <children>
                   <VBox HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="Fecha de nacimiento:">
+                        <Label text="Data de naixement:">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin></Label>
@@ -146,20 +146,20 @@
             </HBox>
          </children>
          <BorderPane.margin>
-            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            <Insets bottom="30.0" left="30.0" right="50.0" top="30.0" />
          </BorderPane.margin>
       </VBox>
    </center>
    <right>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="imagePerfil" fitHeight="100.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imagePerfil" fitHeight="110.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
                   <Insets />
                </VBox.margin></ImageView>
          </children>
          <BorderPane.margin>
-            <Insets left="20.0" right="20.0" top="40.0" />
+            <Insets right="20.0" top="40.0" />
          </BorderPane.margin>
       </VBox>
    </right>

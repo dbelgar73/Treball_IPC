@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.ModificarPerfilController">
+<BorderPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.ModificarPerfilController">
    <top>
       <HBox alignment="CENTER_LEFT" style="-fx-background-color: #006db5;" BorderPane.alignment="CENTER_LEFT">
          <children>
@@ -32,9 +32,9 @@
       </HBox>
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets left="20.0" right="40.0" top="20.0" />
+            <Insets left="20.0" right="50.0" top="30.0" />
          </BorderPane.margin>
          <children>
             <Label text="Contrasenya:">
@@ -47,6 +47,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </TextField>
+            <Label fx:id="errorContrassenya" text="La contrassenya ha de contindre 8-20 caràcters,  majuscules, digit i caracter especial ( !@ #$%&amp;*()-+=)" textFill="RED" visible="false" />
             <Label text="Correu:">
                <VBox.margin>
                   <Insets top="20.0" />
@@ -57,6 +58,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </TextField>
+            <Label fx:id="errorCorreu" text="El correu ha de tindre format valid" textFill="RED" visible="false" />
             <Label text="Data naixement:">
                <VBox.margin>
                   <Insets top="20.0" />
@@ -66,6 +68,7 @@
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin></DatePicker>
+            <Label fx:id="errorEdat" text="L'usuari ha de tindre al menys 16 anys" textFill="RED" visible="false" />
             <Label text="Foto perfil">
                <VBox.margin>
                   <Insets bottom="5.0" top="20.0" />
@@ -83,12 +86,12 @@
                   <Insets right="20.0" />
                </HBox.margin>
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Button>
             <Button mnemonicParsing="false" onAction="#cancelar" style="-fx-background-color: #b7b5b5;" text="Cancelar">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="18.0" />
                </font></Button>
          </children>
          <BorderPane.margin>
@@ -97,12 +100,15 @@
       </HBox>
    </bottom>
    <right>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets right="20.0" top="20.0" />
+            <Insets right="20.0" top="40.0" />
          </BorderPane.margin>
          <children>
-            <ImageView fx:id="imagePerfil" fitHeight="105.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imagePerfil" fitHeight="110.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></ImageView>
          </children>
       </VBox>
    </right>

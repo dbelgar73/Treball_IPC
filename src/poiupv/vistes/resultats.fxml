@@ -5,21 +5,20 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.ResultatsController">
-   <children>
-      <HBox alignment="CENTER_LEFT" layoutY="-7.0" style="-fx-background-color: #006db5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+<BorderPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.controladors.ResultatsController">
+   <top>
+      <HBox alignment="CENTER_LEFT" style="-fx-background-color: #006db5;" BorderPane.alignment="CENTER">
          <children>
             <Text fill="WHITE" nodeOrientation="RIGHT_TO_LEFT" strokeType="OUTSIDE" strokeWidth="0.0" text="Resultats">
                <font>
-                  <Font name="System Bold" size="32.0" />
+                  <Font name="System Bold" size="44.0" />
                </font>
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" top="10.0" />
@@ -27,119 +26,117 @@
             </Text>
          </children>
       </HBox>
-      <Pane layoutX="29.0" layoutY="83.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="90.0">
+   </top>
+   <center>
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER">
+            <VBox style="-fx-border-color: black;" HBox.hgrow="ALWAYS">
                <children>
-                  <VBox style="-fx-border-color: black;" HBox.hgrow="ALWAYS">
+                  <DatePicker fx:id="datePicker">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </DatePicker>
+                  <ListView fx:id="listSesions" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" style="-fx-border-color: black;" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER" style="-fx-background-color: #006db5;">
                      <children>
-                        <DatePicker fx:id="datePicker">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" top="10.0" />
-                           </VBox.margin>
-                        </DatePicker>
-                        <ListView fx:id="listSesions" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Total">
+                           <font>
+                              <Font name="System Bold Italic" size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
                      </children>
-                  </VBox>
-                  <VBox alignment="CENTER" style="-fx-border-color: black;" HBox.hgrow="ALWAYS">
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
                      <children>
-                        <HBox alignment="CENTER" style="-fx-background-color: #006db5;">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Total">
-                                 <font>
-                                    <Font name="System Bold Italic" size="24.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets bottom="10.0" top="10.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Encerts:">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Text>
-                              <Label fx:id="encerts" alignment="CENTER" text="Label">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Falllades:">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Text>
-                              <Label fx:id="fallades" alignment="CENTER" text="Label">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data ultima sesió:">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Text>
-                              <Label fx:id="sesio" alignment="CENTER" text="Label">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <Button mnemonicParsing="false" onAction="#tancarBoto" text="Tancar">
-                           <VBox.margin>
-                              <Insets bottom="20.0" top="20.0" />
-                           </VBox.margin>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Encerts:">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
-                        </Button>
+                        </Text>
+                        <Label fx:id="encerts" alignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
                      </children>
-                  </VBox>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Falllades:">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="fallades" alignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data ultima sesió:">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="sesio" alignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#tancarBoto" style="-fx-background-color: #b7b5b5;" text="Tancar">
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
                </children>
-            </HBox>
+            </VBox>
          </children>
-         <effect>
-            <DropShadow />
-         </effect>
-      </Pane>
-   </children>
-</AnchorPane>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </HBox>
+   </center>
+</BorderPane>

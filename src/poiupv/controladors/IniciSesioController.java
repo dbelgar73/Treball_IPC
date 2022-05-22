@@ -7,7 +7,6 @@ package poiupv.controladors;
 
 import DBAccess.NavegacionDAOException;
 import java.io.IOException;
-import java.lang.ModuleLayer.Controller;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
@@ -28,10 +27,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Navegacion;
-import model.Session;
 import model.User;
 import poiupv.Poi;
-import static poiupv.controladors.RegistreController.email;
 import static poiupv.controladors.RegistreController.usr;
 
 
@@ -137,6 +134,7 @@ public class IniciSesioController implements Initializable {
             Stage estageActual = new Stage();
             estageActual.setResizable(true);
             estageActual.setScene(scene);
+            estageActual.setTitle("Formulari de registre");
             estageActual.initModality(Modality.APPLICATION_MODAL);
             estageActual.show();
             

@@ -98,29 +98,29 @@ public class PrincipalController implements Initializable {
         realRespostaCorrec(respostes);
         llistaRespostes.setItems(datos);
         
-        botoPunt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if(botoPunt.isFocused()){
+        botoPunt.selectedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if(newValue){
                 botoLine.setSelected(false);
                 botoArco.setSelected(false);
                 botoText.setSelected(false);                
             }
         });
-        botoLine.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if(botoLine.isFocused()){
+        botoLine.selectedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if(newValue){
                 botoPunt.setSelected(false);
                 botoArco.setSelected(false);
                 botoText.setSelected(false);                
             }
         });
-        botoArco.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if(botoArco.isFocused()){
+        botoArco.selectedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if(newValue){
                 botoLine.setSelected(false);
                 botoPunt.setSelected(false);
                 botoText.setSelected(false);                
             }
         });
-        botoText.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if(botoText.isFocused()){
+        botoText.selectedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if(newValue){
                 botoLine.setSelected(false);
                 botoArco.setSelected(false);
                 botoPunt.setSelected(false);                
@@ -203,7 +203,7 @@ public class PrincipalController implements Initializable {
             Alert alert = new Alert(AlertType.INFORMATION); 
             alert.setTitle("Resposta correcta"); 
             alert.setHeaderText("Resposta Correcta"); 
-            alert.setContentText("Felicitats, has encertat la respota.");  
+            alert.setContentText("Felicitats, has encertat la resposta.");  
             alert.showAndWait(); 
             Node n = (Node)event.getSource();
             n.getScene().getWindow().hide();
@@ -213,7 +213,7 @@ public class PrincipalController implements Initializable {
             Alert alert = new Alert(AlertType.INFORMATION); 
             alert.setTitle("Resposta incorrecta"); 
             alert.setHeaderText("Resposta Incorrecta"); 
-            alert.setContentText("Resposta ccorrecta: \r" + resCorrec.getText());  
+            alert.setContentText("Resposta correcta: \r" + resCorrec.getText());  
             alert.showAndWait(); 
             Node n = (Node)event.getSource();
             n.getScene().getWindow().hide();   
@@ -264,7 +264,8 @@ public class PrincipalController implements Initializable {
             texto.setOnAction(e -> {
                 textoT.setX(texto.getLayoutX());
                 textoT.setY(texto.getLayoutY());
-                textoT.setStyle("-fx-font-family: System; -fx-font-size: 40;");               
+                textoT.setStyle("-fx-font-family: System; -fx-font-size: 40;");
+                textoT.setFill(colorPalet.getValue());
                 zoomGroup.getChildren().add(textoT);
                 zoomGroup.getChildren().remove(texto);
                 e.consume();

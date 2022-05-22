@@ -8,7 +8,6 @@ package poiupv.controladors;
 import DBAccess.NavegacionDAOException;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
@@ -18,7 +17,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -100,6 +98,7 @@ public class MenuController implements Initializable {
             Scene scene = new Scene(root);
             Stage estageActual = new Stage();
             estageActual.setResizable(true);
+            estageActual.setTitle("Modificar dades de l'usuari");
             estageActual.setScene(scene);
             estageActual.show();
         } 
@@ -119,7 +118,6 @@ public class MenuController implements Initializable {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
             Scene scene = new Scene(root);
-            stage.setTitle("Inici Sesio");
             stage.setScene(scene);
             stage.show();
             

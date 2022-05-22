@@ -23,11 +23,9 @@ public class PoiUPVApp extends Application {
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/IniciSesio.fxml"));
             Parent root = miCargador.load();
             Scene scene = new Scene(root);
-            //scene.getStylesheets().add(getClass().getResource("/poiupv/resources/estilos.css").toExternalForm());
-            stage.setTitle("Inicio Session");
+            stage.setTitle("Inici Sessio");
             stage.setScene(scene);
             stage.setResizable(true);
-            //PoiUPVApp.setUserAgentStylesheet(getClass().getResource("/poiupv/resources/estilos.css").toExternalForm());
             stage.show();
         }
         catch(Exception e) {

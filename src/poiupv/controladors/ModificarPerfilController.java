@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,14 +21,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.User;
 import poiupv.Poi;
+import static poiupv.controladors.RegistreController.birthDate;
+import static poiupv.controladors.RegistreController.email;
+import static poiupv.controladors.RegistreController.pswd;
 
 
 
@@ -52,6 +56,12 @@ public class ModificarPerfilController implements Initializable {
     private ChoiceBox<String> ChoiceAvatar;
     @FXML
     public Button botoGuardar;
+    @FXML
+    private Label errorContrassenya;
+    @FXML
+    private Label errorCorreu;
+    @FXML
+    private Label errorEdat;
 
     /**
      * Initializes the controller class.
@@ -83,6 +93,66 @@ public class ModificarPerfilController implements Initializable {
         CorreuUser.setText(Poi.userActual.getEmail());
         dataUser.setValue(Poi.userActual.getBirthdate());
         imagePerfil.setImage(Poi.userActual.getAvatar());
+        
+        //LISTENER CAMP CORREU
+        CorreuUser.focusedProperty().addListener((observable, oldValue, newValue)->{ 
+            
+            email = CorreuUser.getText();
+            errorCorreu.setVisible(false);
+            
+            if(!"".equals(email) && !User.checkEmail(email)){//error en el correu
+                errorCorreu.setVisible(true);
+                botoGuardar.setDisable(true);
+                
+            }
+            else{ 
+                errorCorreu.setVisible(false);
+                botoGuardar.setDisable(false);
+                
+            }
+        });
+        //LISTENER CAMP CONTRASSENYA
+        contrasenyaUser.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            pswd = contrasenyaUser.getText();
+            errorContrassenya.setVisible(false);
+            if(!"".equals(pswd) && !User.checkPassword(pswd)){//error en la contrassenya
+                errorContrassenya.setVisible(true);
+                botoGuardar.setDisable(true);
+            }
+            else{
+                errorContrassenya.setVisible(false);
+                botoGuardar.setDisable(false);
+            }
+        });
+        //LISTENER CAMP ANIVERSARI
+        dataUser.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+        String aux = errorEdat.getText();
+        birthDate = this.dataUser.getValue();
+        if(birthDate == null){
+            errorEdat.setText("Error, data no introduida. S'ha de polsar intro per a comfirmar-la");
+            errorEdat.setVisible(true);
+            botoGuardar.setDisable(true);
+        }
+        else{
+            errorEdat.setVisible(false);
+            errorEdat.setText(aux);
+            botoGuardar.setDisable(false);
+            //Obte la data de ara
+            LocalDate now = LocalDate.now();
+            //calcula la diferencia (Data de hui - any de naixement) = edat
+            int dataHui = now.getYear() + now.getDayOfYear();//calcula la data de hui
+            int naixement = birthDate.getYear() + birthDate.getDayOfYear();
+            
+            int edat = dataHui - naixement ;
+            if(edat < 16){//es menor de 16 anys
+                errorEdat.setVisible(true);//mostra error edat 
+                botoGuardar.setDisable(true);
+            }
+            else{
+                errorEdat.setVisible(false);//amaga el error de la edat
+            }
+        }
+        });
     }    
 
     @FXML
@@ -116,9 +186,16 @@ public class ModificarPerfilController implements Initializable {
     }
 
     @FXML
-    private void cancelar(ActionEvent event) {
+    private void cancelar(ActionEvent event) throws IOException {
         Node n = (Node)event.getSource();
         n.getScene().getWindow().hide();
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Menu.fxml"));
+        Parent root = miCargador.load();
+        Scene scene = new Scene(root);
+        Stage estageActual = new Stage();
+        estageActual.setResizable(true);
+        estageActual.setScene(scene);
+        estageActual.show();
     }
 
     

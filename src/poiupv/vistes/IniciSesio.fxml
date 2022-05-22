@@ -35,13 +35,13 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="usuari" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="220.0" promptText="Usuario o nickname" snapToPixel="false">
+            <TextField fx:id="usuari" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="220.0" promptText="Usuari o nickname" snapToPixel="false">
                <font>
                   <Font size="14.0" />
                </font></TextField>
             <HBox alignment="CENTER_LEFT" prefHeight="5.0" prefWidth="273.0">
                <children>
-                  <Label fx:id="MissatgeUsuari" text="Usuario incorrecto" textFill="RED" visible="false" HBox.hgrow="ALWAYS">
+                  <Label fx:id="MissatgeUsuari" text="Usuari incorrecte" textFill="RED" visible="false" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="16.0" />
                      </font></Label>
@@ -56,7 +56,7 @@
                </font></PasswordField>
             <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="295.0">
                <children>
-                  <Label fx:id="MissatgeContrasenya" text="Contraseña incorrecta" textFill="RED" visible="false" HBox.hgrow="ALWAYS">
+                  <Label fx:id="MissatgeContrasenya" text="Contrassenya incorrecta" textFill="RED" visible="false" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets bottom="20.0" />
                      </padding>
@@ -74,7 +74,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="botoRegistre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Registrarse" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #00a400;" text="Crear Cuenta" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
+            <Button fx:id="botoRegistre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Registrarse" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #00a400;" text="Registrar-me" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>

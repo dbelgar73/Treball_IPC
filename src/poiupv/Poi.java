@@ -71,6 +71,9 @@ public class Poi {
     public static List<String> sesionsText(List<Session> res, DatePicker e){
         int i = res.size();
         List<String> sesions = new ArrayList<>();
+        totalHits =0;
+        totalFaults = 0;
+        dataUltima = (res.get(i -1)).getLocalDate();
         for(int j = 0; j < i; j++){
             
             Session ses = res.get(j);
@@ -84,7 +87,7 @@ public class Poi {
                 sesions.add(tot);
             }
         }
-        dataUltima = (res.get(i -1)).getLocalDate();
+        
         return sesions;
     }
     
