@@ -243,8 +243,8 @@ public class PrincipalController implements Initializable {
         
         //crea el punt
         if(botoPunt.isSelected()){
-            //punt.setFill(color);
-            //punt.setStroke(color);
+            punt.setFill(colorPalet.getValue());
+            punt.setStroke(colorPalet.getValue());
             zoomGroup.getChildren().add(punt);
             punt.setCenterX(event.getX());
             punt.setCenterY(event.getY());
@@ -253,15 +253,15 @@ public class PrincipalController implements Initializable {
         }
         //crea la linea
         if(botoLine.isSelected()){
-            //linea.setFill(color);
-            //linea.setStroke(color);
+            linea.setFill(colorPalet.getValue());
+            linea.setStroke(colorPalet.getValue());
             zoomGroup.getChildren().add(linea);
             botoLine.setSelected(false);
         }
         if(botoArco.isSelected()){
             
-            //arc.setFill(Color.Transparent);
-            //arc.setStroke(color);
+            arc.setFill(colorPalet.getValue());
+            arc.setStroke(colorPalet.getValue());
             zoomGroup.getChildren().add(arc);
             arc.setCenterX(event.getX());
             arc.setCenterY(event.getY());
