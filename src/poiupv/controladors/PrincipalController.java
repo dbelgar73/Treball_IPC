@@ -89,6 +89,7 @@ public class PrincipalController implements Initializable {
     private TextField texto;
     private Text textoT;
     private ToggleButton botoSelec;
+    private Answer resCorrec;
     
     
     @Override
@@ -98,6 +99,7 @@ public class PrincipalController implements Initializable {
         List<Answer> respostes = (Poi.seleccionat).getAnswers();
         List<String> textrespostes = Poi.respostesText(respostes);
         datos = FXCollections.observableList(textrespostes);
+        realRespostaCorrec(respostes);
         llistaRespostes.setItems(datos);
         
         botoPunt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
@@ -215,7 +217,7 @@ public class PrincipalController implements Initializable {
             Alert alert = new Alert(AlertType.INFORMATION); 
             alert.setTitle("Resposta incorrecta"); 
             alert.setHeaderText("Resposta Incorrecta"); 
-            alert.setContentText("Resposta ccorrecta: \r" + respostaSel.getText());  
+            alert.setContentText("Resposta ccorrecta: \r" + resCorrec.getText());  
             alert.showAndWait(); 
             Node n = (Node)event.getSource();
             n.getScene().getWindow().hide();   
@@ -371,5 +373,12 @@ public class PrincipalController implements Initializable {
         punt.setRadius(radio);
         event.consume();
         
+    }
+    private void realRespostaCorrec(List<Answer> res){
+        for(int i = 0; i < res.size(); i++){
+            if((res.get(i)).getValidity()){
+                resCorrec = res.get(i);
+            }
+        }
     }
 }

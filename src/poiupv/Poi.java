@@ -20,6 +20,10 @@ public class Poi {
     public static int faults;
     public static Session sessio;
     public static LocalDateTime TimeInici ;
+    public static int totalHits;
+    public static int totalFaults;
+    public static LocalDate dataUltima;
+    
 
     public static void setUserActual(User p){
         userActual = p;
@@ -68,33 +72,19 @@ public class Poi {
         List<String> sesions = new ArrayList<>();
         for(int j = 0; j < i; j++){
             Session ses = res.get(j);
+            totalHits += ses.getHits();
+            totalFaults += ses.getFaults();
             int hit = ses.getHits();
             int fault = ses.getFaults();
             LocalDate data = ses.getLocalDate();
             String tot = "Data sessió: " + data + "\r Encerts: " + hit + "\r Fallades: " + fault;
             sesions.add(tot);
         }
+        dataUltima = (res.get(i -1)).getLocalDate();
         return sesions;
     }
     
-    public static int totalHits(List<Session> res){
-        int totalHits = 0;
-        int i = res.size();
-        for(int j = 0; j < i; i++){
-            Session ses = res.get(j);
-            totalHits += ses.getHits();
-        }
-        return totalHits;
-    }
-    public static int totalFaults(List<Session> res){
-        int totalFaults = 0;
-        int i = res.size();
-        for(int j = 0; j < i; i++){
-            Session ses = res.get(j);
-            totalFaults += ses.getFaults();
-        }
-        return totalFaults;
-    }
+    
     
     
 }
