@@ -106,7 +106,7 @@ public class RegistreController implements Initializable {
         });
         
         //LISTENER CAMP USUARI
-        usuari.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+        usuari.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             usr = usuari.getText();
             
             if(!"".equals(usr) && !User.checkNickName(usr)){//error en l'usuari
@@ -119,10 +119,10 @@ public class RegistreController implements Initializable {
             }
         });
         //LISTENER CAMP CORREU
-        correu.focusedProperty().addListener((observable, oldValue, newValue)->{ 
+        correu.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue)->{ 
             
             email = correu.getText();
-            errorCorreu.setVisible(false);
+            
             
             if(!"".equals(email) && !User.checkEmail(email)){//error en el correu
                 errorCorreu.setVisible(true);
@@ -136,7 +136,7 @@ public class RegistreController implements Initializable {
             }
         });
         //LISTENER CAMP CONTRASSENYA
-        contrassenya.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+        contrassenya.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             pswd = contrassenya.getText();
             errorContrassenya.setVisible(false);
             if(!"".equals(pswd) && !User.checkPassword(pswd)){//error en la contrassenya
@@ -149,50 +149,36 @@ public class RegistreController implements Initializable {
             }
         });
         //LISTENER CAMP ANIVERSARI
-        daypicker.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-        String aux = errorEdat.getText();
-        birthDate = this.daypicker.getValue();
-        if(birthDate == null){
-            errorEdat.setText("Error, data no introduida. S'ha de polsar intro per a comfirmar-la");
-            errorEdat.setVisible(true);
-            botoRegistrarse.setDisable(true);
-            edatOk = false;
-        }
-        else{
-            edatOk = true;
-            errorEdat.setVisible(false);
-            errorEdat.setText(aux);
-            botoRegistrarse.setDisable(false);
-            //Obte la data de ara
-            LocalDate now = LocalDate.now();
-            //calcula la diferencia (Data de hui - any de naixement) = edat
-            int dataHui = now.getYear(); //+ now.getDayOfYear();//calcula la data de hui
-            int naixement = birthDate.getYear();//calcula la data de naixement
-            edat = dataHui - naixement ;
-            System.out.println("edat" +edat);
-            
-            if(edat < 16){//es menor de 16 anys
-                errorEdat.setVisible(true);//mostra error edat 
+        daypicker.valueProperty().addListener((ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) -> {
+        
+            birthDate = this.daypicker.getValue();
+            if(birthDate == null){
+
                 botoRegistrarse.setDisable(true);
                 edatOk = false;
             }
-            if(edat == 16){
-                if(now.getMonth().getValue() < birthDate.getMonthValue()){
-                    errorEdat.setVisible(true);//mostra error edat 
-                    botoRegistrarse.setDisable(true);
-                    edatOk = false;
-                }
-                if( now.getMonth().getValue() == birthDate.getMonthValue() && now.getDayOfMonth() < birthDate.getDayOfMonth()){
-                    errorEdat.setVisible(true);//mostra error edat 
-                    botoRegistrarse.setDisable(true);
-                    edatOk = false;
-                }
-            }
             else{
-                errorEdat.setVisible(false);//amaga el error de la edat
-                 botoRegistrarse.setDisable(false);
+
+                //Obte la data de ara
+                LocalDate now = LocalDate.now();
+                //calcula la diferencia (Data de hui - any de naixement) = edat
+                int dataHui = now.getYear();//calcula la data de hui
+                int naixement = birthDate.getYear();//calcula la data de naixement
+                edat = dataHui - naixement ;
+                System.out.println("edat" +edat);
+
+                if(edat < 16){//es menor de 16 anys
+                    errorEdat.setVisible(true);//mostra error edat 
+                    botoRegistrarse.setDisable(true);
+                    edatOk = false;
+                }
+
+                else{
+                    errorEdat.setVisible(false);//amaga el error de la edat
+                    botoRegistrarse.setDisable(false);
+                    edatOk=true;
+                }
             }
-        }
         });
     }   
     
@@ -214,32 +200,15 @@ public class RegistreController implements Initializable {
         if(!User.checkPassword(pswd)){
             errorContrassenya.setVisible(true);
         }
-        if(daypicker.getValue()==null){
-            errorEdat.setVisible(true);
-        }
-        if(User.checkNickName(usr) && User.checkEmail(email) && User.checkPassword(pswd) && (daypicker.getValue()!=null) && (edatOk ==true) ){
+        
+        if(User.checkNickName(usr) && User.checkEmail(email) && User.checkPassword(pswd) && edatOk ==true ){
             //TOT CORRECTE, REGISTRA
             try{
                 navegacio.registerUser(usr,email,pswd,avatar,birthDate);
             }
             catch(NavegacionDAOException e){
                 errorJaRegistrat.setVisible(true);
-                Alert alert = new Alert(AlertType.CONFIRMATION); 
-                alert.setTitle("Error registre"); 
-                alert.setHeaderText("Error: Usuari ja registrat"); 
-                alert.setContentText("Tornar a intentar amb altre usuari?"); 
-                Optional<ButtonType> result = alert.showAndWait(); 
-                if (result.isPresent() && result.get() == ButtonType.OK){ 
-                    System.out.println("OK");
-                    //TANCA LA FINESTRA DEL REGISTRE
-                    Node n = (Node)event.getSource();
-                    n.getScene().getWindow().hide();   
-                    } 
-                else { 
-                    System.out.println("CANCEL"); 
-                    Node n = (Node)event.getSource();
-                    n.getScene().getWindow().hide();
-                }
+               
             }
                 
             if(!errorJaRegistrat.isVisible()){
@@ -252,16 +221,7 @@ public class RegistreController implements Initializable {
                 //TANCA LA FINESTRA DEL REGISTRE
                 Node n = (Node)event.getSource();
                 n.getScene().getWindow().hide();   
-                /*
-                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Registre.fxml"));
-                Parent root = miCargador.load();
-                Scene scene = new Scene(root);
-                Stage estageActual = new Stage();
-                estageActual.setResizable(true);
-                estageActual.setScene(scene);
-                estageActual.initModality(Modality.APPLICATION_MODAL);
-                estageActual.show();
-                */
+                
             }        
         }
     }         
