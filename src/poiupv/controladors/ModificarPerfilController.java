@@ -62,7 +62,12 @@ public class ModificarPerfilController implements Initializable {
     private Label errorCorreu;
     @FXML
     private Label errorEdat;
-
+    private boolean edatOk;
+    private double edat;
+    public String newPass;
+    public String newEmail;
+    public LocalDate newBirth;
+    
     /**
      * Initializes the controller class.
      */
@@ -95,12 +100,12 @@ public class ModificarPerfilController implements Initializable {
         imagePerfil.setImage(Poi.userActual.getAvatar());
         
         //LISTENER CAMP CORREU
-        CorreuUser.focusedProperty().addListener((observable, oldValue, newValue)->{ 
+        CorreuUser.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue)->{ 
             
-            email = CorreuUser.getText();
-            errorCorreu.setVisible(false);
+            newEmail = CorreuUser.getText();
             
-            if(!"".equals(email) && !User.checkEmail(email)){//error en el correu
+            
+            if(!"".equals(newEmail) && !User.checkEmail(newEmail)){//error en el correu
                 errorCorreu.setVisible(true);
                 botoGuardar.setDisable(true);
                 
@@ -112,10 +117,10 @@ public class ModificarPerfilController implements Initializable {
             }
         });
         //LISTENER CAMP CONTRASSENYA
-        contrasenyaUser.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            pswd = contrasenyaUser.getText();
+        contrasenyaUser.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            newPass= contrasenyaUser.getText();
             errorContrassenya.setVisible(false);
-            if(!"".equals(pswd) && !User.checkPassword(pswd)){//error en la contrassenya
+            if(!"".equals(newPass) && !User.checkPassword(newPass)){//error en la contrassenya
                 errorContrassenya.setVisible(true);
                 botoGuardar.setDisable(true);
             }
@@ -125,49 +130,47 @@ public class ModificarPerfilController implements Initializable {
             }
         });
         //LISTENER CAMP ANIVERSARI
-        dataUser.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-        String aux = errorEdat.getText();
-        birthDate = this.dataUser.getValue();
-        if(birthDate == null){
-            errorEdat.setText("Error, data no introduida. S'ha de polsar intro per a comfirmar-la");
-            errorEdat.setVisible(true);
-            botoGuardar.setDisable(true);
-        }
-        else{
-            errorEdat.setVisible(false);
-            errorEdat.setText(aux);
-            botoGuardar.setDisable(false);
-            //Obte la data de ara
-            LocalDate now = LocalDate.now();
-            //calcula la diferencia (Data de hui - any de naixement) = edat
-            int dataHui = now.getYear() + now.getDayOfYear();//calcula la data de hui
-            int naixement = birthDate.getYear() + birthDate.getDayOfYear();
-            
-            int edat = dataHui - naixement ;
-            if(edat < 16){//es menor de 16 anys
-                errorEdat.setVisible(true);//mostra error edat 
+        dataUser.valueProperty().addListener((ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) -> {
+        
+           newBirth= dataUser.getValue();
+            if(newBirth == null){
+
                 botoGuardar.setDisable(true);
+                edatOk = false;
             }
             else{
-                errorEdat.setVisible(false);//amaga el error de la edat
+
+                //Obte la data de ara
+                LocalDate now = LocalDate.now();
+                //calcula la diferencia (Data de hui - any de naixement) = edat
+                int dataHui = now.getYear() * 365 + now.getDayOfYear();//calcula la data de hui
+                int naixement = newBirth.getYear() * 365 +  newBirth.getDayOfYear();//calcula la data de naixement
+                edat = (dataHui - naixement)/365 ;
+               
+
+                if(edat < 16){//es menor de 16 anys
+                    errorEdat.setVisible(true);//mostra error edat 
+                    botoGuardar.setDisable(true);
+                    edatOk = false;
+                }
+
+                else{
+                    errorEdat.setVisible(false);//amaga el error de la edat
+                    botoGuardar.setDisable(false);
+                    edatOk=true;
+                }
             }
-        }
         });
     }    
 
     @FXML
     private void guardarCambios(ActionEvent event) throws NavegacionDAOException, IOException {
-        //noves dades
-        String newPass = contrasenyaUser.getText();
-        String newEmail = CorreuUser.getText(); 
-        LocalDate newBirth = dataUser.getValue();
-        LocalDate now = LocalDate.now();
-        //calcula la diferencia (Data de hui - any de naixement) = edat
-        int dataHui = now.getYear();//calcula la data de hui
-        int naixement = newBirth.getYear();
-        int edat = dataHui - naixement ;
+        
+        
+        
+       
         //se comproben que siguen correctes
-        if(User.checkPassword(newPass) && User.checkEmail(newEmail) && edat > 16){
+        if(User.checkPassword(newPass) && User.checkEmail(newEmail) && edatOk){
             //canviem les dades que hi havien per les noves
             Poi.userActual.setPassword(newPass);
             Poi.userActual.setEmail(newEmail);

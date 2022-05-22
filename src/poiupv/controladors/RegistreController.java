@@ -165,7 +165,7 @@ public class RegistreController implements Initializable {
                 int dataHui = now.getYear() * 365 + now.getDayOfYear();//calcula la data de hui
                 int naixement = birthDate.getYear() * 365 +  birthDate.getDayOfYear();//calcula la data de naixement
                 edat = (dataHui - naixement)/365 ;
-                System.out.println("edat" +edat);
+                
 
                 if(edat < 16){//es menor de 16 anys
                     errorEdat.setVisible(true);//mostra error edat 
