@@ -51,10 +51,11 @@ public class ResultatsController implements Initializable {
         llistaSesions = (Poi.userActual).getSessions();
         datos = FXCollections.observableList(Poi.sesionsText(llistaSesions));
         listSesions.setItems(datos);
-        encerts.setText(String.valueOf(Poi.totalHits(llistaSesions)));
-        fallades.setText(String.valueOf(Poi.totalFaults(llistaSesions)));
-        LocalDate dataUltima = (llistaSesions.get(llistaSesions.size() - 1)).getLocalDate();
-        sesio.setText(dataUltima.toString());
+        encerts.setText(String.valueOf(Poi.totalHits));
+        fallades.setText(String.valueOf(Poi.totalFaults));
+        
+        String ultdata =  "" + Poi.dataUltima;
+        sesio.setText(ultdata);
     }    
 
     @FXML
