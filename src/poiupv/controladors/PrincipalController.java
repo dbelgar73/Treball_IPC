@@ -53,9 +53,6 @@ public class PrincipalController implements Initializable {
     private ScrollPane map_scrollpane;
     @FXML
     private ImageView cartaNautica;
-    
-    private Group zoomGroup;
-    
     @FXML
     private Label problema;
     @FXML
@@ -76,27 +73,22 @@ public class PrincipalController implements Initializable {
     private ToggleButton botoText;
     @FXML
     private ColorPicker colorPalet;
-    
-    
- 
-    
-    private double iniX, iniY,baseX, baseY;
-    
-    private Color color;
     @FXML
     private ToggleButton botoTransportador;
     @FXML
     private ImageView transportador;
     
+    private Group zoomGroup;
+    private double iniX, iniY,baseX, baseY;
+    private Color color;
     private Line linea;
     private Circle punt;
     private Circle arc;
     private double inicioXArc;
     private TextField texto;
     private Text textoT;
-    ToggleButton botoSelec;
+    private ToggleButton botoSelec;
     
-            
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -107,9 +99,6 @@ public class PrincipalController implements Initializable {
         datos = FXCollections.observableList(textrespostes);
         llistaRespostes.setItems(datos);
         
-       
-        
-        //color.bind(colorPalet.getValue());
         botoPunt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             if(botoPunt.isSelected()){
                 botoLine.setSelected(false);
@@ -258,6 +247,7 @@ public class PrincipalController implements Initializable {
             zoomGroup.getChildren().add(linea);
             botoLine.setSelected(false);
         }
+        //crea el arc
         if(botoArco.isSelected()){
             
             arc.setFill(colorPalet.getValue());
