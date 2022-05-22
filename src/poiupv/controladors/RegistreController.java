@@ -70,6 +70,8 @@ public class RegistreController implements Initializable {
     public  static String usr;
     public static String email;
     public static String pswd;
+    int edat;
+    boolean edatOk;
     public static LocalDate birthDate;
     @FXML
     private ChoiceBox<String> choicePerfil;
@@ -154,29 +156,44 @@ public class RegistreController implements Initializable {
             errorEdat.setText("Error, data no introduida. S'ha de polsar intro per a comfirmar-la");
             errorEdat.setVisible(true);
             botoRegistrarse.setDisable(true);
+            edatOk = false;
         }
         else{
+            edatOk = true;
             errorEdat.setVisible(false);
             errorEdat.setText(aux);
             botoRegistrarse.setDisable(false);
             //Obte la data de ara
             LocalDate now = LocalDate.now();
             //calcula la diferencia (Data de hui - any de naixement) = edat
-            int dataHui = now.getYear() + now.getDayOfYear();//calcula la data de hui
-            int naixement = birthDate.getYear() + birthDate.getDayOfYear();
+            int dataHui = now.getYear(); //+ now.getDayOfYear();//calcula la data de hui
+            int naixement = birthDate.getYear();//calcula la data de naixement
+            edat = dataHui - naixement ;
+            System.out.println("edat" +edat);
             
-            int edat = dataHui - naixement ;
             if(edat < 16){//es menor de 16 anys
                 errorEdat.setVisible(true);//mostra error edat 
                 botoRegistrarse.setDisable(true);
+                edatOk = false;
+            }
+            if(edat == 16){
+                if(now.getMonth().getValue() < birthDate.getMonthValue()){
+                    errorEdat.setVisible(true);//mostra error edat 
+                    botoRegistrarse.setDisable(true);
+                    edatOk = false;
+                }
+                if( now.getMonth().getValue() == birthDate.getMonthValue() && now.getDayOfMonth() < birthDate.getDayOfMonth()){
+                    errorEdat.setVisible(true);//mostra error edat 
+                    botoRegistrarse.setDisable(true);
+                    edatOk = false;
+                }
             }
             else{
                 errorEdat.setVisible(false);//amaga el error de la edat
+                 botoRegistrarse.setDisable(false);
             }
         }
         });
-        
-
     }   
     
     @FXML
@@ -188,7 +205,19 @@ public class RegistreController implements Initializable {
         avatar = imagePerfil.getImage();
          //DATA DE NAIXEMENT
         birthDate = this.daypicker.getValue();//obte el valor seleccionat en el datePicker 
-        if(User.checkNickName(usr) && User.checkEmail(email) && User.checkPassword(pswd)){
+        if(!User.checkNickName(usr)){
+             errorUsuari.setVisible(true);
+        }
+        if(!User.checkEmail(email)){
+            errorCorreu.setVisible(true);
+        }
+        if(!User.checkPassword(pswd)){
+            errorContrassenya.setVisible(true);
+        }
+        if(daypicker.getValue()==null){
+            errorEdat.setVisible(true);
+        }
+        if(User.checkNickName(usr) && User.checkEmail(email) && User.checkPassword(pswd) && (daypicker.getValue()!=null) && (edatOk ==true) ){
             //TOT CORRECTE, REGISTRA
             try{
                 navegacio.registerUser(usr,email,pswd,avatar,birthDate);
@@ -218,11 +247,12 @@ public class RegistreController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION); 
                 alert.setTitle("Registre"); 
                 alert.setHeaderText("Registre completat amb exit");
-                alert.setContentText("Per favor  " + nickName + " inicia sessió de nou"); 
+                alert.setContentText("Per favor inicia sessió de nou"); 
                 alert.showAndWait();
                 //TANCA LA FINESTRA DEL REGISTRE
                 Node n = (Node)event.getSource();
                 n.getScene().getWindow().hide();   
+                /*
                 FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Registre.fxml"));
                 Parent root = miCargador.load();
                 Scene scene = new Scene(root);
@@ -231,6 +261,7 @@ public class RegistreController implements Initializable {
                 estageActual.setScene(scene);
                 estageActual.initModality(Modality.APPLICATION_MODAL);
                 estageActual.show();
+                */
             }        
         }
     }         
