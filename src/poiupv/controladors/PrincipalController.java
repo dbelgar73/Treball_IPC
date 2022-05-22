@@ -7,6 +7,7 @@ package poiupv.controladors;
 
 import DBAccess.NavegacionDAOException;
 import java.awt.Color;
+import java.awt.Paint;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -249,8 +250,7 @@ public class PrincipalController implements Initializable {
         }
         //crea el arc
         if(botoArco.isSelected()){
-            
-            arc.setFill(colorPalet.getValue());
+            arc.setFill(null);
             arc.setStroke(colorPalet.getValue());
             zoomGroup.getChildren().add(arc);
             arc.setCenterX(event.getX());
@@ -285,6 +285,7 @@ public class PrincipalController implements Initializable {
             menuContext.show(punt, e.getSceneX(), e.getSceneY());
             e.consume();
         });
+        //borrar linia
         linea.setOnContextMenuRequested(e -> {
             ContextMenu menuContext = new ContextMenu();
             MenuItem borrarItem = new MenuItem("eliminar");
@@ -296,6 +297,7 @@ public class PrincipalController implements Initializable {
             menuContext.show(linea, e.getSceneX(), e.getSceneY());
             e.consume();
         });
+        //borrar arc
         arc.setOnContextMenuRequested(e -> {
             ContextMenu menuContext = new ContextMenu();
             MenuItem borrarItem = new MenuItem("eliminar");
@@ -307,6 +309,7 @@ public class PrincipalController implements Initializable {
             menuContext.show(arc, e.getSceneX(), e.getSceneY());
             e.consume();
         });
+        //borrar text
         textoT.setOnContextMenuRequested(e -> {
             ContextMenu menuContext = new ContextMenu();
             MenuItem borrarItem = new MenuItem("eliminar");
