@@ -185,34 +185,12 @@ public class RegistreController implements Initializable {
     @FXML
     private void registrarse(ActionEvent event) throws NavegacionDAOException, IOException{
         Navegacion navegacio = Navegacion.getSingletonNavegacion();
-        usr = usuari.getText();
-        email = correu.getText();
-        pswd = contrassenya.getText();
-        avatar = imagePerfil.getImage();
-         //DATA DE NAIXEMENT
-        birthDate = this.daypicker.getValue();//obte el valor seleccionat en el datePicker 
-        if(!User.checkNickName(usr)){
-             errorUsuari.setVisible(true);
-        }
-        if(!User.checkEmail(email)){
-            errorCorreu.setVisible(true);
-        }
-        if(!User.checkPassword(pswd)){
-            errorContrassenya.setVisible(true);
-        }
+
         
-        if(User.checkNickName(usr) && User.checkEmail(email) && User.checkPassword(pswd) && edatOk ==true ){
+        if(User.checkNickName(usr) && User.checkEmail(email) && User.checkPassword(pswd) && edatOk ){
             //TOT CORRECTE, REGISTRA
             try{
                 navegacio.registerUser(usr,email,pswd,avatar,birthDate);
-            }
-            catch(NavegacionDAOException e){
-                errorJaRegistrat.setVisible(true);
-               
-            }
-                
-            if(!errorJaRegistrat.isVisible()){
-                   
                 Alert alert = new Alert(Alert.AlertType.INFORMATION); 
                 alert.setTitle("Registre"); 
                 alert.setHeaderText("Registre completat amb exit");
@@ -220,9 +198,15 @@ public class RegistreController implements Initializable {
                 alert.showAndWait();
                 //TANCA LA FINESTRA DEL REGISTRE
                 Node n = (Node)event.getSource();
-                n.getScene().getWindow().hide();   
+                n.getScene().getWindow().hide();  
+            }
+            catch(NavegacionDAOException e){
+                errorJaRegistrat.setVisible(true);
+               
+               
+            }
                 
-            }        
+             
         }
     }         
     
