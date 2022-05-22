@@ -70,7 +70,7 @@ public class RegistreController implements Initializable {
     public  static String usr;
     public static String email;
     public static String pswd;
-    int edat;
+    double edat;
     boolean edatOk;
     public static LocalDate birthDate;
     @FXML
@@ -162,9 +162,9 @@ public class RegistreController implements Initializable {
                 //Obte la data de ara
                 LocalDate now = LocalDate.now();
                 //calcula la diferencia (Data de hui - any de naixement) = edat
-                int dataHui = now.getYear();//calcula la data de hui
-                int naixement = birthDate.getYear();//calcula la data de naixement
-                edat = dataHui - naixement ;
+                int dataHui = now.getYear() * 365 + now.getDayOfYear();//calcula la data de hui
+                int naixement = birthDate.getYear() * 365 +  birthDate.getDayOfYear();//calcula la data de naixement
+                edat = (dataHui - naixement)/365 ;
                 System.out.println("edat" +edat);
 
                 if(edat < 16){//es menor de 16 anys
@@ -202,8 +202,6 @@ public class RegistreController implements Initializable {
             }
             catch(NavegacionDAOException e){
                 errorJaRegistrat.setVisible(true);
-               
-               
             }
                 
              
