@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.DatePicker;
 import model.Answer;
 import model.Navegacion;
 import model.Problem;
@@ -67,18 +68,21 @@ public class Poi {
         }
         return respostes;
     }
-    public static List<String> sesionsText(List<Session> res){
+    public static List<String> sesionsText(List<Session> res, DatePicker e){
         int i = res.size();
         List<String> sesions = new ArrayList<>();
         for(int j = 0; j < i; j++){
+            
             Session ses = res.get(j);
-            totalHits += ses.getHits();
-            totalFaults += ses.getFaults();
-            int hit = ses.getHits();
-            int fault = ses.getFaults();
-            LocalDate data = ses.getLocalDate();
-            String tot = "Data sessió: " + data + "\r Encerts: " + hit + "\r Fallades: " + fault;
-            sesions.add(tot);
+            if(ses.getLocalDate().getYear() >= e.getValue().getYear() &&  ses.getLocalDate().getDayOfYear() >= e.getValue().getDayOfYear()){
+                totalHits += ses.getHits();
+                totalFaults += ses.getFaults();
+                int hit = ses.getHits();
+                int fault = ses.getFaults();
+                LocalDate data = ses.getLocalDate();
+                String tot = "Data sessió: " + data + "\r Encerts: " + hit + "\r Fallades: " + fault;
+                sesions.add(tot);
+            }
         }
         dataUltima = (res.get(i -1)).getLocalDate();
         return sesions;

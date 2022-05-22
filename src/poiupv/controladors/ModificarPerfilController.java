@@ -86,7 +86,7 @@ public class ModificarPerfilController implements Initializable {
     }    
 
     @FXML
-    private void guardarCambios(ActionEvent event) throws NavegacionDAOException {
+    private void guardarCambios(ActionEvent event) throws NavegacionDAOException, IOException {
         //noves dades
         String newPass = contrasenyaUser.getText();
         String newEmail = CorreuUser.getText(); 
@@ -103,8 +103,14 @@ public class ModificarPerfilController implements Initializable {
             Poi.userActual.setEmail(newEmail);
             Poi.userActual.setBirthdate(newBirth);
             Poi.userActual.setAvatar(imagePerfil.getImage());
-            Node n = (Node)event.getSource();
-            n.getScene().getWindow().hide();
+            ((Stage)botoGuardar.getScene().getWindow()).close();
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/Menu.fxml"));
+            Parent root = miCargador.load();
+            Scene scene = new Scene(root);
+            Stage estageActual = new Stage();
+            estageActual.setResizable(true);
+            estageActual.setScene(scene);
+            estageActual.show();
             
         } 
     }

@@ -18,12 +18,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Problem;
@@ -49,6 +51,8 @@ public class MenuController implements Initializable {
     
     public int random;
     public List<Problem> problemas;
+    @FXML
+    private Text nomUser;
     
     /**
      * Initializes the controller class.
@@ -57,6 +61,7 @@ public class MenuController implements Initializable {
     public void initialize(URL url, ResourceBundle rb)  {
         //AVATAR PERFIL
         avatarPerfil.setImage(Poi.userActual.getAvatar()); //fica el avatar del perfil actual
+        nomUser.setText(Poi.userActual.getNickName());
         Circle clip = new Circle();
         clip.setCenterX(20);
         clip.setCenterY(22);
@@ -88,15 +93,14 @@ public class MenuController implements Initializable {
     @FXML
     private void ModificarPerfil(ActionEvent event) {
         try {
-            //mostra la finestra de modificarPerfil sense tancar la del menu
-            //fins que no es faja alguna accio en modificarPerfil no es pot utilizar la finestra de menu
+            //mostra la finestra de modificarPerfil 
+            ((Stage)avatarPerfil.getScene().getWindow()).close();
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/poiupv/vistes/ModificarPerfil.fxml"));
             Parent root = miCargador.load();
             Scene scene = new Scene(root);
             Stage estageActual = new Stage();
             estageActual.setResizable(true);
             estageActual.setScene(scene);
-            estageActual.initModality(Modality.APPLICATION_MODAL);
             estageActual.show();
         } 
         catch (IOException e) {

@@ -6,8 +6,6 @@
 package poiupv.controladors;
 
 import DBAccess.NavegacionDAOException;
-import java.awt.Color;
-import java.awt.Paint;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -58,10 +56,8 @@ public class PrincipalController implements Initializable {
     private Label problema;
     @FXML
     private ListView<String> llistaRespostes;
-    private ObservableList<String> datos = null;
     @FXML
     private Button validarResposta;
-    private Answer respostaSel;
     @FXML
     private Label correctaIncorrecta;
     @FXML
@@ -81,15 +77,15 @@ public class PrincipalController implements Initializable {
     
     private Group zoomGroup;
     private double iniX, iniY,baseX, baseY;
-    private Color color;
     private Line linea;
     private Circle punt;
     private Circle arc;
     private double inicioXArc;
     private TextField texto;
     private Text textoT;
-    private ToggleButton botoSelec;
     private Answer resCorrec;
+    private Answer respostaSel;
+    private ObservableList<String> datos = null;
     
     
     @Override
@@ -103,28 +99,28 @@ public class PrincipalController implements Initializable {
         llistaRespostes.setItems(datos);
         
         botoPunt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if(botoPunt.isSelected()){
+            if(botoPunt.isFocused()){
                 botoLine.setSelected(false);
                 botoArco.setSelected(false);
                 botoText.setSelected(false);                
             }
         });
         botoLine.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if(botoLine.isSelected()){
+            if(botoLine.isFocused()){
                 botoPunt.setSelected(false);
                 botoArco.setSelected(false);
                 botoText.setSelected(false);                
             }
         });
         botoArco.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if(botoArco.isSelected()){
+            if(botoArco.isFocused()){
                 botoLine.setSelected(false);
                 botoPunt.setSelected(false);
                 botoText.setSelected(false);                
             }
         });
         botoText.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if(botoText.isSelected()){
+            if(botoText.isFocused()){
                 botoLine.setSelected(false);
                 botoArco.setSelected(false);
                 botoPunt.setSelected(false);                
@@ -288,40 +284,40 @@ public class PrincipalController implements Initializable {
             e.consume();
         });
         //borrar linia
-        linea.setOnContextMenuRequested(e -> {
+        linea.setOnContextMenuRequested(a -> {
             ContextMenu menuContext = new ContextMenu();
             MenuItem borrarItem = new MenuItem("eliminar");
             menuContext.getItems().add(borrarItem);
-            borrarItem.setOnAction(ev -> {
-                zoomGroup.getChildren().remove((Node)e.getSource());
-                ev.consume();
+            borrarItem.setOnAction(eve -> {
+                zoomGroup.getChildren().remove((Node)a.getSource());
+                eve.consume();
             });
-            menuContext.show(linea, e.getSceneX(), e.getSceneY());
-            e.consume();
+            menuContext.show(linea, a.getSceneX(), a.getSceneY());
+            a.consume();
         });
         //borrar arc
-        arc.setOnContextMenuRequested(e -> {
+        arc.setOnContextMenuRequested(b -> {
             ContextMenu menuContext = new ContextMenu();
             MenuItem borrarItem = new MenuItem("eliminar");
             menuContext.getItems().add(borrarItem);
-            borrarItem.setOnAction(ev -> {
-                zoomGroup.getChildren().remove((Node)e.getSource());
-                ev.consume();
+            borrarItem.setOnAction(even -> {
+                zoomGroup.getChildren().remove((Node)b.getSource());
+                even.consume();
             });
-            menuContext.show(arc, e.getSceneX(), e.getSceneY());
-            e.consume();
+            menuContext.show(arc, b.getSceneX(), b.getSceneY());
+            b.consume();
         });
         //borrar text
-        textoT.setOnContextMenuRequested(e -> {
+        textoT.setOnContextMenuRequested(c -> {
             ContextMenu menuContext = new ContextMenu();
             MenuItem borrarItem = new MenuItem("eliminar");
             menuContext.getItems().add(borrarItem);
-            borrarItem.setOnAction(ev -> {
-                zoomGroup.getChildren().remove((Node)e.getSource());
-                ev.consume();
+            borrarItem.setOnAction(w -> {
+                zoomGroup.getChildren().remove((Node)c.getSource());
+                w.consume();
             });
-            menuContext.show(textoT, e.getSceneX(), e.getSceneY());
-            e.consume();
+            menuContext.show(textoT, c.getSceneX(), c.getSceneY());
+            c.consume();
         });
     }
     

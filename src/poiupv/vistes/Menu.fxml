@@ -30,7 +30,7 @@
                   </Text>
                </children>
             </HBox>
-            <MenuBar prefHeight="47.0" prefWidth="49.0" style="-fx-background-color: #006db5;">
+            <MenuBar style="-fx-background-color: #006db5;">
               <menus>
                 <Menu mnemonicParsing="false">
                   <items>
@@ -39,7 +39,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#CerrarSesion" text="Cerrar sesión" />
                   </items>
                      <graphic>
-                        <ImageView fx:id="avatarPerfil" fitHeight="45.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="avatarPerfil" fitHeight="45.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                 </Menu>
               </menus>
@@ -47,6 +47,14 @@
                   <Insets />
                </HBox.margin>
             </MenuBar>
+            <Text fx:id="nomUser" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
          </children>
       </HBox>
    </top>

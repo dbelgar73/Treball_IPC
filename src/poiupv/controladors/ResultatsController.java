@@ -6,15 +6,16 @@
 package poiupv.controladors;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import model.Session;
@@ -40,6 +41,8 @@ public class ResultatsController implements Initializable {
     private ObservableList<String> datos = null;
     private int hits;
     private int faults;
+    @FXML
+    private DatePicker datePicker;
     /**
      * Initializes the controller class.
      * @param url
@@ -48,11 +51,15 @@ public class ResultatsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         String data = null;
-        llistaSesions = (Poi.userActual).getSessions();
-        datos = FXCollections.observableList(Poi.sesionsText(llistaSesions));
-        listSesions.setItems(datos);
-        encerts.setText(String.valueOf(Poi.totalHits));
-        fallades.setText(String.valueOf(Poi.totalFaults));
+        llistaSesions = Poi.userActual.getSessions();
+        datePicker.setValue(llistaSesions.get(0).getLocalDate());
+        datePicker.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+           datos = FXCollections.observableList(Poi.sesionsText(llistaSesions, datePicker));
+           listSesions.setItems(datos);
+           encerts.setText(String.valueOf(Poi.totalHits));
+           fallades.setText(String.valueOf(Poi.totalFaults)); 
+        });
+        
         
         String ultdata =  "" + Poi.dataUltima;
         sesio.setText(ultdata);
